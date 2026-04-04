@@ -1,0 +1,63 @@
+.mobile-entry {
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 16px;
+  background: var(--card);
+  border-radius: 18px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+.mobile-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-entry label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mobile-entry input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.mobile-entry input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.mobile-entry button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobile-entry button:hover {
+  background: #1d4ed8;
+}
+
+.loading {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--muted);
+}
