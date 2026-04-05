@@ -9,6 +9,7 @@ import {
   PawPrint,
   Plus,
   Check,
+  Copy,
 } from 'lucide-react';
 import './Appointments.css';
 
@@ -103,11 +104,41 @@ const DAY_KEYS: { key: DayKey; label: string }[] = [
   { key: 'sunday', label: 'Sunday' },
 ];
 
+const cloneDaySchedule = (daySchedule: DaySchedule): DaySchedule => ({
+  morning: { ...daySchedule.morning },
+  noon: { ...daySchedule.noon },
+  evening: { ...daySchedule.evening },
+});
+
 const SLOT_META: { key: SlotKey; label: string; color: string }[] = [
   { key: 'morning', label: 'Morning', color: '#f59e0b' },
   { key: 'noon', label: 'Noon', color: '#10b981' },
   { key: 'evening', label: 'Evening', color: '#6366f1' },
 ];
+
+const SLOT_TIME_RULES: Record<
+  SlotKey,
+  { startMin: string; startMax: string; endMin: string; endMax: string }
+> = {
+  morning: {
+    startMin: '07:00',
+    startMax: '12:00',
+    endMin: '08:00',
+    endMax: '15:00',
+  },
+  noon: {
+    startMin: '12:00',
+    startMax: '16:00',
+    endMin: '13:00',
+    endMax: '18:00',
+  },
+  evening: {
+    startMin: '16:00',
+    startMax: '21:00',
+    endMin: '17:00',
+    endMax: '22:00',
+  },
+};
 
 const LS_SCHEDULE = 'vc_doctor_schedule';
 const LS_APPOINTMENTS = 'vc_appointments';
@@ -115,9 +146,9 @@ const LS_HOLIDAYS = 'vc_holidays';
 
 const loadSchedule = (): WeeklySchedule => {
   try {
-    return JSON.parse(
-      localStorage.getItem(LS_SCHEDULE) ?? '',
-    ) as WeeklySchedule;
+    return normalizeWeeklySchedule(
+      JSON.parse(localStorage.getItem(LS_SCHEDULE) ?? '') as WeeklySchedule,
+    );
   } catch {
     return defaultSchedule;
   }
@@ -142,6 +173,99 @@ const loadHolidays = (): HolidaysStore => {
 const toDateStr = (d: Date) => d.toISOString().split('T')[0];
 const getDayKey = (d: Date): DayKey =>
   DAY_KEYS[d.getDay() === 0 ? 6 : d.getDay() - 1].key;
+
+const timeToMinutes = (time: string) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const minutesToTime = (minutes: number) => {
+  const clamped = Math.max(0, Math.min(23 * 60 + 59, minutes));
+  const hours = Math.floor(clamped / 60)
+    .toString()
+    .padStart(2, '0');
+  const mins = (clamped % 60).toString().padStart(2, '0');
+  return `${hours}:${mins}`;
+};
+
+const formatTimeLabel = (time: string) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  const suffix = hours >= 12 ? 'PM' : 'AM';
+  const twelveHour = hours % 12 || 12;
+  return `${twelveHour.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')} ${suffix}`;
+};
+
+const buildTimeOptions = (min: string, max: string, stepMinutes = 30) => {
+  const options: string[] = [];
+  const minMinutes = timeToMinutes(min);
+  const maxMinutes = timeToMinutes(max);
+
+  for (
+    let currentMinutes = minMinutes;
+    currentMinutes <= maxMinutes;
+    currentMinutes += stepMinutes
+  ) {
+    options.push(minutesToTime(currentMinutes));
+  }
+
+  return options;
+};
+
+const clampTime = (time: string, min: string, max: string) => {
+  if (time < min) return min;
+  if (time > max) return max;
+  return time;
+};
+
+const normalizeTimeSlot = (
+  slot: SlotKey,
+  timeSlot: TimeSlot,
+  changedField?: 'startTime' | 'endTime',
+): TimeSlot => {
+  const rules = SLOT_TIME_RULES[slot];
+  let startTime = clampTime(timeSlot.startTime, rules.startMin, rules.startMax);
+  let endTime = clampTime(timeSlot.endTime, rules.endMin, rules.endMax);
+
+  if (timeToMinutes(endTime) <= timeToMinutes(startTime)) {
+    if (changedField === 'endTime') {
+      startTime = clampTime(
+        minutesToTime(timeToMinutes(endTime) - 30),
+        rules.startMin,
+        rules.startMax,
+      );
+    } else {
+      endTime = clampTime(
+        minutesToTime(timeToMinutes(startTime) + 30),
+        rules.endMin,
+        rules.endMax,
+      );
+    }
+  }
+
+  return {
+    ...timeSlot,
+    startTime,
+    endTime,
+  };
+};
+
+const normalizeWeeklySchedule = (weeklySchedule: WeeklySchedule) => {
+  const nextSchedule = { ...weeklySchedule } as WeeklySchedule;
+
+  DAY_KEYS.forEach(({ key: day }) => {
+    nextSchedule[day] = { ...weeklySchedule[day] };
+    SLOT_META.forEach(({ key: slot }) => {
+      nextSchedule[day][slot] = normalizeTimeSlot(
+        slot,
+        weeklySchedule[day][slot],
+      );
+    });
+  });
+
+  return nextSchedule;
+};
 
 /* ── Component ── */
 function Appointments() {
@@ -198,7 +322,7 @@ function Appointments() {
 
   /* Scheduler helpers */
   const openScheduler = () => {
-    setDraftSchedule(schedule);
+    setDraftSchedule(normalizeWeeklySchedule(schedule));
     setShowSchedulerModal(true);
   };
 
@@ -210,12 +334,35 @@ function Appointments() {
   ) => {
     setDraftSchedule(prev => ({
       ...prev,
-      [day]: { ...prev[day], [slot]: { ...prev[day][slot], [field]: val } },
+      [day]: {
+        ...prev[day],
+        [slot]:
+          field === 'startTime' || field === 'endTime'
+            ? normalizeTimeSlot(
+                slot,
+                {
+                  ...prev[day][slot],
+                  [field]: val,
+                },
+                field,
+              )
+            : { ...prev[day][slot], [field]: val },
+      },
+    }));
+  };
+
+  const copyDaySchedule = (targetDay: DayKey, sourceDay: DayKey) => {
+    setDraftSchedule(prev => ({
+      ...prev,
+      [targetDay]: normalizeWeeklySchedule({
+        ...prev,
+        [targetDay]: cloneDaySchedule(prev[sourceDay]),
+      })[targetDay],
     }));
   };
 
   const saveSchedule = () => {
-    setSchedule(draftSchedule);
+    setSchedule(normalizeWeeklySchedule(draftSchedule));
     setShowSchedulerModal(false);
   };
 
@@ -465,10 +612,37 @@ function Appointments() {
               </button>
             </div>
             <div className="schedule-grid-wrapper">
+              <div className="schedule-helper">
+                {SLOT_META.map(slotMeta => {
+                  const rules = SLOT_TIME_RULES[slotMeta.key];
+                  return (
+                    <div key={slotMeta.key} className="schedule-helper-card">
+                      <div className="schedule-helper-title-row">
+                        <span
+                          className="schedule-helper-dot"
+                          style={{ background: slotMeta.color }}
+                        />
+                        <span className="schedule-helper-title">
+                          {slotMeta.label}
+                        </span>
+                      </div>
+                      <p className="schedule-helper-text">
+                        Start: {formatTimeLabel(rules.startMin)} to{' '}
+                        {formatTimeLabel(rules.startMax)}
+                      </p>
+                      <p className="schedule-helper-text">
+                        End: {formatTimeLabel(rules.endMin)} to{' '}
+                        {formatTimeLabel(rules.endMax)}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
               <table className="schedule-table">
                 <thead>
                   <tr>
-                    <th>Day</th>
+                    <th className="schedule-day-heading">Day</th>
                     {SLOT_META.map(s => (
                       <th key={s.key} style={{ color: s.color }}>
                         {s.label}
@@ -478,10 +652,39 @@ function Appointments() {
                 </thead>
                 <tbody>
                   {DAY_KEYS.map(({ key: day, label }) => (
-                    <tr key={day}>
-                      <td className="sch-day-name">{label}</td>
+                    <tr
+                      key={day}
+                      className={`schedule-row schedule-row-${day}`}
+                    >
+                      <td className="sch-day-name">
+                        <div className="sch-day-cell">
+                          <span>{label}</span>
+                          {day !== 'monday' && (
+                            <div className="sch-day-actions">
+                              <button
+                                type="button"
+                                className="sch-copy-btn"
+                                onClick={() => copyDaySchedule(day, 'monday')}
+                                title="Same as Monday"
+                                aria-label="Same as Monday"
+                              >
+                                <Copy size={14} />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </td>
                       {SLOT_META.map(({ key: slot }) => {
                         const ts = draftSchedule[day][slot];
+                        const rules = SLOT_TIME_RULES[slot];
+                        const startOptions = buildTimeOptions(
+                          rules.startMin,
+                          rules.startMax,
+                        ).filter(option => option < ts.endTime);
+                        const endOptions = buildTimeOptions(
+                          rules.endMin,
+                          rules.endMax,
+                        ).filter(option => option > ts.startTime);
                         return (
                           <td key={slot} className="sch-slot-cell">
                             <label className="sch-enable-toggle">
@@ -497,12 +700,19 @@ function Appointments() {
                                   )
                                 }
                               />
-                              <span>On</span>
+                              <span
+                                className="sch-enable-switch"
+                                aria-hidden="true"
+                              >
+                                <span className="sch-enable-thumb" />
+                              </span>
+                              <span className="sch-enable-text">
+                                {ts.enabled ? 'On' : 'Off'}
+                              </span>
                             </label>
                             {ts.enabled && (
                               <div className="sch-times">
-                                <input
-                                  type="time"
+                                <select
                                   value={ts.startTime}
                                   onChange={e =>
                                     updateDraft(
@@ -512,10 +722,15 @@ function Appointments() {
                                       e.target.value,
                                     )
                                   }
-                                />
+                                >
+                                  {startOptions.map(option => (
+                                    <option key={option} value={option}>
+                                      {formatTimeLabel(option)}
+                                    </option>
+                                  ))}
+                                </select>
                                 <span>–</span>
-                                <input
-                                  type="time"
+                                <select
                                   value={ts.endTime}
                                   onChange={e =>
                                     updateDraft(
@@ -525,7 +740,13 @@ function Appointments() {
                                       e.target.value,
                                     )
                                   }
-                                />
+                                >
+                                  {endOptions.map(option => (
+                                    <option key={option} value={option}>
+                                      {formatTimeLabel(option)}
+                                    </option>
+                                  ))}
+                                </select>
                               </div>
                             )}
                           </td>

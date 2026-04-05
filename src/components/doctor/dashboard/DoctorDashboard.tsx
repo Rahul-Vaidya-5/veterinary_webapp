@@ -100,7 +100,7 @@ function DoctorDashboard() {
         <aside className="dashboard-sidebar">
           <div className="sidebar-logo">
             <Stethoscope size={22} />
-            <span>VetCare Pro</span>
+            <span>VetCare</span>
           </div>
           <nav className="sidebar-nav">
             {sidebarSections.map(section => (
