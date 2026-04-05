@@ -1,19 +1,20 @@
 import { useState, type FormEvent } from 'react';
+import { useLocation } from 'react-router-dom';
+import BackButton from '../utility/BackNavigation';
 import './LoginForm.css';
-interface LoginFormProps {
-  mobileNumber: string;
-  onGoBack: () => void;
-}
 
-function LoginForm({ mobileNumber, onGoBack }: LoginFormProps) {
+function LoginForm() {
   const [password, setPassword] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const location = useLocation();
+  const mobileNumber =
+    (location.state as { mobileNumber?: string } | undefined)?.mobileNumber ??
+    '';
 
   function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoggingIn(true);
 
-    // Simulate login
     setTimeout(() => {
       alert(`Logged in with ${mobileNumber}`);
       setIsLoggingIn(false);
@@ -22,11 +23,10 @@ function LoginForm({ mobileNumber, onGoBack }: LoginFormProps) {
 
   return (
     <div className="login-form">
-      <button className="back-button" onClick={onGoBack}>
-        ← Back
-      </button>
+      <BackButton fallbackTo="/" />
+
       <h2>Welcome back!</h2>
-      <p>Mobile: {mobileNumber}</p>
+      <p>Mobile: {mobileNumber || 'Not provided'}</p>
 
       <form onSubmit={handleLogin}>
         <label>

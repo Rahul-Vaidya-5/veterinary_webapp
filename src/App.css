@@ -52,3 +52,17 @@ color: #0f172a;
 text-wrap: balance;
 overflow-wrap: anywhere;
 }
+
+.back-button {
+border: none;
+background: transparent;
+color: #2563eb;
+font-weight: 600;
+cursor: pointer;
+padding: 6px 0;
+margin-bottom: 12px;
+}
+
+.back-button:hover {
+text-decoration: underline;
+}

@@ -1,19 +1,11 @@
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MobileEntry.css';
-import LoginForm from './login/LoginForm';
-import RegistrationHub from './registration/RegistrationHub';
 
 function MobileEntry() {
+  const navigate = useNavigate();
   const [mobileNumber, setMobileNumber] = useState('');
   const [isChecking, setIsChecking] = useState(false);
-  const [userStatus, setUserStatus] = useState<
-    null | 'registered' | 'not-registered'
-  >(null);
-
-  function handleGoBack() {
-    setUserStatus(null);
-    setMobileNumber(''); // Optional: clear the number too
-  }
 
   function handleMobileSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,25 +13,19 @@ function MobileEntry() {
 
     // Simulate API call
     setTimeout(() => {
-      // For demo: if ends with '123', consider registered
       const isRegistered = mobileNumber.endsWith('81');
-      setUserStatus(isRegistered ? 'registered' : 'not-registered');
       setIsChecking(false);
+
+      if (isRegistered) {
+        navigate('/login', { state: { mobileNumber } });
+      } else {
+        navigate('/register', { state: { mobileNumber } });
+      }
     }, 1500);
   }
 
   if (isChecking) {
     return <div className="loading">Checking registration...</div>;
-  }
-
-  if (userStatus === 'registered') {
-    return <LoginForm mobileNumber={mobileNumber} onGoBack={handleGoBack} />;
-  }
-
-  if (userStatus === 'not-registered') {
-    return (
-      <RegistrationHub mobileNumber={mobileNumber} onGoBack={handleGoBack} />
-    );
   }
 
   function handleMobileChange(event: React.ChangeEvent<HTMLInputElement>) {
