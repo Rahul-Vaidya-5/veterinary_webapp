@@ -60,6 +60,16 @@
   font-size: 1.05rem;
 }
 
+.animal-registration .step-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animal-registration .step-heading svg {
+  color: #2563eb;
+}
+
 .animal-registration h3.section-subheading {
   margin-top: 10px;
   padding-top: 10px;
@@ -242,6 +252,10 @@
 }
 
 .step-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: none;
   border-radius: 10px;
   padding: 11px 20px;

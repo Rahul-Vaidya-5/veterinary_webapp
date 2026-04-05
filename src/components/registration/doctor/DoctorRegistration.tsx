@@ -9,6 +9,8 @@ type Address = {
 };
 
 type DoctorForm = {
+  title: string;
+  gender: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -17,6 +19,8 @@ type DoctorForm = {
   mobileNumber: string;
   specialization: string;
   licenseNumber: string;
+  profilePhotoFile: File | null;
+  profilePhotoUrl: string;
   doctorSignatureFile: File | null;
   doctorSignatureUrl: string;
   address: Address;
@@ -33,6 +37,15 @@ type ClinicForm = {
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  Stethoscope,
+  MapPinned,
+  Building2,
+  ClipboardCheck,
+  ArrowLeft,
+  ArrowRight,
+  Send,
+} from 'lucide-react';
 import './DoctorRegistration.css';
 
 const emptyAddress: Address = {
@@ -46,6 +59,8 @@ const emptyAddress: Address = {
 };
 
 const initialDoctorForm: DoctorForm = {
+  title: '',
+  gender: '',
   firstName: '',
   lastName: '',
   email: '',
@@ -54,6 +69,8 @@ const initialDoctorForm: DoctorForm = {
   mobileNumber: '',
   specialization: '',
   licenseNumber: '',
+  profilePhotoFile: null,
+  profilePhotoUrl: '',
   doctorSignatureFile: null,
   doctorSignatureUrl: '',
   address: { ...emptyAddress },
@@ -160,6 +177,17 @@ function DoctorRegistration() {
     }));
   }
 
+  function handleDoctorProfilePhotoChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) {
+    const file = event.target.files?.[0] ?? null;
+    setDoctor(prev => ({
+      ...prev,
+      profilePhotoFile: file,
+      profilePhotoUrl: file ? URL.createObjectURL(file) : '',
+    }));
+  }
+
   function handleClinicPhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] ?? null;
     setClinic(prev => ({
@@ -170,6 +198,8 @@ function DoctorRegistration() {
   }
 
   function validateStep1() {
+    if (!doctor.title) return 'Title is required.';
+    if (!doctor.gender) return 'Gender is required.';
     if (!doctor.firstName.trim()) return 'First name is required.';
     if (!doctor.lastName.trim()) return 'Last name is required.';
     if (!doctor.mobileNumber || doctor.mobileNumber.length !== 10) {
@@ -284,9 +314,26 @@ function DoctorRegistration() {
       <form onSubmit={handleSubmit}>
         {currentStep === 1 && (
           <>
-            <h3>Doctor Basic Details</h3>
+            <h3 className="step-heading">
+              <Stethoscope size={18} />
+              <span>Doctor Basic Details</span>
+            </h3>
 
-            <label>
+            <label className="title-field">
+              Title *
+              <select
+                value={doctor.title}
+                onChange={e => handleDoctorChange('title', e.target.value)}
+              >
+                <option value="">-- Select --</option>
+                <option value="Dr">Dr.</option>
+                <option value="Mr">Mr.</option>
+                <option value="Ms">Ms.</option>
+                <option value="Mrs">Mrs.</option>
+                <option value="Mx">Mx.</option>
+              </select>
+            </label>
+            <label className="first-name-field">
               First Name *
               <input
                 type="text"
@@ -331,6 +378,19 @@ function DoctorRegistration() {
               />
             </label>
             <label>
+              Gender *
+              <select
+                value={doctor.gender}
+                onChange={e => handleDoctorChange('gender', e.target.value)}
+              >
+                <option value="">-- Select --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </label>
+            <label>
               Experience (years) *
               <input
                 type="number"
@@ -361,12 +421,52 @@ function DoctorRegistration() {
                 }
               />
             </label>
+
+            <label>
+              Doctor Photo (Optional)
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                onChange={handleDoctorProfilePhotoChange}
+              />
+            </label>
+
+            <label>
+              Doctor Signature (Optional)
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                onChange={handleDoctorSignatureChange}
+              />
+            </label>
+
+            {(doctor.profilePhotoUrl || doctor.doctorSignatureUrl) && (
+              <div className="upload-preview-row">
+                {doctor.profilePhotoUrl && (
+                  <img
+                    src={doctor.profilePhotoUrl}
+                    alt="Doctor profile preview"
+                    width={180}
+                  />
+                )}
+                {doctor.doctorSignatureUrl && (
+                  <img
+                    src={doctor.doctorSignatureUrl}
+                    alt="Doctor signature preview"
+                    width={180}
+                  />
+                )}
+              </div>
+            )}
           </>
         )}
 
         {currentStep === 2 && (
           <>
-            <h3>Doctor Address and Signature</h3>
+            <h3 className="step-heading">
+              <MapPinned size={18} />
+              <span>Doctor Address</span>
+            </h3>
 
             <label>
               Doctor Address Line 1 *
@@ -442,29 +542,15 @@ function DoctorRegistration() {
                 }
               />
             </label>
-
-            <label>
-              Doctor Signature (Optional)
-              <input
-                type="file"
-                accept="image/png,image/jpeg,image/webp"
-                onChange={handleDoctorSignatureChange}
-              />
-            </label>
-
-            {doctor.doctorSignatureUrl && (
-              <img
-                src={doctor.doctorSignatureUrl}
-                alt="Doctor signature preview"
-                width={180}
-              />
-            )}
           </>
         )}
 
         {currentStep === 3 && (
           <>
-            <h3>Clinic Details</h3>
+            <h3 className="step-heading">
+              <Building2 size={18} />
+              <span>Clinic Details</span>
+            </h3>
 
             <label>
               Clinic Name *
@@ -604,7 +690,10 @@ function DoctorRegistration() {
 
         {currentStep === 4 && (
           <div className="review-block">
-            <h3>Review and Submit</h3>
+            <h3 className="step-heading review-heading">
+              <ClipboardCheck size={18} />
+              <span>Review and Submit</span>
+            </h3>
 
             <div className="review-grid">
               <section className="review-card">
@@ -616,6 +705,10 @@ function DoctorRegistration() {
                       ? `${doctor.firstName} ${doctor.lastName}`.trim()
                       : '—'}
                   </dd>
+                  <dt>Title</dt>
+                  <dd>{doctor.title || '—'}</dd>
+                  <dt>Gender</dt>
+                  <dd>{doctor.gender || '—'}</dd>
                   <dt>Mobile</dt>
                   <dd>{doctor.mobileNumber || '—'}</dd>
                   <dt>Date of Birth</dt>
@@ -637,7 +730,20 @@ function DoctorRegistration() {
                       ? `${doctor.address.block}, ${doctor.address.district}, ${doctor.address.state} - ${doctor.address.pincode}`
                       : '—'}
                   </dd>
+                  <dt>Photo</dt>
+                  <dd>
+                    {doctor.profilePhotoFile
+                      ? doctor.profilePhotoFile.name
+                      : 'Not provided'}
+                  </dd>
                 </dl>
+                {doctor.profilePhotoUrl && (
+                  <img
+                    src={doctor.profilePhotoUrl}
+                    alt="Doctor profile"
+                    width={120}
+                  />
+                )}
               </section>
 
               <section className="review-card">
@@ -691,17 +797,20 @@ function DoctorRegistration() {
         <div className="step-actions">
           {currentStep > 1 && (
             <button type="button" onClick={handlePreviousStep}>
-              Back
+              <ArrowLeft size={16} />
+              <span>Back</span>
             </button>
           )}
 
           {currentStep < 4 ? (
             <button type="button" onClick={handleNextStep}>
-              Next
+              <span>Next</span>
+              <ArrowRight size={16} />
             </button>
           ) : (
             <button type="submit" disabled={!hasAcceptedDeclaration}>
-              Submit
+              <span>Submit</span>
+              <Send size={16} />
             </button>
           )}
         </div>

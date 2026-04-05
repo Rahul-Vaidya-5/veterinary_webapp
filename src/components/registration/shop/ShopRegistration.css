@@ -68,6 +68,16 @@
   color: #1e293b;
 }
 
+.shop-registration .step-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shop-registration .step-heading svg {
+  color: #2563eb;
+}
+
 .shop-registration label {
   display: flex;
   flex-direction: column;
@@ -211,6 +221,10 @@
 }
 
 .step-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: none;
   border-radius: 10px;
   padding: 11px 16px;

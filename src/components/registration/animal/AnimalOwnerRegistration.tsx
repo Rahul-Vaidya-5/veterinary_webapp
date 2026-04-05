@@ -1,5 +1,14 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  PawPrint,
+  UserRound,
+  MapPinned,
+  ClipboardCheck,
+  ArrowLeft,
+  ArrowRight,
+  Send,
+} from 'lucide-react';
 import './AnimalOwnerRegistration.css';
 
 const ENABLE_STEP_VALIDATION =
@@ -188,7 +197,10 @@ function AnimalOwnerRegistration() {
         {/* ── Step 1: Animal Details ── */}
         {currentStep === 1 && (
           <>
-            <h3>Animal Details</h3>
+            <h3 className="step-heading">
+              <PawPrint size={18} />
+              <span>Animal Details</span>
+            </h3>
 
             <label>
               Animal Name *
@@ -284,7 +296,10 @@ function AnimalOwnerRegistration() {
         {/* ── Step 2: Owner Details ── */}
         {currentStep === 2 && (
           <>
-            <h3>Owner Details</h3>
+            <h3 className="step-heading">
+              <UserRound size={18} />
+              <span>Owner Details</span>
+            </h3>
 
             <label>
               Owner Name *
@@ -308,7 +323,10 @@ function AnimalOwnerRegistration() {
               />
             </label>
 
-            <h3 className="section-subheading">Address</h3>
+            <h3 className="section-subheading step-heading">
+              <MapPinned size={16} />
+              <span>Address</span>
+            </h3>
 
             <label className="full-width">
               Address Line 1 *
@@ -396,7 +414,10 @@ function AnimalOwnerRegistration() {
         {/* ── Step 3: Review & Submit ── */}
         {currentStep === 3 && (
           <>
-            <h3 className="review-heading">Review and Submit</h3>
+            <h3 className="review-heading step-heading">
+              <ClipboardCheck size={18} />
+              <span>Review and Submit</span>
+            </h3>
 
             <div className="review-block">
               <div className="review-grid">
@@ -482,17 +503,20 @@ function AnimalOwnerRegistration() {
         <div className="step-actions">
           {currentStep > 1 && (
             <button type="button" onClick={handlePreviousStep}>
-              Back
+              <ArrowLeft size={16} />
+              <span>Back</span>
             </button>
           )}
           {currentStep < TOTAL_STEPS && (
             <button type="button" onClick={handleNextStep}>
-              Next
+              <span>Next</span>
+              <ArrowRight size={16} />
             </button>
           )}
           {currentStep === TOTAL_STEPS && (
             <button type="submit" disabled={!hasAcceptedDeclaration}>
-              Submit Registration
+              <span>Submit Registration</span>
+              <Send size={16} />
             </button>
           )}
         </div>

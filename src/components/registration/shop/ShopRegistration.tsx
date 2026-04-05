@@ -1,5 +1,13 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  Store,
+  UserRound,
+  ClipboardCheck,
+  ArrowLeft,
+  ArrowRight,
+  Send,
+} from 'lucide-react';
 import './ShopRegistration.css';
 
 const ENABLE_STEP_VALIDATION =
@@ -199,7 +207,10 @@ function ShopRegistration() {
       <form onSubmit={handleSubmit} noValidate>
         {currentStep === 1 && (
           <>
-            <h3>Shop Details</h3>
+            <h3 className="step-heading">
+              <Store size={18} />
+              <span>Shop Details</span>
+            </h3>
 
             <label>
               Shop Type *
@@ -340,7 +351,10 @@ function ShopRegistration() {
 
         {currentStep === 2 && (
           <>
-            <h3>Shop Owner Details</h3>
+            <h3 className="step-heading">
+              <UserRound size={18} />
+              <span>Shop Owner Details</span>
+            </h3>
 
             <label>
               Owner Name *
@@ -366,7 +380,10 @@ function ShopRegistration() {
 
         {currentStep === 3 && (
           <>
-            <h3 className="review-heading">Review and Submit</h3>
+            <h3 className="review-heading step-heading">
+              <ClipboardCheck size={18} />
+              <span>Review and Submit</span>
+            </h3>
 
             <div className="review-block">
               <div className="review-grid">
@@ -460,17 +477,20 @@ function ShopRegistration() {
         <div className="step-actions">
           {currentStep > 1 && (
             <button type="button" onClick={handlePreviousStep}>
-              Back
+              <ArrowLeft size={16} />
+              <span>Back</span>
             </button>
           )}
 
           {currentStep < TOTAL_STEPS ? (
             <button type="button" onClick={handleNextStep}>
-              Next
+              <span>Next</span>
+              <ArrowRight size={16} />
             </button>
           ) : (
             <button type="submit" disabled={!hasAcceptedDeclaration}>
-              Submit Registration
+              <span>Submit Registration</span>
+              <Send size={16} />
             </button>
           )}
         </div>

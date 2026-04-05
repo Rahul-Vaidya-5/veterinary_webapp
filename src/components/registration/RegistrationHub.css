@@ -25,6 +25,9 @@
 }
 
 .registration-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 14px 20px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -40,6 +43,12 @@
   border-color: #9ca3af;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.option-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 

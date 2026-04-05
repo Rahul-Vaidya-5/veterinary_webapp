@@ -68,6 +68,16 @@
   color: #1e293b;
 }
 
+.doctor-registration .step-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doctor-registration .step-heading svg {
+  color: #2563eb;
+}
+
 .doctor-registration label {
   display: flex;
   flex-direction: column;
@@ -96,7 +106,22 @@
   background: #ffffff;
 }
 
+.doctor-registration select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.95rem;
+  background: #ffffff;
+}
+
 .doctor-registration input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.doctor-registration select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
 }
@@ -120,6 +145,13 @@
   border-radius: 10px;
   background: #f8fafc;
   padding: 6px;
+}
+
+.upload-preview-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .review-block {
@@ -211,6 +243,10 @@
 }
 
 .step-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: none;
   border-radius: 10px;
   padding: 11px 16px;
