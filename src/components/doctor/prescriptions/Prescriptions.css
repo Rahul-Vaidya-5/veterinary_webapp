@@ -1,0 +1,348 @@
+/* ─── Prescriptions Page ─── */
+.prescriptions-page {
+  max-width: 900px;
+}
+
+.rx-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rx-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rx-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rx-section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px 18px;
+}
+
+.rx-grid-full > * {
+  grid-column: 1 / -1;
+}
+
+.rx-grid label,
+.rx-grid-full label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.rx-grid input,
+.rx-grid textarea,
+.rx-grid-full input,
+.rx-grid-full textarea {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  background: #fafafa;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+.rx-grid input:focus,
+.rx-grid textarea:focus,
+.rx-grid-full input:focus,
+.rx-grid-full textarea:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+label.error input,
+label.error textarea {
+  border-color: #ef4444;
+}
+
+.err-msg {
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-weight: 400;
+}
+
+/* Medicine table */
+.btn-add-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px dashed #3b82f6;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.825rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.btn-add-row:hover {
+  background: #dbeafe;
+}
+
+.medicine-table-wrapper {
+  overflow-x: auto;
+}
+
+.medicine-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.825rem;
+  min-width: 640px;
+}
+
+.medicine-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.medicine-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.medicine-table td.row-num {
+  color: #94a3b8;
+  font-weight: 600;
+  text-align: center;
+  width: 32px;
+}
+
+.medicine-table input {
+  width: 100%;
+  min-width: 80px;
+  padding: 5px 7px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 0.825rem;
+  background: #fafafa;
+  font-family: inherit;
+}
+
+.medicine-table input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+.btn-remove-row {
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-remove-row:hover:not(:disabled) {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.btn-remove-row:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Submit */
+.rx-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.btn-print {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-print:hover {
+  background: #1d4ed8;
+}
+
+/* ─── Print Styles ─── */
+.print-only {
+  display: none;
+}
+
+@media print {
+  /* Hide everything except print view */
+  body * {
+    visibility: hidden;
+  }
+
+  .rx-print-view,
+  .rx-print-view * {
+    visibility: visible;
+  }
+
+  .rx-print-view {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    padding: 30px 36px;
+    background: white;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000;
+    font-size: 13px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Print view styling */
+.rx-print-view {
+  background: white;
+  padding: 30px 36px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.rx-print-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.rx-clinic-info h1 {
+  margin: 0 0 2px;
+  font-size: 1.3rem;
+  color: #1e40af;
+}
+
+.rx-clinic-sub {
+  margin: 0;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.rx-print-meta {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.rx-print-meta p {
+  margin: 2px 0;
+}
+
+.rx-divider {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 10px 0;
+}
+
+.rx-print-details {
+  margin: 12px 0;
+}
+
+.rx-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.rx-detail-table td {
+  padding: 3px 8px 3px 0;
+  width: 33%;
+}
+
+.rx-print-section {
+  margin: 12px 0;
+}
+
+.rx-print-section p {
+  margin: 4px 0 0 8px;
+}
+
+.rx-medicine-print-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.rx-medicine-print-table th,
+.rx-medicine-print-table td {
+  border: 1px solid #9ca3af;
+  padding: 5px 8px;
+  text-align: left;
+}
+
+.rx-medicine-print-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.rx-print-footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rx-signature-block {
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.rx-signature-line {
+  border-top: 1px solid #374151;
+  width: 160px;
+  margin: 0 auto 6px;
+}
+
+.rx-signature-block p {
+  margin: 2px 0;
+}
+
+@media (max-width: 600px) {
+  .rx-grid {
+    grid-template-columns: 1fr;
+  }
+}

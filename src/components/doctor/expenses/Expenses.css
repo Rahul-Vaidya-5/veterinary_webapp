@@ -1,0 +1,392 @@
+/* ─── Shared: Expenses / Income / Report ─── */
+
+.expenses-page {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form card */
+.eb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 18px;
+}
+
+.eb-full {
+  grid-column: 1 / -1;
+}
+
+.eb-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.eb-grid input,
+.eb-grid select,
+.eb-grid textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  background: #fafafa;
+  color: #111827;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.eb-grid input:focus,
+.eb-grid select:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+label.error input,
+label.error select {
+  border-color: #ef4444;
+}
+
+.err-msg {
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-weight: 400;
+}
+
+.eb-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.save-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.btn-eb-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-eb-add:hover { background: #dc2626; }
+
+.btn-eb-add.income {
+  background: #16a34a;
+}
+.btn-eb-add.income:hover { background: #15803d; }
+
+/* Table card */
+.eb-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.eb-table-header h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.eb-total {
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.eb-total strong {
+  color: #ef4444;
+}
+
+.income-total strong {
+  color: #16a34a;
+}
+
+.eb-empty {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  text-align: center;
+  padding: 24px 0;
+  margin: 0;
+}
+
+.eb-table-wrapper {
+  overflow-x: auto;
+}
+
+.eb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 500px;
+}
+
+.eb-table th {
+  padding: 8px 10px;
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.eb-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.eb-table tr:hover td {
+  background: #fafafa;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.amount-cell {
+  font-weight: 600;
+  color: #374151;
+  font-variant-numeric: tabular-nums;
+}
+
+.income-amount {
+  color: #16a34a;
+}
+
+.category-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--chip-color) 15%, white);
+  color: var(--chip-color);
+}
+
+.btn-row-delete {
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-row-delete:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* ─── Report page ─── */
+.report-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.report-header .dash-page-title {
+  margin-bottom: 0;
+}
+
+.period-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.period-btn {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.period-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.period-btn.active {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+  font-weight: 600;
+}
+
+.report-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.summary-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-count {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.income-card .summary-amount { color: #15803d; }
+.expense-card .summary-amount { color: #b91c1c; }
+.profit-card.positive .summary-amount { color: #15803d; }
+.profit-card.negative .summary-amount { color: #b91c1c; }
+.report-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 14px;
+}
+
+/* Bar chart */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bar-month {
+  font-size: 0.78rem;
+  color: #64748b;
+  min-width: 70px;
+  padding-top: 6px;
+  text-align: right;
+}
+
+.bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bar-pair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar {
+  height: 14px;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  min-width: 4px;
+}
+
+.income-bar { background: #22c55e; }
+.expense-bar { background: #f87171; }
+
+.bar-val {
+  font-size: 0.72rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.chart-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.income-dot { background: #22c55e; }
+.expense-dot { background: #f87171; }
+
+.report-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 600px) {
+  .eb-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+}

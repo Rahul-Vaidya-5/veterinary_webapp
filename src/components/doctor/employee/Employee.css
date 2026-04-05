@@ -1,0 +1,544 @@
+/* ─── Shared: Employee pages ─── */
+.employee-page {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Date navigation */
+.emp-date-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  flex-wrap: wrap;
+}
+
+.emp-nav-btn {
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  border-radius: 7px;
+  padding: 6px 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.emp-nav-btn:hover { background: #f1f5f9; }
+
+.emp-date-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  flex: 1;
+  text-align: center;
+}
+
+.btn-today-emp {
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-today-emp:disabled { opacity: 0.4; cursor: default; }
+.btn-today-emp:hover:not(:disabled) { background: #f1f5f9; }
+
+/* Summary bar */
+.emp-summary-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+}
+
+.emp-summary-label {
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.emp-summary-chip {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--chip-c) 15%, white);
+  color: var(--chip-c);
+}
+
+.emp-mark-all {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.emp-mark-all-label {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.mark-all-btn {
+  padding: 3px 9px;
+  border: 1px solid var(--chip-c);
+  background: white;
+  color: var(--chip-c);
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mark-all-btn:hover {
+  background: color-mix(in srgb, var(--chip-c) 12%, white);
+}
+
+/* Add employee inline */
+.emp-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.emp-table-header h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.btn-add-emp {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border: 1px dashed #3b82f6;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-add-emp:hover { background: #dbeafe; }
+
+.add-emp-inline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.emp-input {
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  background: #fafafa;
+  font-family: inherit;
+  outline: none;
+  flex: 1;
+  min-width: 120px;
+}
+
+.emp-input:focus { border-color: #3b82f6; background: #fff; }
+
+.btn-emp-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-emp-save:disabled { opacity: 0.4; cursor: default; }
+.btn-emp-save:hover:not(:disabled) { background: #1d4ed8; }
+
+.btn-emp-cancel {
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
+  border-radius: 7px;
+  padding: 7px 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.btn-emp-cancel:hover { background: #f1f5f9; }
+
+/* Attendance list */
+.emp-empty {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  text-align: center;
+  padding: 24px 0;
+  margin: 0;
+}
+
+.emp-att-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.emp-att-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: background 0.15s;
+}
+
+.emp-att-row.status-present { border-color: #bbf7d0; background: #f0fdf4; }
+.emp-att-row.status-absent { border-color: #fecaca; background: #fef2f2; }
+.emp-att-row.status-half-day { border-color: #fde68a; background: #fffbeb; }
+.emp-att-row.status-leave { border-color: #ddd6fe; background: #faf5ff; }
+
+.emp-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.emp-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.emp-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.emp-role {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.emp-phone {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.att-status-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.att-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1.5px solid var(--btn-c);
+  background: white;
+  color: var(--btn-c);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.att-btn:hover, .att-btn.active {
+  background: var(--btn-c);
+  color: white;
+}
+
+.emp-remove-btn {
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.emp-remove-btn:hover { color: #ef4444; background: #fee2e2; }
+
+/* Legend */
+.att-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.att-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.att-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Wages page */
+.emp-wages-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.emp-wages-header .dash-page-title { margin-bottom: 0; }
+
+.btn-add-emp-wage {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-add-emp-wage:hover { background: #1e293b; }
+.emp-form-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 16px;
+}
+
+.emp-wage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 18px;
+}
+
+.emp-wage-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.emp-wage-grid input,
+.emp-wage-grid select {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  background: #fafafa;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.emp-wage-grid input:focus,
+.emp-wage-grid select:focus { border-color: #3b82f6; background: #fff; }
+
+label.error input { border-color: #ef4444; }
+
+.err-msg { font-size: 0.75rem; color: #ef4444; font-weight: 400; }
+
+.emp-full { grid-column: 1 / -1; }
+
+.emp-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-emp-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-emp-primary:hover { background: #1d4ed8; }
+
+.btn-emp-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btn-emp-outline:hover { background: #f9fafb; }
+
+/* Wages summary */
+.wages-summary {
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.wages-summary strong { color: #0f172a; }
+
+/* Wages list */
+.wages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wage-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.wage-avatar {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.wage-info {
+  flex: 1;
+  min-width: 120px;
+}
+
+.wage-rate-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 80px;
+}
+
+.wage-amount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.wage-type-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.wage-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  min-width: 90px;
+}
+
+.wage-joining {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.salary-type-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.type-monthly { background: #dbeafe; color: #1e40af; }
+.type-daily { background: #dcfce7; color: #15803d; }
+.type-hourly { background: #fef3c7; color: #92400e; }
+
+.wage-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.wage-action-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.edit-btn { color: #3b82f6; }
+.edit-btn:hover { background: #eff6ff; }
+.delete-btn { color: #94a3b8; }
+.delete-btn:hover { color: #ef4444; background: #fee2e2; }
+
+@media (max-width: 600px) {
+  .emp-wage-grid { grid-template-columns: 1fr; }
+  .att-status-buttons { gap: 2px; }
+}

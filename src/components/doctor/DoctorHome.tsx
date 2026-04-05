@@ -21,6 +21,17 @@ function DoctorHome() {
       <p>Registered mobile: {mobileNumber}</p>
 
       <div className="doctor-home-actions">
+        <button
+          type="button"
+          className="btn-dashboard"
+          onClick={() =>
+            navigate('/doctor/dashboard', {
+              state: { doctorName, mobileNumber },
+            })
+          }
+        >
+          Go to Dashboard
+        </button>
         <button type="button" onClick={() => navigate('/', { replace: true })}>
           Go To Home
         </button>
