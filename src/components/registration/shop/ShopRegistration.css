@@ -1,4 +1,4 @@
-.doctor-registration {
+.shop-registration {
   width: min(960px, 96vw);
   margin: 0 auto;
   padding: 24px 20px;
@@ -8,7 +8,7 @@
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
 }
 
-.doctor-registration h2 {
+.shop-registration h2 {
   margin: 0 0 6px;
   text-align: center;
   color: #0f172a;
@@ -55,20 +55,20 @@
   font-weight: 600;
 }
 
-.doctor-registration form {
+.shop-registration form {
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 14px 16px;
 }
 
-.doctor-registration h3 {
+.shop-registration h3 {
   grid-column: 1 / -1;
   margin: 6px 0 2px;
   text-align: left;
   color: #1e293b;
 }
 
-.doctor-registration label {
+.shop-registration label {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -78,15 +78,12 @@
   font-weight: 600;
 }
 
-.doctor-registration label:has(input[type='checkbox']) {
+.shop-registration label.full-width {
   grid-column: 1 / -1;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
 }
 
-.doctor-registration input {
+.shop-registration input,
+.shop-registration select {
   width: 100%;
   padding: 11px 12px;
   border: 1px solid #cbd5e1;
@@ -94,32 +91,37 @@
   outline: none;
   font-size: 0.95rem;
   background: #ffffff;
+  color: #0f172a;
 }
 
-.doctor-registration input:focus {
+.shop-registration input:focus,
+.shop-registration select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
 }
 
-.doctor-registration input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  padding: 0;
-}
-
-.doctor-registration input[type='file'] {
+.shop-registration input[type='file'] {
   padding: 8px;
   background: #f8fafc;
 }
 
-.doctor-registration img {
+.shop-image-preview {
+  grid-column: 1 / -1;
   width: 100%;
-  max-width: 260px;
+  max-width: 220px;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   background: #f8fafc;
   padding: 6px;
+}
+
+.shop-image-preview.review-image {
+  margin-top: 8px;
+  max-width: 160px;
+}
+
+.review-heading {
+  text-align: center;
 }
 
 .review-block {
@@ -128,11 +130,6 @@
   border-radius: 12px;
   background: #f8fafc;
   padding: 14px;
-}
-
-.review-block > h3 {
-  text-align: center;
-  margin-bottom: 12px;
 }
 
 .review-grid {
@@ -177,6 +174,7 @@
 }
 
 .declaration-block {
+  grid-column: 1 / -1;
   margin-top: 14px;
   padding: 12px;
   border: 1px solid #bfdbfe;
@@ -184,10 +182,10 @@
   background: #eff6ff;
 }
 
-.doctor-registration .declaration-row {
+.shop-registration .declaration-row {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: start;
+  align-items: center;
   column-gap: 10px;
   margin: 0;
   color: #1e3a8a;
@@ -196,10 +194,12 @@
   font-weight: 500;
 }
 
-.doctor-registration .declaration-row input[type='checkbox'] {
+.shop-registration .declaration-row input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
   margin: 0;
-  align-self: start;
-  transform: translateY(0.2em);
+  padding: 0;
+  align-self: center;
 }
 
 .step-actions {
@@ -240,11 +240,15 @@
 }
 
 @media (max-width: 860px) {
-  .doctor-registration {
+  .shop-registration {
     padding: 18px 14px;
   }
 
-  .doctor-registration form {
+  .shop-registration form {
+    grid-template-columns: 1fr;
+  }
+
+  .review-grid {
     grid-template-columns: 1fr;
   }
 
@@ -254,9 +258,5 @@
 
   .step-actions button {
     width: 100%;
-  }
-
-  .review-grid {
-    grid-template-columns: 1fr;
   }
 }

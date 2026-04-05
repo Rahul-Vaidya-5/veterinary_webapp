@@ -1,10 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './DoctorSetPassword.css';
+import '../doctor/DoctorSetPassword.css';
 
-type DoctorSetPasswordState = {
-  doctorName?: string;
+type ShopSetPasswordState = {
+  ownerName?: string;
   mobileNumber?: string;
+  shopName?: string;
 };
 
 type PasswordStrength = 'weak' | 'moderate' | 'strong';
@@ -28,13 +29,14 @@ function getPasswordStrength(password: string): PasswordStrength {
   return 'strong';
 }
 
-function DoctorSetPassword() {
+function ShopSetPassword() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = (location.state as DoctorSetPasswordState | undefined) ?? {};
+  const state = (location.state as ShopSetPasswordState | undefined) ?? {};
 
-  const doctorName = state.doctorName ?? 'Doctor';
+  const ownerName = state.ownerName ?? 'Owner';
   const mobileNumber = state.mobileNumber ?? '';
+  const shopName = state.shopName ?? 'Shop';
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -68,11 +70,12 @@ function DoctorSetPassword() {
 
     setError('');
 
-    navigate('/doctor/home', {
+    navigate('/shop/home', {
       replace: true,
       state: {
-        doctorName,
+        ownerName,
         mobileNumber,
+        shopName,
       },
     });
   }
@@ -224,4 +227,4 @@ function DoctorSetPassword() {
   );
 }
 
-export default DoctorSetPassword;
+export default ShopSetPassword;

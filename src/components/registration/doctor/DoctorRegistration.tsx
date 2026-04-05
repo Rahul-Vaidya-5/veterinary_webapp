@@ -32,7 +32,7 @@ type ClinicForm = {
 };
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './DoctorRegistration.css';
 
 const emptyAddress: Address = {
@@ -42,7 +42,7 @@ const emptyAddress: Address = {
   pincode: '',
   block: '',
   district: '',
-  state: '',
+  state: 'Chhattisgarh',
 };
 
 const initialDoctorForm: DoctorForm = {
@@ -70,9 +70,17 @@ const initialClinicForm: ClinicForm = {
 
 function DoctorRegistration() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const mobileNumber =
+    (location.state as { mobileNumber?: string } | undefined)?.mobileNumber ??
+    '';
   const ENABLE_STEP_VALIDATION =
     import.meta.env.VITE_ENABLE_STEP_VALIDATION === 'true';
-  const [doctor, setDoctor] = useState<DoctorForm>(initialDoctorForm);
+  const [doctor, setDoctor] = useState<DoctorForm>(() => ({
+    ...initialDoctorForm,
+    address: { ...initialDoctorForm.address },
+    mobileNumber,
+  }));
   const [clinic, setClinic] = useState<ClinicForm>(initialClinicForm);
   const [currentStep, setCurrentStep] = useState(1);
   const [stepError, setStepError] = useState('');
@@ -254,7 +262,23 @@ function DoctorRegistration() {
   return (
     <div className="doctor-registration">
       <h2>Doctor Registration</h2>
-      <p className="step-meta">Step {currentStep} of 4</p>
+      <div className="step-meta">
+        <span>Step {currentStep} of 4</span>
+        <div className="step-dots">
+          {Array.from({ length: 4 }, (_, i) => (
+            <span
+              key={i}
+              className={`dot ${
+                i + 1 === currentStep
+                  ? 'dot-active'
+                  : i + 1 < currentStep
+                    ? 'dot-done'
+                    : ''
+              }`}
+            />
+          ))}
+        </div>
+      </div>
       {stepError && <p className="form-error">{stepError}</p>}
 
       <form onSubmit={handleSubmit}>
@@ -291,13 +315,9 @@ function DoctorRegistration() {
               <input
                 type="tel"
                 value={doctor.mobileNumber}
-                onChange={e =>
-                  handleDoctorChange(
-                    'mobileNumber',
-                    e.target.value.replace(/[^0-9]/g, ''),
-                  )
-                }
                 maxLength={10}
+                disabled
+                readOnly
               />
             </label>
             <label>
@@ -393,12 +413,12 @@ function DoctorRegistration() {
               />
             </label>
             <label>
-              Block *
+              State *
               <input
                 type="text"
-                value={doctor.address.block}
+                value={doctor.address.state}
                 onChange={e =>
-                  handleDoctorAddressChange('block', e.target.value)
+                  handleDoctorAddressChange('state', e.target.value)
                 }
               />
             </label>
@@ -413,12 +433,12 @@ function DoctorRegistration() {
               />
             </label>
             <label>
-              State *
+              Block *
               <input
                 type="text"
-                value={doctor.address.state}
+                value={doctor.address.block}
                 onChange={e =>
-                  handleDoctorAddressChange('state', e.target.value)
+                  handleDoctorAddressChange('block', e.target.value)
                 }
               />
             </label>
@@ -529,19 +549,17 @@ function DoctorRegistration() {
                 disabled={clinic.sameAsDoctor}
               />
             </label>
-
             <label>
-              Block *
+              State *
               <input
                 type="text"
-                value={clinic.address.block}
+                value={clinic.address.state}
                 onChange={e =>
-                  handleClinicAddressChange('block', e.target.value)
+                  handleClinicAddressChange('state', e.target.value)
                 }
                 disabled={clinic.sameAsDoctor}
               />
             </label>
-
             <label>
               District *
               <input
@@ -553,14 +571,13 @@ function DoctorRegistration() {
                 disabled={clinic.sameAsDoctor}
               />
             </label>
-
             <label>
-              State *
+              Block *
               <input
                 type="text"
-                value={clinic.address.state}
+                value={clinic.address.block}
                 onChange={e =>
-                  handleClinicAddressChange('state', e.target.value)
+                  handleClinicAddressChange('block', e.target.value)
                 }
                 disabled={clinic.sameAsDoctor}
               />
@@ -592,72 +609,65 @@ function DoctorRegistration() {
             <div className="review-grid">
               <section className="review-card">
                 <h4>Doctor Summary</h4>
-                <p>
-                  <span>Doctor Name</span>
-                  <strong>
-                    {doctor.firstName} {doctor.lastName}
-                  </strong>
-                </p>
-                <p>
-                  <span>Mobile</span>
-                  <strong>{doctor.mobileNumber}</strong>
-                </p>
-                <p>
-                  <span>Date of Birth</span>
-                  <strong>{doctor.dateOfBirth}</strong>
-                </p>
-                <p>
-                  <span>Experience</span>
-                  <strong>{doctor.experience} years</strong>
-                </p>
-                <p>
-                  <span>License Number</span>
-                  <strong>{doctor.licenseNumber}</strong>
-                </p>
-                <p>
-                  <span>Address</span>
-                  <strong>{doctor.address.line1}</strong>
-                </p>
-                <p>
-                  <span>Area</span>
-                  <strong>
-                    {doctor.address.block}, {doctor.address.district},{' '}
-                    {doctor.address.state} - {doctor.address.pincode}
-                  </strong>
-                </p>
+                <dl>
+                  <dt>Doctor Name</dt>
+                  <dd>
+                    {doctor.firstName || doctor.lastName
+                      ? `${doctor.firstName} ${doctor.lastName}`.trim()
+                      : '—'}
+                  </dd>
+                  <dt>Mobile</dt>
+                  <dd>{doctor.mobileNumber || '—'}</dd>
+                  <dt>Date of Birth</dt>
+                  <dd>{doctor.dateOfBirth || '—'}</dd>
+                  <dt>Experience</dt>
+                  <dd>
+                    {doctor.experience ? `${doctor.experience} years` : '—'}
+                  </dd>
+                  <dt>License Number</dt>
+                  <dd>{doctor.licenseNumber || '—'}</dd>
+                  <dt>Address</dt>
+                  <dd>{doctor.address.line1 || '—'}</dd>
+                  <dt>Area</dt>
+                  <dd>
+                    {doctor.address.block ||
+                    doctor.address.district ||
+                    doctor.address.state ||
+                    doctor.address.pincode
+                      ? `${doctor.address.block}, ${doctor.address.district}, ${doctor.address.state} - ${doctor.address.pincode}`
+                      : '—'}
+                  </dd>
+                </dl>
               </section>
 
               <section className="review-card">
                 <h4>Clinic Summary</h4>
-                <p>
-                  <span>Clinic Name</span>
-                  <strong>{clinic.clinicName}</strong>
-                </p>
-                <p>
-                  <span>Clinic Phone</span>
-                  <strong>{clinic.clinicPhone}</strong>
-                </p>
-
-                {clinic.sameAsDoctor ? (
-                  <p>
-                    <span>Clinic Address</span>
-                    <strong>Same as doctor's address</strong>
-                  </p>
-                ) : (
-                  <>
-                    <p>
-                      <span>Clinic Address</span>
-                      <strong>{clinic.address.line1}</strong>
-                    </p>
-                    <p>
-                      <span>Clinic Area</span>
-                      <strong>
-                        {clinic.address.block}, {clinic.address.district},{' '}
-                        {clinic.address.state} - {clinic.address.pincode}
-                      </strong>
-                    </p>
-                  </>
-                )}
+                <dl>
+                  <dt>Clinic Name</dt>
+                  <dd>{clinic.clinicName || '—'}</dd>
+                  <dt>Clinic Phone</dt>
+                  <dd>{clinic.clinicPhone || '—'}</dd>
+                  {clinic.sameAsDoctor ? (
+                    <>
+                      <dt>Clinic Address</dt>
+                      <dd>Same as doctor's address</dd>
+                    </>
+                  ) : (
+                    <>
+                      <dt>Clinic Address</dt>
+                      <dd>{clinic.address.line1 || '—'}</dd>
+                      <dt>Clinic Area</dt>
+                      <dd>
+                        {clinic.address.block ||
+                        clinic.address.district ||
+                        clinic.address.state ||
+                        clinic.address.pincode
+                          ? `${clinic.address.block}, ${clinic.address.district}, ${clinic.address.state} - ${clinic.address.pincode}`
+                          : '—'}
+                      </dd>
+                    </>
+                  )}
+                </dl>
               </section>
             </div>
 

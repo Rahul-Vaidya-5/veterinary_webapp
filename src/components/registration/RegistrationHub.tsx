@@ -15,8 +15,8 @@ function RegistrationHub() {
 
       <h2>Not registered yet</h2>
       <p>
-        Mobile number {mobileNumber || 'Not provided'} is not registered with
-        us.
+        Mobile number <strong>{mobileNumber || 'Not provided'}</strong> is not
+        registered with us.
       </p>
       <p>Please choose your registration type:</p>
 
@@ -28,10 +28,18 @@ function RegistrationHub() {
         >
           Register as Doctor
         </button>
-        <button onClick={() => alert('Animal Owner registration')}>
+        <button
+          onClick={() =>
+            navigate('/register/animal', { state: { mobileNumber } })
+          }
+        >
           Register as Animal Owner
         </button>
-        <button onClick={() => alert('Shop registration')}>
+        <button
+          onClick={() =>
+            navigate('/register/shop', { state: { mobileNumber } })
+          }
+        >
           Register as Shop Owner
         </button>
       </div>

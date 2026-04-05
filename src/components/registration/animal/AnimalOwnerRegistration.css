@@ -1,4 +1,4 @@
-.doctor-registration {
+.animal-registration {
   width: min(960px, 96vw);
   margin: 0 auto;
   padding: 24px 20px;
@@ -8,12 +8,13 @@
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
 }
 
-.doctor-registration h2 {
+.animal-registration h2 {
   margin: 0 0 6px;
   text-align: center;
   color: #0f172a;
 }
 
+/* ── Step meta ── */
 .step-meta {
   margin: 0 0 14px;
   text-align: center;
@@ -44,31 +45,32 @@
   background: #86efac;
 }
 
-.form-error {
-  margin: 0 0 16px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
-  text-align: left;
-  font-weight: 600;
-}
-
-.doctor-registration form {
+/* ── Form grid ── */
+.animal-registration form {
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 14px 16px;
 }
 
-.doctor-registration h3 {
+.animal-registration h3 {
   grid-column: 1 / -1;
   margin: 6px 0 2px;
   text-align: left;
   color: #1e293b;
+  font-size: 1.05rem;
 }
 
-.doctor-registration label {
+.animal-registration h3.section-subheading {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.animal-registration label {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -78,15 +80,19 @@
   font-weight: 600;
 }
 
-.doctor-registration label:has(input[type='checkbox']) {
+.animal-registration label.full-width {
   grid-column: 1 / -1;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
 }
 
-.doctor-registration input {
+.animal-registration .optional {
+  font-weight: 400;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* ── Inputs & selects ── */
+.animal-registration input,
+.animal-registration select {
   width: 100%;
   padding: 11px 12px;
   border: 1px solid #cbd5e1;
@@ -94,32 +100,56 @@
   outline: none;
   font-size: 0.95rem;
   background: #ffffff;
+  color: #0f172a;
 }
 
-.doctor-registration input:focus {
+.animal-registration input:focus,
+.animal-registration select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
 }
 
-.doctor-registration input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  padding: 0;
-}
-
-.doctor-registration input[type='file'] {
+.animal-registration input[type='file'] {
   padding: 8px;
   background: #f8fafc;
 }
 
-.doctor-registration img {
+/* ── Photo preview ── */
+.animal-registration .photo-preview {
+  display: block;
+  margin-top: 8px;
   width: 100%;
-  max-width: 260px;
+  max-width: 220px;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   background: #f8fafc;
   padding: 6px;
+  object-fit: cover;
+}
+
+.animal-registration .review-photo {
+  margin-top: 10px;
+  max-width: 160px;
+}
+
+/* ── Form error ── */
+.animal-registration .form-error {
+  grid-column: 1 / -1;
+  margin: 0 0 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* ── Review block ── */
+.animal-registration .review-heading {
+  text-align: center;
+  color: #0f172a;
+  font-size: 1.1rem;
 }
 
 .review-block {
@@ -128,11 +158,6 @@
   border-radius: 12px;
   background: #f8fafc;
   padding: 14px;
-}
-
-.review-block > h3 {
-  text-align: center;
-  margin-bottom: 12px;
 }
 
 .review-grid {
@@ -176,18 +201,20 @@
   word-break: break-word;
 }
 
+/* ── Declaration ── */
 .declaration-block {
-  margin-top: 14px;
+  grid-column: 1 / -1;
+  margin-top: 4px;
   padding: 12px;
   border: 1px solid #bfdbfe;
   border-radius: 10px;
   background: #eff6ff;
 }
 
-.doctor-registration .declaration-row {
+.animal-registration .declaration-row {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: start;
+  align-items: center;
   column-gap: 10px;
   margin: 0;
   color: #1e3a8a;
@@ -196,12 +223,16 @@
   font-weight: 500;
 }
 
-.doctor-registration .declaration-row input[type='checkbox'] {
+.animal-registration .declaration-row input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
   margin: 0;
-  align-self: start;
-  transform: translateY(0.2em);
+  padding: 0;
+  align-self: center;
+  transform: none;
 }
 
+/* ── Step actions ── */
 .step-actions {
   grid-column: 1 / -1;
   display: flex;
@@ -213,9 +244,11 @@
 .step-actions button {
   border: none;
   border-radius: 10px;
-  padding: 11px 16px;
+  padding: 11px 20px;
   font-weight: 700;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: filter 0.15s;
 }
 
 .step-actions button[type='button'] {
@@ -227,6 +260,7 @@
 .step-actions button:last-child {
   background: #2563eb;
   color: #ffffff;
+  margin-left: auto;
 }
 
 .step-actions button:hover {
@@ -239,12 +273,21 @@
   filter: none;
 }
 
+/* ── Responsive ── */
 @media (max-width: 860px) {
-  .doctor-registration {
+  .animal-registration {
     padding: 18px 14px;
   }
 
-  .doctor-registration form {
+  .animal-registration form {
+    grid-template-columns: 1fr;
+  }
+
+  .animal-registration label.full-width {
+    grid-column: 1;
+  }
+
+  .review-grid {
     grid-template-columns: 1fr;
   }
 
@@ -254,9 +297,6 @@
 
   .step-actions button {
     width: 100%;
-  }
-
-  .review-grid {
-    grid-template-columns: 1fr;
+    margin-left: 0;
   }
 }

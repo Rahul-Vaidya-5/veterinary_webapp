@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './DoctorSetPassword.css';
+import '../doctor/DoctorSetPassword.css';
 
-type DoctorSetPasswordState = {
-  doctorName?: string;
+type OwnerSetPasswordState = {
+  ownerName?: string;
   mobileNumber?: string;
 };
 
@@ -28,12 +28,12 @@ function getPasswordStrength(password: string): PasswordStrength {
   return 'strong';
 }
 
-function DoctorSetPassword() {
+function OwnerSetPassword() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = (location.state as DoctorSetPasswordState | undefined) ?? {};
+  const state = (location.state as OwnerSetPasswordState | undefined) ?? {};
 
-  const doctorName = state.doctorName ?? 'Doctor';
+  const ownerName = state.ownerName ?? 'Owner';
   const mobileNumber = state.mobileNumber ?? '';
 
   const [password, setPassword] = useState('');
@@ -68,10 +68,10 @@ function DoctorSetPassword() {
 
     setError('');
 
-    navigate('/doctor/home', {
+    navigate('/owner/home', {
       replace: true,
       state: {
-        doctorName,
+        ownerName,
         mobileNumber,
       },
     });
@@ -224,4 +224,4 @@ function DoctorSetPassword() {
   );
 }
 
-export default DoctorSetPassword;
+export default OwnerSetPassword;
