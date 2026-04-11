@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Calendar,
   ChevronLeft,
@@ -10,8 +11,12 @@ import {
   Plus,
   Check,
   Copy,
+  ClipboardList,
 } from 'lucide-react';
+import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useSpeciesBreeds } from '../../utility/useSpeciesBreeds';
 import './Appointments.css';
+import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
 /* ── Types ── */
 type SlotKey = 'morning' | 'noon' | 'evening';
@@ -39,10 +44,12 @@ type Appointment = {
   slot: SlotKey;
   patientName: string;
   species: string;
+  breed: string;
+  age: string;
   ownerName: string;
   ownerContact: string;
   status: 'scheduled' | 'completed' | 'cancelled';
-  notes: string;
+  cancellationNote?: string;
 };
 
 type HolidayMark = Record<SlotKey, boolean>;
@@ -170,7 +177,7 @@ const loadHolidays = (): HolidaysStore => {
   }
 };
 
-const toDateStr = (d: Date) => d.toISOString().split('T')[0];
+const toDateStr = (d: Date) => getIstDateKey(d);
 const getDayKey = (d: Date): DayKey =>
   DAY_KEYS[d.getDay() === 0 ? 6 : d.getDay() - 1].key;
 
@@ -269,6 +276,7 @@ const normalizeWeeklySchedule = (weeklySchedule: WeeklySchedule) => {
 
 /* ── Component ── */
 function Appointments() {
+  const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [schedule, setSchedule] = useState<WeeklySchedule>(loadSchedule);
   const [appointments, setAppointments] =
@@ -280,13 +288,18 @@ function Appointments() {
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [addSlot, setAddSlot] = useState<SlotKey>('morning');
+  const [cancelTarget, setCancelTarget] = useState<Appointment | null>(null);
+  const [cancelNote, setCancelNote] = useState('');
+  const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
   const [addForm, setAddForm] = useState({
     patientName: '',
     species: '',
+    breed: '',
+    age: '',
     ownerName: '',
     ownerContact: '',
-    notes: '',
   });
+  const addBreedOptions = getBreedsForSpecies(addForm.species);
 
   const dateStr = toDateStr(currentDate);
   const dayKey = getDayKey(currentDate);
@@ -372,9 +385,10 @@ function Appointments() {
     setAddForm({
       patientName: '',
       species: '',
+      breed: '',
+      age: '',
       ownerName: '',
       ownerContact: '',
-      notes: '',
     });
     setShowAddModal(true);
   };
@@ -386,9 +400,10 @@ function Appointments() {
       slot: addSlot,
       patientName: addForm.patientName,
       species: addForm.species,
+      breed: addForm.breed,
+      age: addForm.age,
       ownerName: addForm.ownerName,
       ownerContact: addForm.ownerContact,
-      notes: addForm.notes,
       status: 'scheduled',
     };
     setAppointments(prev => ({
@@ -414,10 +429,53 @@ function Appointments() {
     }));
   };
 
+  const openCancelAppointment = (appt: Appointment) => {
+    setCancelTarget(appt);
+    setCancelNote('');
+  };
+
+  const confirmCancelAppointment = () => {
+    if (!cancelTarget) {
+      return;
+    }
+
+    setAppointments(prev => ({
+      ...prev,
+      [dateStr]: (prev[dateStr] ?? []).map(appt =>
+        appt.id === cancelTarget.id
+          ? {
+              ...appt,
+              status: 'cancelled',
+              cancellationNote: cancelNote.trim(),
+            }
+          : appt,
+      ),
+    }));
+
+    setCancelTarget(null);
+    setCancelNote('');
+  };
+
+  const openPrescriptionForAppointment = (appt: Appointment) => {
+    navigate('/doctor/dashboard/prescriptions', {
+      state: {
+        prefill: {
+          animalName: appt.patientName,
+          species: appt.species,
+          breed: appt.breed,
+          age: appt.age,
+          ownerName: appt.ownerName,
+          ownerContact: appt.ownerContact,
+          prescriptionDate: dateStr,
+        },
+      },
+    });
+  };
+
   const isToday = toDateStr(currentDate) === toDateStr(new Date());
 
   const formatFullDate = (d: Date) =>
-    d.toLocaleDateString('en-IN', {
+    formatIstDate(d, {
       weekday: 'long',
       day: '2-digit',
       month: 'long',
@@ -477,24 +535,42 @@ function Appointments() {
           const slot = daySchedule[key];
           const isHoliday = dayHolidays[key];
           const slotAppts = dayAppointments.filter(a => a.slot === key);
+          const slotSummary = !slot.enabled
+            ? 'This session is currently unavailable.'
+            : isHoliday
+              ? 'This session is blocked because of a holiday.'
+              : slotAppts.length === 0
+                ? 'Open for new appointments.'
+                : `${slotAppts.length} appointment${slotAppts.length > 1 ? 's' : ''} lined up for this session.`;
 
           return (
             <div
               key={key}
               className={`slot-card dash-card${!slot.enabled ? ' slot-disabled' : ''}${isHoliday ? ' slot-holiday' : ''}`}
+              style={{ '--slot-accent': color } as React.CSSProperties}
             >
-              <div className="slot-header" style={{ borderLeftColor: color }}>
-                <div className="slot-label-group">
-                  <span className="slot-badge" style={{ background: color }}>
-                    {label}
-                  </span>
-                  {slot.enabled && (
-                    <span className="slot-time">
-                      <Clock size={12} />
-                      {slot.startTime} – {slot.endTime}
+              <div className="slot-header">
+                <div className="slot-header-main">
+                  <div className="slot-label-group">
+                    <span className="slot-badge">{label}</span>
+                    {slot.enabled && (
+                      <span className="slot-time">
+                        <Clock size={12} />
+                        {slot.startTime} – {slot.endTime}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="slot-header-copy">
+                    <p className="slot-summary">{slotSummary}</p>
+                    <span className="slot-count-chip">
+                      {slot.enabled && !isHoliday
+                        ? `${slotAppts.length} booked`
+                        : 'Session paused'}
                     </span>
-                  )}
+                  </div>
                 </div>
+
                 <div className="slot-header-actions">
                   {!slot.enabled && (
                     <span className="slot-status-tag">Not Available</span>
@@ -518,7 +594,30 @@ function Appointments() {
               {slot.enabled && !isHoliday && (
                 <div className="slot-appointments">
                   {slotAppts.length === 0 ? (
-                    <p className="no-appts">No appointments scheduled</p>
+                    <div className="slot-empty-state">
+                      <div className="slot-empty-copy">
+                        <div className="slot-empty-icon">
+                          <PawPrint size={16} />
+                        </div>
+                        <div>
+                          <p className="slot-empty-title">
+                            No appointments yet
+                          </p>
+                          <p className="slot-empty-text">
+                            Keep this session available for walk-ins or add the
+                            first booking now.
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="slot-empty-action"
+                        onClick={() => openAddAppt(key)}
+                      >
+                        <Plus size={14} />
+                        <span>Add Appointment</span>
+                      </button>
+                    </div>
                   ) : (
                     slotAppts.map(appt => (
                       <div
@@ -539,8 +638,22 @@ function Appointments() {
                               · {appt.ownerName}
                             </span>
                           )}
+                          {appt.status === 'cancelled' &&
+                            appt.cancellationNote && (
+                              <p className="appt-cancel-note">
+                                Doctor note: {appt.cancellationNote}
+                              </p>
+                            )}
                         </div>
                         <div className="appt-actions">
+                          <button
+                            type="button"
+                            title="Write prescription"
+                            className="appt-action-btn prescription-btn"
+                            onClick={() => openPrescriptionForAppointment(appt)}
+                          >
+                            <ClipboardList size={13} />
+                          </button>
                           {appt.status === 'scheduled' && (
                             <>
                               <button
@@ -557,9 +670,7 @@ function Appointments() {
                                 type="button"
                                 title="Cancel"
                                 className="appt-action-btn cancel-btn"
-                                onClick={() =>
-                                  updateApptStatus(appt.id, 'cancelled')
-                                }
+                                onClick={() => openCancelAppointment(appt)}
                               >
                                 <X size={13} />
                               </button>
@@ -582,6 +693,21 @@ function Appointments() {
                       </div>
                     ))
                   )}
+                </div>
+              )}
+
+              {(!slot.enabled || isHoliday) && (
+                <div className="slot-muted-state">
+                  <p className="slot-muted-title">
+                    {!slot.enabled
+                      ? 'Session not enabled'
+                      : 'Holiday block active'}
+                  </p>
+                  <p className="slot-muted-text">
+                    {!slot.enabled
+                      ? 'Enable this slot from Set My Schedule whenever you want to accept appointments here.'
+                      : 'Remove the holiday block when you are ready to reopen this session.'}
+                  </p>
                 </div>
               )}
             </div>
@@ -810,12 +936,47 @@ function Appointments() {
               </label>
               <label>
                 Species
-                <input
+                <SearchableSelectInput
+                  inputId="appointment-species"
+                  listId="appointment-species-list"
                   value={addForm.species}
-                  onChange={e =>
-                    setAddForm(f => ({ ...f, species: e.target.value }))
+                  onChange={value =>
+                    setAddForm(f => ({ ...f, species: value, breed: '' }))
                   }
-                  placeholder="Dog, Cat…"
+                  options={speciesNames}
+                  placeholder="Search or type species"
+                  allowCustom
+                />
+              </label>
+              <label>
+                Breed
+                <SearchableSelectInput
+                  inputId="appointment-breed"
+                  listId="appointment-breed-list"
+                  value={addForm.breed}
+                  onChange={value => setAddForm(f => ({ ...f, breed: value }))}
+                  options={addBreedOptions}
+                  placeholder={
+                    addForm.species.trim()
+                      ? 'Search or type breed'
+                      : 'Select species first'
+                  }
+                  disabled={!addForm.species.trim()}
+                  allowCustom
+                />
+              </label>
+              <label>
+                Age (years)
+                <input
+                  value={addForm.age}
+                  onChange={e =>
+                    setAddForm(f => ({
+                      ...f,
+                      age: e.target.value.replace(/[^0-9]/g, '').slice(0, 2),
+                    }))
+                  }
+                  placeholder="e.g. 3"
+                  inputMode="numeric"
                 />
               </label>
               <label>
@@ -833,20 +994,15 @@ function Appointments() {
                 <input
                   value={addForm.ownerContact}
                   onChange={e =>
-                    setAddForm(f => ({ ...f, ownerContact: e.target.value }))
+                    setAddForm(f => ({
+                      ...f,
+                      ownerContact: e.target.value
+                        .replace(/[^0-9]/g, '')
+                        .slice(0, 10),
+                    }))
                   }
                   placeholder="Mobile number"
-                />
-              </label>
-              <label>
-                Notes
-                <textarea
-                  rows={2}
-                  value={addForm.notes}
-                  onChange={e =>
-                    setAddForm(f => ({ ...f, notes: e.target.value }))
-                  }
-                  placeholder="Any notes…"
+                  inputMode="numeric"
                 />
               </label>
             </div>
@@ -865,6 +1021,60 @@ function Appointments() {
                 disabled={!addForm.patientName.trim()}
               >
                 Add Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {cancelTarget && (
+        <div className="modal-overlay" onClick={() => setCancelTarget(null)}>
+          <div
+            className="modal add-appt-modal cancel-appt-modal"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h2>
+                <X size={16} /> Cancel Appointment
+              </h2>
+              <button
+                type="button"
+                className="modal-close"
+                onClick={() => setCancelTarget(null)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="add-appt-form cancel-appt-form">
+              <p className="cancel-appt-copy">
+                You are about to cancel the appointment for
+                <strong> {cancelTarget.patientName}</strong>.
+              </p>
+              <label>
+                Cancellation note (optional)
+                <textarea
+                  rows={3}
+                  value={cancelNote}
+                  onChange={e => setCancelNote(e.target.value)}
+                  placeholder="If you would like, you can add a short note for your records or for the team."
+                  autoFocus
+                />
+              </label>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn-outline"
+                onClick={() => setCancelTarget(null)}
+              >
+                Keep Appointment
+              </button>
+              <button
+                type="button"
+                className="btn-primary btn-cancel-appointment"
+                onClick={confirmCancelAppointment}
+              >
+                Confirm Cancel
               </button>
             </div>
           </div>

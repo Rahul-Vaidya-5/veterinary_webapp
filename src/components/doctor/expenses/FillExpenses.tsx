@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Receipt, Plus, Trash2, Save } from 'lucide-react';
 import './Expenses.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
 
 type ExpenseCategory =
   | 'Medicines'
@@ -24,7 +25,7 @@ type Expense = {
 };
 
 const LS_KEY = 'vc_expenses';
-const today = new Date().toISOString().split('T')[0];
+const today = getIstDateKey();
 
 const load = (): Expense[] => {
   try {

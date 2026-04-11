@@ -1,0 +1,482 @@
+{
+  "speciesId": 2,
+  "speciesNameEnglish": "Cat",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Abyssinian",
+      "breedNameHindi": "अबीसीनियन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "American Bobtail",
+      "breedNameHindi": "अमेरिकन बॉबटेल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "American Curl",
+      "breedNameHindi": "अमेरिकन कर्ल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "American Shorthair",
+      "breedNameHindi": "अमेरिकन शॉर्टहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "American Wirehair",
+      "breedNameHindi": "अमेरिकन वायरहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Balinese",
+      "breedNameHindi": "बालिनीज़",
+      "speciesId": 2
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Bengal",
+      "breedNameHindi": "बंगाल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Birman",
+      "breedNameHindi": "बर्मन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Bombay",
+      "breedNameHindi": "बॉम्बे",
+      "speciesId": 2
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "British Shorthair",
+      "breedNameHindi": "ब्रिटिश शॉर्टहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Burmese",
+      "breedNameHindi": "बर्मीज़",
+      "speciesId": 2
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Chartreux",
+      "breedNameHindi": "शार्ट्रे",
+      "speciesId": 2
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Chausie",
+      "breedNameHindi": "चौसी",
+      "speciesId": 2
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Cornish Rex",
+      "breedNameHindi": "कॉर्निश रेक्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Cymric",
+      "breedNameHindi": "सिम्रिक",
+      "speciesId": 2
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Devon Rex",
+      "breedNameHindi": "डेवोन रेक्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Egyptian Mau",
+      "breedNameHindi": "मिस्री माऊ",
+      "speciesId": 2
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Exotic Shorthair",
+      "breedNameHindi": "एक्ज़ॉटिक शॉर्टहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Himalayan",
+      "breedNameHindi": "हिमालयन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Japanese Bobtail",
+      "breedNameHindi": "जापानी बॉबटेल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Korat",
+      "breedNameHindi": "कोराट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "LaPerm",
+      "breedNameHindi": "लापर्म",
+      "speciesId": 2
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Maine Coon",
+      "breedNameHindi": "मेन कून",
+      "speciesId": 2
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Manx",
+      "breedNameHindi": "मैन्क्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Nebelung",
+      "breedNameHindi": "नेबेलुंग",
+      "speciesId": 2
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Norwegian Forest Cat",
+      "breedNameHindi": "नॉर्वेजियन फॉरेस्ट कैट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Ocicat",
+      "breedNameHindi": "ओसिकैट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Oriental Shorthair",
+      "breedNameHindi": "ओरिएंटल शॉर्टहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Persian",
+      "breedNameHindi": "पर्शियन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Pixie-Bob",
+      "breedNameHindi": "पिक्सी-बॉब",
+      "speciesId": 2
+    },
+    {
+      "breedId": 31,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Ragamuffin",
+      "breedNameHindi": "रैगमफिन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 32,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Ragdoll",
+      "breedNameHindi": "रैगडॉल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 33,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Russian Blue",
+      "breedNameHindi": "रशियन ब्लू",
+      "speciesId": 2
+    },
+    {
+      "breedId": 34,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Savannah",
+      "breedNameHindi": "सवाना",
+      "speciesId": 2
+    },
+    {
+      "breedId": 35,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Scottish Fold",
+      "breedNameHindi": "स्कॉटिश फोल्ड",
+      "speciesId": 2
+    },
+    {
+      "breedId": 36,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Selkirk Rex",
+      "breedNameHindi": "सेल्किर्क रेक्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 37,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Siamese",
+      "breedNameHindi": "सियामी",
+      "speciesId": 2
+    },
+    {
+      "breedId": 38,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Siberian",
+      "breedNameHindi": "साइबेरियन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 39,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Somali",
+      "breedNameHindi": "सोमाली",
+      "speciesId": 2
+    },
+    {
+      "breedId": 40,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Sphynx",
+      "breedNameHindi": "स्फिंक्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 41,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Tonkinese",
+      "breedNameHindi": "टॉन्किनीज़",
+      "speciesId": 2
+    },
+    {
+      "breedId": 42,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Turkish Angora",
+      "breedNameHindi": "तुर्की अँगोरा",
+      "speciesId": 2
+    },
+    {
+      "breedId": 43,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Turkish Van",
+      "breedNameHindi": "तुर्की वैन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 44,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "York Chocolate",
+      "breedNameHindi": "यॉर्क चॉकलेट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 45,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Australian Mist",
+      "breedNameHindi": "ऑस्ट्रेलियन मिस्ट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 46,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "California Spangled",
+      "breedNameHindi": "कैलिफ़ोर्निया स्पैंगल्ड",
+      "speciesId": 2
+    },
+    {
+      "breedId": 47,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Colorpoint Shorthair",
+      "breedNameHindi": "कलरपॉइंट शॉर्टहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 48,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Dragon Li",
+      "breedNameHindi": "ड्रैगन ली",
+      "speciesId": 2
+    },
+    {
+      "breedId": 49,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Donskoy",
+      "breedNameHindi": "डॉन्स्कॉय",
+      "speciesId": 2
+    },
+    {
+      "breedId": 50,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Havana Brown",
+      "breedNameHindi": "हवाना ब्राउन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 51,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Khao Manee",
+      "breedNameHindi": "खाओ माने",
+      "speciesId": 2
+    },
+    {
+      "breedId": 52,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Lykoi",
+      "breedNameHindi": "लाइकोई",
+      "speciesId": 2
+    },
+    {
+      "breedId": 53,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Minskin",
+      "breedNameHindi": "मिन्स्किन",
+      "speciesId": 2
+    },
+    {
+      "breedId": 54,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Peterbald",
+      "breedNameHindi": "पीटरबाल्ड",
+      "speciesId": 2
+    },
+    {
+      "breedId": 55,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Serengeti",
+      "breedNameHindi": "सेरेंगेटी",
+      "speciesId": 2
+    },
+    {
+      "breedId": 56,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Snowshoe",
+      "breedNameHindi": "स्नोशू",
+      "speciesId": 2
+    },
+    {
+      "breedId": 57,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Sokoke",
+      "breedNameHindi": "सोकोक",
+      "speciesId": 2
+    },
+    {
+      "breedId": 58,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Ukrainian Levkoy",
+      "breedNameHindi": "यूक्रेनियन लेवकोय",
+      "speciesId": 2
+    },
+    {
+      "breedId": 59,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Burmilla",
+      "breedNameHindi": "बर्मिला",
+      "speciesId": 2
+    },
+    {
+      "breedId": 60,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Chantilly-Tiffany",
+      "breedNameHindi": "चैंटिली-टिफ़नी",
+      "speciesId": 2
+    },
+    {
+      "breedId": 61,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "German Rex",
+      "breedNameHindi": "जर्मन रेक्स",
+      "speciesId": 2
+    },
+    {
+      "breedId": 62,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Javanese",
+      "breedNameHindi": "जावानीज़",
+      "speciesId": 2
+    },
+    {
+      "breedId": 63,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Mekong Bobtail",
+      "breedNameHindi": "मेकोंग बॉबटेल",
+      "speciesId": 2
+    },
+    {
+      "breedId": 64,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Oriental Longhair",
+      "breedNameHindi": "ओरिएंटल लॉन्गहेयर",
+      "speciesId": 2
+    },
+    {
+      "breedId": 65,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Scottish Straight",
+      "breedNameHindi": "स्कॉटिश स्ट्रेट",
+      "speciesId": 2
+    },
+    {
+      "breedId": 66,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Thai",
+      "breedNameHindi": "थाई",
+      "speciesId": 2
+    },
+    {
+      "breedId": 67,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Tiffany/Chantilly",
+      "breedNameHindi": "टिफ़नी/चैंटिली",
+      "speciesId": 2
+    },
+    {
+      "breedId": 68,
+      "speciesNameEnglish": "Cat",
+      "breedNameEnglish": "Van Kedisi",
+      "breedNameHindi": "वान केडीसी",
+      "speciesId": 2
+    }
+  ]
+}

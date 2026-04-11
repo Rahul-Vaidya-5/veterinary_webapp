@@ -1,0 +1,990 @@
+{
+  "state": "Chhattisgarh",
+  "districts": [
+    {
+      "districtId": 387,
+      "blocks": [
+        {
+          "blockId": 3693,
+          "blockNameEnglish": "Abhanpur",
+          "blockNameHindi": "अभनपुर"
+        },
+        {
+          "blockId": 3694,
+          "blockNameEnglish": "Arang",
+          "blockNameHindi": "आरंग"
+        },
+        {
+          "blockId": 3700,
+          "blockNameEnglish": "Dharsiwa",
+          "blockNameHindi": "धरसीवा"
+        },
+        {
+          "blockId": 3707,
+          "blockNameEnglish": "Tilda",
+          "blockNameHindi": "तिल्दा"
+        }
+      ]
+    },
+    {
+      "districtId": 386,
+      "blocks": [
+        {
+          "blockId": 3685,
+          "blockNameEnglish": "Dharamjaigarh",
+          "blockNameHindi": "धरमजैगढ़"
+        },
+        {
+          "blockId": 3686,
+          "blockNameEnglish": "Gharghoda",
+          "blockNameHindi": "घरघोड़ा"
+        },
+        {
+          "blockId": 3688,
+          "blockNameEnglish": "Lailunga",
+          "blockNameHindi": "लैलूंगा"
+        },
+        {
+          "blockId": 3689,
+          "blockNameEnglish": "Pussore",
+          "blockNameHindi": "पुससौर"
+        },
+        {
+          "blockId": 3690,
+          "blockNameEnglish": "Raigarh",
+          "blockNameHindi": "रायगढ़"
+        },
+        {
+          "blockId": 3692,
+          "blockNameEnglish": "Tamnar",
+          "blockNameHindi": "तमनार"
+        }
+      ]
+    },
+    {
+      "districtId": 375,
+      "blocks": [
+        {
+          "blockId": 3604,
+          "blockNameEnglish": "Belha",
+          "blockNameHindi": "बेल्हा"
+        },
+        {
+          "blockId": 3607,
+          "blockNameEnglish": "Kota",
+          "blockNameHindi": "कोटा"
+        },
+        {
+          "blockId": 3610,
+          "blockNameEnglish": "Masturi",
+          "blockNameHindi": "मस्तुरी"
+        },
+        {
+          "blockId": 3608,
+          "blockNameEnglish": "Lormi",
+          "blockNameHindi": "लोरमी"
+        },
+        {
+          "blockId": 3612,
+          "blockNameEnglish": "Pathariya",
+          "blockNameHindi": "पथरिया"
+        },
+        {
+          "blockId": 3613,
+          "blockNameEnglish": "Takhatpur",
+          "blockNameHindi": "तखतपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 378,
+      "blocks": [
+        {
+          "blockId": 3632,
+          "blockNameEnglish": "Dhamdha",
+          "blockNameHindi": "धमधा"
+        },
+        {
+          "blockId": 3635,
+          "blockNameEnglish": "Durg",
+          "blockNameHindi": "दुर्ग"
+        },
+        {
+          "blockId": 3639,
+          "blockNameEnglish": "Patan",
+          "blockNameHindi": "पाटन"
+        }
+      ]
+    },
+    {
+      "districtId": 650,
+      "blocks": [
+        {
+          "blockId": 3630,
+          "blockNameEnglish": "Bemetara",
+          "blockNameHindi": "बेमेतरा"
+        },
+        {
+          "blockId": 3631,
+          "blockNameEnglish": "Berla",
+          "blockNameHindi": "बेरला"
+        },
+        {
+          "blockId": 3638,
+          "blockNameEnglish": "Nawagarh",
+          "blockNameHindi": "नवागढ़"
+        },
+        {
+          "blockId": 3640,
+          "blockNameEnglish": "Saja",
+          "blockNameHindi": "साजा"
+        }
+      ]
+    },
+    {
+      "districtId": 646,
+      "blocks": [
+        {
+          "blockId": 3629,
+          "blockNameEnglish": "Balod",
+          "blockNameHindi": "बालोद"
+        },
+        {
+          "blockId": 3633,
+          "blockNameEnglish": "Dondi",
+          "blockNameHindi": "डोंडी"
+        },
+        {
+          "blockId": 3634,
+          "blockNameEnglish": "Dondilohara",
+          "blockNameHindi": "डोंडीलोहरा"
+        },
+        {
+          "blockId": 3636,
+          "blockNameEnglish": "Gunderdehi",
+          "blockNameHindi": "गुन्दरदेही"
+        },
+        {
+          "blockId": 3637,
+          "blockNameEnglish": "Gurur",
+          "blockNameHindi": "गुरुर"
+        }
+      ]
+    },
+    {
+      "districtId": 644,
+      "blocks": [
+        {
+          "blockId": 3695,
+          "blockNameEnglish": "Baloda Bazar",
+          "blockNameHindi": "बलोदा बाज़ार"
+        },
+        {
+          "blockId": 3696,
+          "blockNameEnglish": "Bhatapara",
+          "blockNameHindi": "भाटापारा"
+        },
+        {
+          "blockId": 3703,
+          "blockNameEnglish": "Kasdol",
+          "blockNameHindi": "कसडोल"
+        },
+        {
+          "blockId": 3705,
+          "blockNameEnglish": "Palari",
+          "blockNameHindi": "पलारी"
+        },
+        {
+          "blockId": 3706,
+          "blockNameEnglish": "Simga",
+          "blockNameHindi": "सिमगा"
+        }
+      ]
+    },
+    {
+      "districtId": 379,
+      "blocks": [
+        {
+          "blockId": 3641,
+          "blockNameEnglish": "Akaltara",
+          "blockNameHindi": "अकलतरा"
+        },
+        {
+          "blockId": 3643,
+          "blockNameEnglish": "Baloda",
+          "blockNameHindi": "बलोदा"
+        },
+        {
+          "blockId": 3642,
+          "blockNameEnglish": "Bamhindih",
+          "blockNameHindi": "बम्हनीडीह"
+        },
+        {
+          "blockId": 3644,
+          "blockNameEnglish": "Dabhara",
+          "blockNameHindi": "डभरा"
+        },
+        {
+          "blockId": 3645,
+          "blockNameEnglish": "Jaijaipur",
+          "blockNameHindi": "जैजैपुर"
+        },
+        {
+          "blockId": 3647,
+          "blockNameEnglish": "Nawagarh",
+          "blockNameHindi": "नवागढ़"
+        },
+        {
+          "blockId": 3648,
+          "blockNameEnglish": "Pamgarh",
+          "blockNameHindi": "पामगढ़"
+        }
+      ]
+    },
+    {
+      "districtId": 762,
+      "blocks": [
+        {
+          "blockId": 3646,
+          "blockNameEnglish": "Malkharoda",
+          "blockNameHindi": "मालखरोदा"
+        },
+        {
+          "blockId": 3649,
+          "blockNameEnglish": "Sakti",
+          "blockNameHindi": "सकती"
+        }
+      ]
+    },
+    {
+      "districtId": 763,
+      "blocks": [
+        {
+          "blockId": 3684,
+          "blockNameEnglish": "Baramkela",
+          "blockNameHindi": "बरमकेला"
+        },
+        {
+          "blockId": 3697,
+          "blockNameEnglish": "Bilaigarh",
+          "blockNameHindi": "बिलाईगढ़"
+        },
+        {
+          "blockId": 3698,
+          "blockNameEnglish": "Chhurra",
+          "blockNameHindi": "छुरा"
+        },
+        {
+          "blockId": 3701,
+          "blockNameEnglish": "Fingeshwar",
+          "blockNameHindi": "फिंगेश्वर"
+        },
+        {
+          "blockId": 3702,
+          "blockNameEnglish": "Gariyaband",
+          "blockNameHindi": "गरियाबंद"
+        },
+        {
+          "blockId": 3704,
+          "blockNameEnglish": "Mainpur",
+          "blockNameHindi": "मैनपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 383,
+      "blocks": [
+        {
+          "blockId": 3669,
+          "blockNameEnglish": "Kartala",
+          "blockNameHindi": "करतला"
+        },
+        {
+          "blockId": 3670,
+          "blockNameEnglish": "Katghora",
+          "blockNameHindi": "कटघोरा"
+        },
+        {
+          "blockId": 3671,
+          "blockNameEnglish": "Korba",
+          "blockNameHindi": "कोरबा"
+        },
+        {
+          "blockId": 3673,
+          "blockNameEnglish": "Podi Uparoda",
+          "blockNameHindi": "पोड़ी उपरोड़ा"
+        },
+        {
+          "blockId": 3672,
+          "blockNameEnglish": "Pali",
+          "blockNameHindi": "पाली"
+        }
+      ]
+    },
+    {
+      "districtId": 384,
+      "blocks": [
+        {
+          "blockId": 3674,
+          "blockNameEnglish": "Baikunthpur",
+          "blockNameHindi": "बैजनाथपुर"
+        },
+        {
+          "blockId": 3675,
+          "blockNameEnglish": "Sonhat",
+          "blockNameHindi": "सोनहत"
+        },
+        {
+          "blockId": 3676,
+          "blockNameEnglish": "Khadganva",
+          "blockNameHindi": "खडगांव"
+        }
+      ]
+    },
+    {
+      "districtId": 760,
+      "blocks": [
+        {
+          "blockId": 3677,
+          "blockNameEnglish": "Manendragarh",
+          "blockNameHindi": "मनेन्द्रगढ़"
+        },
+        {
+          "blockId": 3678,
+          "blockNameEnglish": "Bharatpur",
+          "blockNameHindi": "भरतपुर"
+        },
+        {
+          "blockId": 3679,
+          "blockNameEnglish": "Chirmiri",
+          "blockNameHindi": "चिरमिरी"
+        }
+      ]
+    },
+    {
+      "districtId": 380,
+      "blocks": [
+        {
+          "blockId": 3650,
+          "blockNameEnglish": "Bagicha",
+          "blockNameHindi": "बगीचा"
+        },
+        {
+          "blockId": 3651,
+          "blockNameEnglish": "Duldula",
+          "blockNameHindi": "दुलदुला"
+        },
+        {
+          "blockId": 3652,
+          "blockNameEnglish": "Farsabahar",
+          "blockNameHindi": "फरसाबहार"
+        },
+        {
+          "blockId": 3653,
+          "blockNameEnglish": "Jashpur",
+          "blockNameHindi": "जशपुर"
+        },
+        {
+          "blockId": 3654,
+          "blockNameEnglish": "Kansabel",
+          "blockNameHindi": "कांसाबेल"
+        },
+        {
+          "blockId": 3655,
+          "blockNameEnglish": "Kunkuri",
+          "blockNameHindi": "कुनकुरी"
+        },
+        {
+          "blockId": 3656,
+          "blockNameEnglish": "Manora",
+          "blockNameHindi": "मानोरा"
+        },
+        {
+          "blockId": 3657,
+          "blockNameEnglish": "Pathalgaon",
+          "blockNameHindi": "पथलगांव"
+        }
+      ]
+    },
+    {
+      "districtId": 382,
+      "blocks": [
+        {
+          "blockId": 3664,
+          "blockNameEnglish": "Bodla",
+          "blockNameHindi": "बोडला"
+        },
+        {
+          "blockId": 3665,
+          "blockNameEnglish": "Kawardha",
+          "blockNameHindi": "कवर्धा"
+        },
+        {
+          "blockId": 3666,
+          "blockNameEnglish": "Pandariya",
+          "blockNameHindi": "पंडरिया"
+        },
+        {
+          "blockId": 3667,
+          "blockNameEnglish": "Sahaspur Lohara",
+          "blockNameHindi": "सहसपुर लोहरा"
+        }
+      ]
+    },
+    {
+      "districtId": 381,
+      "blocks": [
+        {
+          "blockId": 3658,
+          "blockNameEnglish": "Antagarh",
+          "blockNameHindi": "अंतागढ़"
+        },
+        {
+          "blockId": 3659,
+          "blockNameEnglish": "Charama",
+          "blockNameHindi": "चारामा"
+        },
+        {
+          "blockId": 3660,
+          "blockNameEnglish": "Durgukondal",
+          "blockNameHindi": "दुर्गुकोंदल"
+        },
+        {
+          "blockId": 3661,
+          "blockNameEnglish": "Kanker",
+          "blockNameHindi": "कांकेर"
+        },
+        {
+          "blockId": 3662,
+          "blockNameEnglish": "Narharpur",
+          "blockNameHindi": "नरहरपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 761,
+      "blocks": [
+        {
+          "blockId": 3708,
+          "blockNameEnglish": "A.Chowki (Td)",
+          "blockNameHindi": "अ.चौकी(तद)"
+        },
+        {
+          "blockId": 3709,
+          "blockNameEnglish": "Manpur",
+          "blockNameHindi": "मानपुर"
+        },
+        {
+          "blockId": 3710,
+          "blockNameEnglish": "Mohla",
+          "blockNameHindi": "मोहला"
+        }
+      ]
+    },
+    {
+      "districtId": 759,
+      "blocks": [
+        {
+          "blockId": 3711,
+          "blockNameEnglish": "Chhuikhadan",
+          "blockNameHindi": "छुईखदान"
+        },
+        {
+          "blockId": 3712,
+          "blockNameEnglish": "Gandai",
+          "blockNameHindi": "गंडई"
+        },
+        {
+          "blockId": 3713,
+          "blockNameEnglish": "Khairagarh",
+          "blockNameHindi": "खैरागढ़"
+        }
+      ]
+    },
+    {
+      "districtId": 374,
+      "blocks": [
+        {
+          "blockId": 3600,
+          "blockNameEnglish": "Bastanar",
+          "blockNameHindi": "बस्तर"
+        },
+        {
+          "blockId": 3601,
+          "blockNameEnglish": "Bakawand",
+          "blockNameHindi": "बकावंड"
+        },
+        {
+          "blockId": 3602,
+          "blockNameEnglish": "Jagdalpur",
+          "blockNameHindi": "जगदलपुर"
+        },
+        {
+          "blockId": 3603,
+          "blockNameEnglish": "Lohandiguda",
+          "blockNameHindi": "लोहंडीगुड़ा"
+        }
+      ]
+    },
+    {
+      "districtId": 376,
+      "blocks": [
+        {
+          "blockId": 3614,
+          "blockNameEnglish": "Dantewada",
+          "blockNameHindi": "दंतेवाड़ा"
+        },
+        {
+          "blockId": 3615,
+          "blockNameEnglish": "Katekalyan",
+          "blockNameHindi": "कटेकल्याण"
+        },
+        {
+          "blockId": 3616,
+          "blockNameEnglish": "Kuakonda",
+          "blockNameHindi": "कुआकोंडा"
+        },
+        {
+          "blockId": 3617,
+          "blockNameEnglish": "Geedam",
+          "blockNameHindi": "गीदम"
+        }
+      ]
+    },
+    {
+      "districtId": 642,
+      "blocks": [
+        {
+          "blockId": 3680,
+          "blockNameEnglish": "Chhindgarh",
+          "blockNameHindi": "छिन्दगढ़"
+        },
+        {
+          "blockId": 3681,
+          "blockNameEnglish": "Konta",
+          "blockNameHindi": "कोंटा"
+        },
+        {
+          "blockId": 3682,
+          "blockNameEnglish": "Sukma",
+          "blockNameHindi": "सुकमा"
+        }
+      ]
+    },
+    {
+      "districtId": 636,
+      "blocks": [
+        {
+          "blockId": 3605,
+          "blockNameEnglish": "Bhopalpattnam",
+          "blockNameHindi": "भोपालपट्टनम"
+        },
+        {
+          "blockId": 3606,
+          "blockNameEnglish": "Bijapur",
+          "blockNameHindi": "बीजापुर"
+        },
+        {
+          "blockId": 3609,
+          "blockNameEnglish": "Usur",
+          "blockNameHindi": "उसूर"
+        }
+      ]
+    },
+    {
+      "districtId": 643,
+      "blocks": [
+        {
+          "blockId": 3668,
+          "blockNameEnglish": "Kondagaon",
+          "blockNameHindi": "कोंडागांव"
+        },
+        {
+          "blockId": 3670,
+          "blockNameEnglish": "Makdi",
+          "blockNameHindi": "माकड़ी"
+        },
+        {
+          "blockId": 3671,
+          "blockNameEnglish": "Pharasgaon",
+          "blockNameHindi": "फरसगांव"
+        },
+        {
+          "blockId": 3672,
+          "blockNameEnglish": "Keshkal",
+          "blockNameHindi": "केशकाल"
+        }
+      ]
+    },
+    {
+      "districtId": 637,
+      "blocks": [
+        {
+          "blockId": 3618,
+          "blockNameEnglish": "Narayanpur",
+          "blockNameHindi": "नारायणपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 389,
+      "blocks": [
+        {
+          "blockId": 3717,
+          "blockNameEnglish": "Ambikapur",
+          "blockNameHindi": "अंबिकापुर"
+        },
+        {
+          "blockId": 3718,
+          "blockNameEnglish": "Bhaiyathan",
+          "blockNameHindi": "भैयाथान"
+        },
+        {
+          "blockId": 3719,
+          "blockNameEnglish": "Lakhanpur",
+          "blockNameHindi": "लखनपुर"
+        },
+        {
+          "blockId": 3720,
+          "blockNameEnglish": "Lundra",
+          "blockNameHindi": "लुंड्रा"
+        },
+        {
+          "blockId": 3721,
+          "blockNameEnglish": "Mainpat",
+          "blockNameHindi": "मैनपाट"
+        },
+        {
+          "blockId": 3722,
+          "blockNameEnglish": "Sitapur",
+          "blockNameHindi": "सीतापुर"
+        },
+        {
+          "blockId": 3723,
+          "blockNameEnglish": "Udaipur",
+          "blockNameHindi": "उदयपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 648,
+      "blocks": [
+        {
+          "blockId": 3724,
+          "blockNameEnglish": "Bhaiyathan",
+          "blockNameHindi": "भैयाथान"
+        },
+        {
+          "blockId": 3725,
+          "blockNameEnglish": "Oudgi",
+          "blockNameHindi": "ओड़गी"
+        },
+        {
+          "blockId": 3726,
+          "blockNameEnglish": "Pratappur",
+          "blockNameHindi": "प्रतापपुर"
+        },
+        {
+          "blockId": 3727,
+          "blockNameEnglish": "Ramanujnagar",
+          "blockNameHindi": "रामानुजनगर"
+        },
+        {
+          "blockId": 3728,
+          "blockNameEnglish": "Surajpur",
+          "blockNameHindi": "सूरजपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 649,
+      "blocks": [
+        {
+          "blockId": 3729,
+          "blockNameEnglish": "Balrampur",
+          "blockNameHindi": "बलरामपुर"
+        },
+        {
+          "blockId": 3730,
+          "blockNameEnglish": "Kusmi",
+          "blockNameHindi": "कुसमी"
+        },
+        {
+          "blockId": 3731,
+          "blockNameEnglish": "Ramanujganj",
+          "blockNameHindi": "रामानुजगंज"
+        },
+        {
+          "blockId": 3732,
+          "blockNameEnglish": "Samri",
+          "blockNameHindi": "समरी"
+        },
+        {
+          "blockId": 3733,
+          "blockNameEnglish": "Shankargarh",
+          "blockNameHindi": "शंकरगढ़"
+        },
+        {
+          "blockId": 3734,
+          "blockNameEnglish": "Wadrafnagar",
+          "blockNameHindi": "वाड्रफनगर"
+        }
+      ]
+    },
+    {
+      "districtId": 385,
+      "blocks": [
+        {
+          "blockId": 3674,
+          "blockNameEnglish": "Mahasamund",
+          "blockNameHindi": "महासमुंद"
+        },
+        {
+          "blockId": 3675,
+          "blockNameEnglish": "Pithora",
+          "blockNameHindi": "पिथौरा"
+        },
+        {
+          "blockId": 3676,
+          "blockNameEnglish": "Saraipali",
+          "blockNameHindi": "सरायपाली"
+        },
+        {
+          "blockId": 3677,
+          "blockNameEnglish": "Basna",
+          "blockNameHindi": "बसना"
+        }
+      ]
+    },
+    {
+      "districtId": 645,
+      "blocks": [
+        {
+          "blockId": 3701,
+          "blockNameEnglish": "Fingeshwar",
+          "blockNameHindi": "फिंगेश्वर"
+        },
+        {
+          "blockId": 3702,
+          "blockNameEnglish": "Gariyaband",
+          "blockNameHindi": "गरियाबंद"
+        },
+        {
+          "blockId": 3703,
+          "blockNameEnglish": "Kasdol",
+          "blockNameHindi": "कसडोल"
+        },
+        {
+          "blockId": 3704,
+          "blockNameEnglish": "Mainpur",
+          "blockNameHindi": "मैनपुर"
+        },
+        {
+          "blockId": 3705,
+          "blockNameEnglish": "Palari",
+          "blockNameHindi": "पलारी"
+        }
+      ]
+    },
+    {
+      "districtId": 377,
+      "blocks": [
+        {
+          "blockId": 3619,
+          "blockNameEnglish": "Dhamtari",
+          "blockNameHindi": "धमतरी"
+        },
+        {
+          "blockId": 3620,
+          "blockNameEnglish": "Kurud",
+          "blockNameHindi": "कुरूद"
+        },
+        {
+          "blockId": 3621,
+          "blockNameEnglish": "Magarlod",
+          "blockNameHindi": "मगरलोड"
+        }
+      ]
+    },
+    {
+      "districtId": 647,
+      "blocks": [
+        {
+          "blockId": 3622,
+          "blockNameEnglish": "Mungeli",
+          "blockNameHindi": "मुंगेली"
+        },
+        {
+          "blockId": 3623,
+          "blockNameEnglish": "Lormi",
+          "blockNameHindi": "लोरमी"
+        },
+        {
+          "blockId": 3624,
+          "blockNameEnglish": "Pathariya",
+          "blockNameHindi": "पथरिया"
+        },
+        {
+          "blockId": 3625,
+          "blockNameEnglish": "Takhatpur",
+          "blockNameHindi": "तखतपुर"
+        }
+      ]
+    },
+    {
+      "districtId": 734,
+      "blocks": [
+        {
+          "blockId": 3735,
+          "blockNameEnglish": "Gaurela",
+          "blockNameHindi": "गौरेला"
+        },
+        {
+          "blockId": 3736,
+          "blockNameEnglish": "Pendra",
+          "blockNameHindi": "पेंड्रा"
+        },
+        {
+          "blockId": 3737,
+          "blockNameEnglish": "Marwahi",
+          "blockNameHindi": "मरवाही"
+        }
+      ]
+    },
+    {
+      "districtId": 388,
+      "blocks": [
+        {
+          "blockId": 3738,
+          "blockNameEnglish": "Dongargarh",
+          "blockNameHindi": "डोंगरगढ़"
+        },
+        {
+          "blockId": 3739,
+          "blockNameEnglish": "Dongargaon",
+          "blockNameHindi": "डोंगरगांव"
+        },
+        {
+          "blockId": 3740,
+          "blockNameEnglish": "Khairagarh",
+          "blockNameHindi": "खैरागढ़"
+        },
+        {
+          "blockId": 3741,
+          "blockNameEnglish": "Manpur",
+          "blockNameHindi": "मानपुर"
+        },
+        {
+          "blockId": 3742,
+          "blockNameEnglish": "Mohla",
+          "blockNameHindi": "मोहला"
+        },
+        {
+          "blockId": 3743,
+          "blockNameEnglish": "Rajnandgaon",
+          "blockNameHindi": "राजनांदगांव"
+        },
+        {
+          "blockId": 3744,
+          "blockNameEnglish": "Chhuikhadan",
+          "blockNameHindi": "छुईखदान"
+        }
+      ]
+    },
+    {
+      "districtId": 382,
+      "blocks": [
+        {
+          "blockId": 3664,
+          "blockNameEnglish": "Bodla",
+          "blockNameHindi": "बोडला"
+        },
+        {
+          "blockId": 3665,
+          "blockNameEnglish": "Kawardha",
+          "blockNameHindi": "कवर्धा"
+        },
+        {
+          "blockId": 3666,
+          "blockNameEnglish": "Pandariya",
+          "blockNameHindi": "पंडरिया"
+        },
+        {
+          "blockId": 3667,
+          "blockNameEnglish": "Sahaspur Lohara",
+          "blockNameHindi": "सहसपुर लोहरा"
+        }
+      ]
+    },
+    {
+      "districtId": 759,
+      "blocks": [
+        {
+          "blockId": 3711,
+          "blockNameEnglish": "Chhuikhadan",
+          "blockNameHindi": "छुईखदान"
+        },
+        {
+          "blockId": 3712,
+          "blockNameEnglish": "Gandai",
+          "blockNameHindi": "गंडई"
+        },
+        {
+          "blockId": 3713,
+          "blockNameEnglish": "Khairagarh",
+          "blockNameHindi": "खैरागढ़"
+        }
+      ]
+    },
+    {
+      "districtId": 762,
+      "blocks": [
+        {
+          "blockId": 3646,
+          "blockNameEnglish": "Malkharoda",
+          "blockNameHindi": "मालखरोदा"
+        },
+        {
+          "blockId": 3649,
+          "blockNameEnglish": "Sakti",
+          "blockNameHindi": "सकती"
+        }
+      ]
+    },
+    {
+      "districtId": 763,
+      "blocks": [
+        {
+          "blockId": 3684,
+          "blockNameEnglish": "Baramkela",
+          "blockNameHindi": "बरमकेला"
+        },
+        {
+          "blockId": 3697,
+          "blockNameEnglish": "Bilaigarh",
+          "blockNameHindi": "बिलाईगढ़"
+        },
+        {
+          "blockId": 3698,
+          "blockNameEnglish": "Chhurra",
+          "blockNameHindi": "छुरा"
+        },
+        {
+          "blockId": 3701,
+          "blockNameEnglish": "Fingeshwar",
+          "blockNameHindi": "फिंगेश्वर"
+        },
+        {
+          "blockId": 3702,
+          "blockNameEnglish": "Gariyaband",
+          "blockNameHindi": "गरियाबंद"
+        },
+        {
+          "blockId": 3704,
+          "blockNameEnglish": "Mainpur",
+          "blockNameHindi": "मैनपुर"
+        }
+      ]
+    }
+  ]
+}

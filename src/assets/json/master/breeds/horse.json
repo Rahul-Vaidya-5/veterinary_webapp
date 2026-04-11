@@ -1,0 +1,216 @@
+{
+  "speciesId": 16,
+  "speciesNameEnglish": "Horse",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Marwari",
+      "breedNameHindi": "मारवाड़ी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Kathewar",
+      "breedNameHindi": "काठेवर",
+      "speciesId": 16
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Spiti",
+      "breedNameHindi": "स्पीति",
+      "speciesId": 16
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Zanskari",
+      "breedNameHindi": "ज़ांस्करी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Manipuri",
+      "breedNameHindi": "मणिपुरी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Bhutia",
+      "breedNameHindi": "भूटिया",
+      "speciesId": 16
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Deccani",
+      "breedNameHindi": "दक्कनी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Chummarti",
+      "breedNameHindi": "चुम्मार्ती",
+      "speciesId": 16
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Indian Half-bred",
+      "breedNameHindi": "भारतीय हाफ-ब्रेड",
+      "speciesId": 16
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Thoroughbred",
+      "breedNameHindi": "थरौब्रेड",
+      "speciesId": 16
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Arabian",
+      "breedNameHindi": "अरबी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Akhal-Teke",
+      "breedNameHindi": "अख़ल-टेके",
+      "speciesId": 16
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Andalusian",
+      "breedNameHindi": "अंडालूसियन",
+      "speciesId": 16
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Appaloosa",
+      "breedNameHindi": "अप्पालूसा",
+      "speciesId": 16
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Friesian",
+      "breedNameHindi": "फ्रीज़ियन",
+      "speciesId": 16
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Haflinger",
+      "breedNameHindi": "हाफलिंगर",
+      "speciesId": 16
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Hanoverian",
+      "breedNameHindi": "हैनोवरियन",
+      "speciesId": 16
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Lipizzaner",
+      "breedNameHindi": "लिपिज़ानर",
+      "speciesId": 16
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Morgan",
+      "breedNameHindi": "मॉर्गन",
+      "speciesId": 16
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Mustang",
+      "breedNameHindi": "मस्टैंग",
+      "speciesId": 16
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Percheron",
+      "breedNameHindi": "पर्चेरोन",
+      "speciesId": 16
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Quarter Horse",
+      "breedNameHindi": "क्वार्टर हॉर्स",
+      "speciesId": 16
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Shetland Pony",
+      "breedNameHindi": "शेटलैंड पोनी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Shire",
+      "breedNameHindi": "शायर",
+      "speciesId": 16
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Standardbred",
+      "breedNameHindi": "स्टैंडर्डब्रेड",
+      "speciesId": 16
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Tennessee Walking Horse",
+      "breedNameHindi": "टेनेसी वॉकिंग हॉर्स",
+      "speciesId": 16
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Trakehner",
+      "breedNameHindi": "ट्रैकह्नर",
+      "speciesId": 16
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Welsh Pony",
+      "breedNameHindi": "वेल्श पोनी",
+      "speciesId": 16
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "Clydesdale",
+      "breedNameHindi": "क्लाइड्सडेल",
+      "speciesId": 16
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Horse",
+      "breedNameEnglish": "American Saddlebred",
+      "breedNameHindi": "अमेरिकन सैडलब्रेड",
+      "speciesId": 16
+    }
+  ]
+}

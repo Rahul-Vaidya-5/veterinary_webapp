@@ -1,0 +1,356 @@
+{
+  "speciesId": 14,
+  "speciesNameEnglish": "Sheep",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Nellore",
+      "breedNameHindi": "नेल्लोर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Marwari",
+      "breedNameHindi": "राजस्थान मारवाड़ी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Magra",
+      "breedNameHindi": "राजस्थान मागरा",
+      "speciesId": 14
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Chokla",
+      "breedNameHindi": "राजस्थान चोकला",
+      "speciesId": 14
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Nali",
+      "breedNameHindi": "राजस्थान नाली",
+      "speciesId": 14
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Malpuri",
+      "breedNameHindi": "राजस्थान मालपुरी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Sonadi",
+      "breedNameHindi": "राजस्थान सोनाडी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Pugal",
+      "breedNameHindi": "राजस्थान पुगल",
+      "speciesId": 14
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Jaisalmeri",
+      "breedNameHindi": "राजस्थान जैसलमेरी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Rajasthan Jalauni",
+      "breedNameHindi": "राजस्थान जालौनी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Merino",
+      "breedNameHindi": "कश्मीर मेरिनो",
+      "speciesId": 14
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Poonchi",
+      "breedNameHindi": "कश्मीर पूँची",
+      "speciesId": 14
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Gaddi",
+      "breedNameHindi": "कश्मीर गद्दी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Changthangi",
+      "breedNameHindi": "कश्मीर चांगथांगी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Rampur Bushair",
+      "breedNameHindi": "कश्मीर रामपुर बुशैर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Karnah",
+      "breedNameHindi": "कश्मीर कर्नाह",
+      "speciesId": 14
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Bhakarwal",
+      "breedNameHindi": "कश्मीर बखरवाल",
+      "speciesId": 14
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Tibetan",
+      "breedNameHindi": "कश्मीर तिब्बती",
+      "speciesId": 14
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Spiti",
+      "breedNameHindi": "कश्मीर स्पीति",
+      "speciesId": 14
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Kinnauri",
+      "breedNameHindi": "कश्मीर किन्नौरी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Gurez",
+      "breedNameHindi": "कश्मीर गुरेज़",
+      "speciesId": 14
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Banihal",
+      "breedNameHindi": "कश्मीर बनिहाल",
+      "speciesId": 14
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Ladakhi",
+      "breedNameHindi": "कश्मीर लद्दाखी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Kashmir Changthangi Pashmina",
+      "breedNameHindi": "कश्मीर चांगथांगी पश्मीना",
+      "speciesId": 14
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Deccani",
+      "breedNameHindi": "दक्कनी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Mandya",
+      "breedNameHindi": "मांड्या",
+      "speciesId": 14
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Hassan",
+      "breedNameHindi": "हासन",
+      "speciesId": 14
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Coimbatore",
+      "breedNameHindi": "तमिलनाडु कोयंबटूर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Madras Red",
+      "breedNameHindi": "तमिलनाडु मद्रास रेड",
+      "speciesId": 14
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Mecheri",
+      "breedNameHindi": "तमिलनाडु मेचेरी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 31,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Vembur",
+      "breedNameHindi": "तमिलनाडु वेम्बुर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 32,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Kilakarsal",
+      "breedNameHindi": "तमिलनाडु किलाकरसल",
+      "speciesId": 14
+    },
+    {
+      "breedId": 33,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Tiruchy Black",
+      "breedNameHindi": "तमिलनाडु तिरुची ब्लैक",
+      "speciesId": 14
+    },
+    {
+      "breedId": 34,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Tamil Nadu Kanni Adu",
+      "breedNameHindi": "तमिलनाडु कन्नी अडु",
+      "speciesId": 14
+    },
+    {
+      "breedId": 35,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Nellore",
+      "breedNameHindi": "आंध्र प्रदेश नेल्लोर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 36,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Jodipi",
+      "breedNameHindi": "आंध्र प्रदेश जोडिपी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 37,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Palla",
+      "breedNameHindi": "आंध्र प्रदेश पल्ला",
+      "speciesId": 14
+    },
+    {
+      "breedId": 38,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Bandapalli",
+      "breedNameHindi": "आंध्र प्रदेश बंदापल्ली",
+      "speciesId": 14
+    },
+    {
+      "breedId": 39,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Rayalaseema",
+      "breedNameHindi": "आंध्र प्रदेश रायलसीमा",
+      "speciesId": 14
+    },
+    {
+      "breedId": 40,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "Andhra Pradesh Vizianagaram",
+      "breedNameHindi": "आंध्र प्रदेश विजयनगरम",
+      "speciesId": 14
+    },
+    {
+      "breedId": 41,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Merino",
+      "breedNameHindi": "अंतरराष्ट्रीय मेरिनो",
+      "speciesId": 14
+    },
+    {
+      "breedId": 42,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Dorset",
+      "breedNameHindi": "अंतरराष्ट्रीय डॉर्सेट",
+      "speciesId": 14
+    },
+    {
+      "breedId": 43,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Suffolk",
+      "breedNameHindi": "अंतरराष्ट्रीय सफ़ोक",
+      "speciesId": 14
+    },
+    {
+      "breedId": 44,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Hampshire",
+      "breedNameHindi": "अंतरराष्ट्रीय हैम्पशायर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 45,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Romney",
+      "breedNameHindi": "अंतरराष्ट्रीय रोमनी",
+      "speciesId": 14
+    },
+    {
+      "breedId": 46,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Lincoln",
+      "breedNameHindi": "अंतरराष्ट्रीय लिंकन",
+      "speciesId": 14
+    },
+    {
+      "breedId": 47,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Cheviot",
+      "breedNameHindi": "अंतरराष्ट्रीय चेवियट",
+      "speciesId": 14
+    },
+    {
+      "breedId": 48,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Texel",
+      "breedNameHindi": "अंतरराष्ट्रीय टेक्सेल",
+      "speciesId": 14
+    },
+    {
+      "breedId": 49,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Shropshire",
+      "breedNameHindi": "अंतरराष्ट्रीय श्रॉपशायर",
+      "speciesId": 14
+    },
+    {
+      "breedId": 50,
+      "speciesNameEnglish": "Sheep",
+      "breedNameEnglish": "International Southdown",
+      "breedNameHindi": "अंतरराष्ट्रीय साउथडाउन",
+      "speciesId": 14
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppShellLayout from './components/AppShellLayout';
 import MobileEntry from './components/MobileEntry';
+import HomePage from './components/HomePage.tsx';
 import LoginForm from './components/login/LoginForm';
 import RegistrationHub from './components/registration/RegistrationHub';
 import DoctorRegistration from './components/registration/doctor/DoctorRegistration';
@@ -16,6 +17,7 @@ import ShopSetPassword from './components/shop/ShopSetPassword';
 
 // Doctor Dashboard
 import DoctorDashboard from './components/doctor/dashboard/DoctorDashboard';
+import DoctorOverview from './components/doctor/dashboard/DoctorOverview.tsx';
 import Prescriptions from './components/doctor/prescriptions/Prescriptions';
 import Appointments from './components/doctor/appointments/Appointments';
 import MarkHolidays from './components/doctor/holidays/MarkHolidays';
@@ -32,9 +34,11 @@ import OthersInventory from './components/doctor/inventory/OthersInventory';
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
+
       {/* ── Onboarding shell (header + centered layout) ── */}
       <Route element={<AppShellLayout />}>
-        <Route path="/" element={<MobileEntry />} />
+        <Route path="/entry" element={<MobileEntry />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationHub />} />
         <Route path="/register/doctor" element={<DoctorRegistration />} />
@@ -51,6 +55,7 @@ function App() {
       {/* ── Doctor Dashboard (full-screen, own sidebar + topbar) ── */}
       <Route path="/doctor/dashboard" element={<DoctorDashboard />}>
         <Route index element={<Navigate to="appointments" replace />} />
+        <Route path="overview" element={<DoctorOverview />} />
         <Route path="prescriptions" element={<Prescriptions />} />
         <Route path="appointments" element={<Appointments />} />
         <Route path="holidays" element={<MarkHolidays />} />
