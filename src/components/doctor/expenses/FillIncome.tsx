@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, Plus, Trash2, Save } from 'lucide-react';
 import './Expenses.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
 
 type IncomeSource =
   | 'Consultation'
@@ -21,7 +22,7 @@ type IncomeEntry = {
 };
 
 const LS_KEY = 'vc_income';
-const today = new Date().toISOString().split('T')[0];
+const today = getIstDateKey();
 
 const load = (): IncomeEntry[] => {
   try {

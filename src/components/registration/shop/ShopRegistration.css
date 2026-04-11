@@ -47,14 +47,40 @@
 }
 
 .form-error {
-  margin: 0 0 16px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: min(520px, 90vw);
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #b91c1c;
-  text-align: left;
   font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(185, 28, 28, 0.18);
+}
+
+.form-error-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b91c1c;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 2px;
+  opacity: 0.7;
+}
+
+.form-error-close:hover {
+  opacity: 1;
 }
 
 .shop-registration form {

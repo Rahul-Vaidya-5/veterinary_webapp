@@ -8,6 +8,8 @@ import {
   ArrowRight,
   Send,
 } from 'lucide-react';
+import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useChhattisgarhLocations } from '../../utility/useChhattisgarhLocations';
 import './ShopRegistration.css';
 
 const ENABLE_STEP_VALIDATION =
@@ -77,6 +79,10 @@ function ShopRegistration() {
   const [currentStep, setCurrentStep] = useState(1);
   const [stepError, setStepError] = useState('');
   const [hasAcceptedDeclaration, setHasAcceptedDeclaration] = useState(false);
+  const { districtNames, getBlocksForDistrict, isKnownDistrict, isKnownBlock } =
+    useChhattisgarhLocations();
+
+  const shopBlockOptions = getBlocksForDistrict(shop.address.district);
 
   const requiresPharmacyLicense =
     shop.shopType === 'medical' || shop.shopType === 'both';
@@ -94,7 +100,11 @@ function ShopRegistration() {
   ) {
     setShop(prev => ({
       ...prev,
-      address: { ...prev.address, [field]: value },
+      address: {
+        ...prev.address,
+        ...(field === 'district' ? { block: '' } : {}),
+        [field]: value,
+      },
     }));
   }
 
@@ -126,6 +136,15 @@ function ShopRegistration() {
     if (!shop.address.state.trim()) return 'State is required.';
     if (!shop.address.district.trim()) return 'District is required.';
     if (!shop.address.block.trim()) return 'Block is required.';
+    if (districtNames.length > 0 && !isKnownDistrict(shop.address.district)) {
+      return 'Select a valid district from the list.';
+    }
+    if (
+      districtNames.length > 0 &&
+      !isKnownBlock(shop.address.district, shop.address.block)
+    ) {
+      return 'Select a valid block from the list.';
+    }
     if (!shop.address.pincode.trim()) return 'Pincode is required.';
     if (!/^\d{6}$/.test(shop.address.pincode.trim()))
       return 'Pincode must be exactly 6 digits.';
@@ -202,7 +221,19 @@ function ShopRegistration() {
         </div>
       </div>
 
-      {stepError && <p className="form-error">{stepError}</p>}
+      {stepError && (
+        <div className="form-error" role="alert">
+          <span>{stepError}</span>
+          <button
+            type="button"
+            className="form-error-close"
+            onClick={() => setStepError('')}
+            aria-label="Dismiss error"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} noValidate>
         {currentStep === 1 && (
@@ -299,19 +330,30 @@ function ShopRegistration() {
 
             <label>
               District *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="shop-district"
+                listId="shop-district-list"
                 value={shop.address.district}
-                onChange={e => handleAddressChange('district', e.target.value)}
+                onChange={value => handleAddressChange('district', value)}
+                options={districtNames}
+                placeholder="Search and select district"
               />
             </label>
 
             <label>
               Block *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="shop-block"
+                listId="shop-block-list"
                 value={shop.address.block}
-                onChange={e => handleAddressChange('block', e.target.value)}
+                onChange={value => handleAddressChange('block', value)}
+                options={shopBlockOptions}
+                placeholder={
+                  shop.address.district
+                    ? 'Search and select block'
+                    : 'Select district first'
+                }
+                disabled={!shop.address.district.trim()}
               />
             </label>
 

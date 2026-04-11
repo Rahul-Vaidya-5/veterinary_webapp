@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { BarChart2 } from 'lucide-react';
 import './Expenses.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
 
 type Expense = {
   id: string;
@@ -80,7 +81,7 @@ function ExpenseReport() {
     const d = new Date();
     const months = filterPeriod === '3m' ? 3 : filterPeriod === '6m' ? 6 : 12;
     d.setMonth(d.getMonth() - months);
-    return d.toISOString().split('T')[0];
+    return getIstDateKey(d);
   }, [filterPeriod]);
 
   const expenses = cutoffDate

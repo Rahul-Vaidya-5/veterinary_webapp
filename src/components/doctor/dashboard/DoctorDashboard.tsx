@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   Stethoscope,
   Calendar,
   UmbrellaOff,
   User,
+  BadgeCheck,
   ChevronDown,
   Menu,
   X,
@@ -12,6 +13,7 @@ import {
   Users,
   Package,
   ClipboardList,
+  LogOut,
 } from 'lucide-react';
 import './DoctorDashboard.css';
 
@@ -28,6 +30,7 @@ export const useDoctorInfo = () => useContext(DoctorContext);
 
 function DoctorDashboard() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
@@ -39,6 +42,11 @@ function DoctorDashboard() {
 
   const toggleSection = (section: string) => {
     setExpandedSection(prev => (prev === section ? null : section));
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('vc_session_doctor');
+    navigate('/', { replace: true });
   };
 
   const sidebarSections = [
@@ -102,6 +110,28 @@ function DoctorDashboard() {
             <Stethoscope size={22} />
             <span>VetCare</span>
           </div>
+          <section
+            className="doctor-identity-card"
+            aria-label="Doctor profile summary"
+          >
+            <div className="doctor-identity-badge">
+              <BadgeCheck size={14} />
+              <span>Verified Doctor</span>
+            </div>
+            <div className="doctor-identity-main">
+              <div className="doctor-identity-avatar">
+                <Stethoscope size={20} />
+              </div>
+              <div className="doctor-identity-copy">
+                <h2>Dr. {doctorInfo.doctorName}</h2>
+                <p className="doctor-identity-role">Veterinary Physician</p>
+              </div>
+            </div>
+            <div className="doctor-identity-meta">
+              <span>{doctorInfo.mobileNumber || 'Mobile pending'}</span>
+              <span>Ready for appointments and prescriptions</span>
+            </div>
+          </section>
           <nav className="sidebar-nav">
             {sidebarSections.map(section => (
               <div key={section.id} className="sidebar-section">
@@ -132,6 +162,16 @@ function DoctorDashboard() {
               </div>
             ))}
           </nav>
+          <div className="sidebar-logout-wrap">
+            <button
+              type="button"
+              className="sidebar-logout-btn"
+              onClick={handleLogout}
+            >
+              <LogOut size={16} />
+              <span>Log Out</span>
+            </button>
+          </div>
         </aside>
 
         {/* ── Main ── */}

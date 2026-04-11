@@ -1,6 +1,7 @@
 /* ─── Mark Holidays Page ─── */
 .holidays-page {
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1320px;
   position: relative;
 }
 
@@ -46,38 +47,42 @@
 
 .holidays-info-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   padding: 10px 14px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   border-radius: 8px;
   font-size: 0.83rem;
+  line-height: 1.45;
   color: #1d4ed8;
   margin-bottom: 18px;
 }
 
 .holidays-info-bar svg {
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
 /* Month navigation */
 .month-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px minmax(220px, auto) 40px;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  column-gap: 22px;
   margin-bottom: 18px;
 }
 
 .month-nav-btn {
   display: flex;
   align-items: center;
-  padding: 6px 10px;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  padding: 0;
   border: 1px solid #e2e8f0;
   background: white;
-  border-radius: 7px;
+  border-radius: 10px;
   cursor: pointer;
   color: #475569;
   transition: background 0.15s, color 0.15s;
@@ -97,8 +102,8 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: #0f172a;
-  min-width: 220px;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* Calendar grid */

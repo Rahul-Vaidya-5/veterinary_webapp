@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IndianRupee, Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 import './Employee.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
 
 type SalaryType = 'Monthly' | 'Daily' | 'Hourly';
 
@@ -16,7 +17,7 @@ type EmployeeWage = {
 };
 
 const LS_KEY = 'vc_employee_wages';
-const today = new Date().toISOString().split('T')[0];
+const today = getIstDateKey();
 
 const load = (): EmployeeWage[] => {
   try {

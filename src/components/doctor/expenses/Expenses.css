@@ -1,7 +1,8 @@
 /* ─── Shared: Expenses / Income / Report ─── */
 
 .expenses-page {
-  max-width: 900px;
+  width: 100%;
+  max-width: 1320px;
   display: flex;
   flex-direction: column;
   gap: 20px;

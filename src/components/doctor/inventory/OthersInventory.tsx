@@ -9,6 +9,7 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import './Inventory.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
 
 type InventoryCategory =
   | 'Surgical'
@@ -31,7 +32,7 @@ type OtherItem = {
 };
 
 const LS_KEY = 'vc_inventory_others';
-const today = new Date().toISOString().split('T')[0];
+const today = getIstDateKey();
 
 const load = (): OtherItem[] => {
   try {

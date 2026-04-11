@@ -1,6 +1,7 @@
 /* ─── Shared: Employee pages ─── */
 .employee-page {
-  max-width: 860px;
+  width: 100%;
+  max-width: 1320px;
   display: flex;
   flex-direction: column;
   gap: 20px;

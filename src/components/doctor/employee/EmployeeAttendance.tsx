@@ -8,6 +8,7 @@ import {
   Minus,
 } from 'lucide-react';
 import './Employee.css';
+import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
 type AttendanceStatus = 'present' | 'absent' | 'half-day' | 'leave';
 type Employee = { id: string; name: string; role: string };
@@ -33,7 +34,7 @@ const loadAttendance = (): DailyAttendance => {
   }
 };
 
-const toDateStr = (d: Date) => d.toISOString().split('T')[0];
+const toDateStr = (d: Date) => getIstDateKey(d);
 
 const STATUS_OPTIONS: {
   key: AttendanceStatus;
@@ -112,7 +113,7 @@ function EmployeeAttendance() {
   };
 
   const formatDate = (d: Date) =>
-    d.toLocaleDateString('en-IN', {
+    formatIstDate(d, {
       weekday: 'long',
       day: '2-digit',
       month: 'short',

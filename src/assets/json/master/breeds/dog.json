@@ -1,0 +1,440 @@
+{
+  "speciesId": 1,
+  "speciesNameEnglish": "Dog",
+  "breeds": [
+    {
+      "breedId": 41,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "German Shepherd",
+      "breedNameHindi": "जर्मन शेफर्ड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 42,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Bulldog",
+      "breedNameHindi": "बुलडॉग",
+      "speciesId": 1
+    },
+    {
+      "breedId": 43,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Siberian Husky",
+      "breedNameHindi": "साइबेरियाई हस्की",
+      "speciesId": 1
+    },
+    {
+      "breedId": 44,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Bakharwal Dog",
+      "breedNameHindi": "बखरवाल कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 45,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Pug",
+      "breedNameHindi": "पग",
+      "speciesId": 1
+    },
+    {
+      "breedId": 46,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Boxer",
+      "breedNameHindi": "बॉक्सर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 47,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Rottweiler",
+      "breedNameHindi": "रॉटवीलर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 48,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Pariah Dog",
+      "breedNameHindi": "परिया कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 49,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Labrador Retriever",
+      "breedNameHindi": "लैब्राडोर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 50,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Dalmatian",
+      "breedNameHindi": "डैलमेशियन",
+      "speciesId": 1
+    },
+    {
+      "breedId": 51,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Poodle",
+      "breedNameHindi": "पूडल",
+      "speciesId": 1
+    },
+    {
+      "breedId": 52,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Afghan Hound",
+      "breedNameHindi": "अफगान हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 53,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Golden Retriever",
+      "breedNameHindi": "गोल्डन रिट्रीवर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 54,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Beagle",
+      "breedNameHindi": "बीगल",
+      "speciesId": 1
+    },
+    {
+      "breedId": 55,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Doberman",
+      "breedNameHindi": "डोबर्मन",
+      "speciesId": 1
+    },
+    {
+      "breedId": 56,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Great Dane",
+      "breedNameHindi": "ग्रेट डेन",
+      "speciesId": 1
+    },
+    {
+      "breedId": 57,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Saint Bernard",
+      "breedNameHindi": "सेंट बर्नार्ड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 58,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Rampur Hound",
+      "breedNameHindi": "रामपुर हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 59,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Kombai Dog",
+      "breedNameHindi": "कोम्बाई कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 60,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Kanni Dog",
+      "breedNameHindi": "कानी कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 61,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Pomeranian",
+      "breedNameHindi": "पोमेरेनियन",
+      "speciesId": 1
+    },
+    {
+      "breedId": 62,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Chow Chow",
+      "breedNameHindi": "चाउ चाउ",
+      "speciesId": 1
+    },
+    {
+      "breedId": 63,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Shih Tzu",
+      "breedNameHindi": "शिह त्ज़ु",
+      "speciesId": 1
+    },
+    {
+      "breedId": 64,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Maltese",
+      "breedNameHindi": "माल्टीज़",
+      "speciesId": 1
+    },
+    {
+      "breedId": 65,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Gaddi Dog",
+      "breedNameHindi": "गद्दी कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 66,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Bhote Kukur (Nepali Sheepdog)",
+      "breedNameHindi": "भोते कुकुर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 67,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Rajapalayam",
+      "breedNameHindi": "राजापलायम",
+      "speciesId": 1
+    },
+    {
+      "breedId": 68,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Mudhol Hound",
+      "breedNameHindi": "मुधोल हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 69,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Alangu Mastiff",
+      "breedNameHindi": "अलंगु मास्टिफ़",
+      "speciesId": 1
+    },
+    {
+      "breedId": 70,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Bully Kutta",
+      "breedNameHindi": "बुल्ली कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 71,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Irish Setter",
+      "breedNameHindi": "आयरिश सेटर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 72,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "English Mastiff",
+      "breedNameHindi": "इंग्लिश मास्टिफ़",
+      "speciesId": 1
+    },
+    {
+      "breedId": 73,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "American Pitbull Terrier",
+      "breedNameHindi": "अमेरिकन पिटबुल टेरियर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 74,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Border Collie",
+      "breedNameHindi": "बॉर्डर कॉली",
+      "speciesId": 1
+    },
+    {
+      "breedId": 75,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Whippet",
+      "breedNameHindi": "व्हिपेट",
+      "speciesId": 1
+    },
+    {
+      "breedId": 76,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Saluki",
+      "breedNameHindi": "सलुकी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 77,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Jonangi",
+      "breedNameHindi": "जोनांगी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 78,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Banjara Hound",
+      "breedNameHindi": "बंजारा हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 79,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Pandikona",
+      "breedNameHindi": "पंडिकोन",
+      "speciesId": 1
+    },
+    {
+      "breedId": 80,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Chippiparai",
+      "breedNameHindi": "चिप्पिपरई",
+      "speciesId": 1
+    },
+    {
+      "breedId": 81,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Vanjari Hound",
+      "breedNameHindi": "वांजरी हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 82,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Tazi",
+      "breedNameHindi": "ताज़ी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 83,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Caravan Hound",
+      "breedNameHindi": "कारवां हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 84,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Malakisi",
+      "breedNameHindi": "मलाकिसी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 85,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Pashmi",
+      "breedNameHindi": "पश्मी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 86,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Vaghari Hound",
+      "breedNameHindi": "वाघरी हाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 87,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Kanni",
+      "breedNameHindi": "कानी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 88,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Kombai",
+      "breedNameHindi": "कोम्बाई",
+      "speciesId": 1
+    },
+    {
+      "breedId": 89,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Rampur Greyhound",
+      "breedNameHindi": "रामपुर ग्रेहाउंड",
+      "speciesId": 1
+    },
+    {
+      "breedId": 90,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Mudhol",
+      "breedNameHindi": "मुधोल",
+      "speciesId": 1
+    },
+    {
+      "breedId": 91,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Alangu",
+      "breedNameHindi": "अलंगु",
+      "speciesId": 1
+    },
+    {
+      "breedId": 92,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Bully",
+      "breedNameHindi": "बुल्ली",
+      "speciesId": 1
+    },
+    {
+      "breedId": 93,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Pariah",
+      "breedNameHindi": "परिया",
+      "speciesId": 1
+    },
+    {
+      "breedId": 94,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Bakharwal",
+      "breedNameHindi": "बखरवाल",
+      "speciesId": 1
+    },
+    {
+      "breedId": 95,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Gaddi",
+      "breedNameHindi": "गद्दी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 96,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Banjara",
+      "breedNameHindi": "बंजारा",
+      "speciesId": 1
+    },
+    {
+      "breedId": 97,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Vanjari",
+      "breedNameHindi": "वांजरी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 98,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Caravan",
+      "breedNameHindi": "कारवां",
+      "speciesId": 1
+    },
+    {
+      "breedId": 99,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Bhote Kukur",
+      "breedNameHindi": "भोते कुकुर",
+      "speciesId": 1
+    },
+    {
+      "breedId": 100,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Gaddi Kutta",
+      "breedNameHindi": "गद्दी कुत्ता",
+      "speciesId": 1
+    },
+    {
+      "breedId": 101,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Vaghari",
+      "breedNameHindi": "वाघरी",
+      "speciesId": 1
+    },
+    {
+      "breedId": 102,
+      "speciesNameEnglish": "Dog",
+      "breedNameEnglish": "Indian Rampur Hound",
+      "breedNameHindi": "रामपुर हाउंड",
+      "speciesId": 1
+    }
+  ]
+}

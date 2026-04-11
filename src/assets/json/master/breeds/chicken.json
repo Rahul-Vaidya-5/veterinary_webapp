@@ -1,0 +1,244 @@
+{
+  "speciesId": 19,
+  "speciesNameEnglish": "Chicken",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Kadaknath",
+      "breedNameHindi": "कड़कनाथ",
+      "speciesId": 19
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Aseel",
+      "breedNameHindi": "असील",
+      "speciesId": 19
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Vanaraja",
+      "breedNameHindi": "वनराजा",
+      "speciesId": 19
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Gramapriya",
+      "breedNameHindi": "ग्रामप्रिया",
+      "speciesId": 19
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Kuroiler",
+      "breedNameHindi": "कुरोइलर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "CARI Nirbheek",
+      "breedNameHindi": "कारी निर्भीक",
+      "speciesId": 19
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "CARI Shyama",
+      "breedNameHindi": "कारी श्यामा",
+      "speciesId": 19
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "CARI Priya",
+      "breedNameHindi": "कारी प्रिया",
+      "speciesId": 19
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Srinidhi",
+      "breedNameHindi": "श्रीनिधि",
+      "speciesId": 19
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Kamrupa",
+      "breedNameHindi": "कामरूपा",
+      "speciesId": 19
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Narmadanidhi",
+      "breedNameHindi": "नर्मदानिधि",
+      "speciesId": 19
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Giriraja",
+      "breedNameHindi": "गिरिराजा",
+      "speciesId": 19
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Pratapdhan",
+      "breedNameHindi": "प्रतापधन",
+      "speciesId": 19
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Chabro",
+      "breedNameHindi": "चाब्रो",
+      "speciesId": 19
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Noiler",
+      "breedNameHindi": "नोइलर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Broiler",
+      "breedNameHindi": "ब्रॉयलर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Layer",
+      "breedNameHindi": "लेयर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "White Leghorn",
+      "breedNameHindi": "व्हाइट लेगहॉर्न",
+      "speciesId": 19
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Rhode Island Red",
+      "breedNameHindi": "रोड आइलैंड रेड",
+      "speciesId": 19
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Plymouth Rock",
+      "breedNameHindi": "प्लायमाउथ रॉक",
+      "speciesId": 19
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Australorp",
+      "breedNameHindi": "ऑस्ट्रालॉर्प",
+      "speciesId": 19
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Sussex",
+      "breedNameHindi": "ससेक्स",
+      "speciesId": 19
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Cornish",
+      "breedNameHindi": "कॉर्निश",
+      "speciesId": 19
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "New Hampshire",
+      "breedNameHindi": "न्यू हैम्पशायर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Brahma",
+      "breedNameHindi": "ब्रह्मा",
+      "speciesId": 19
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Cochin",
+      "breedNameHindi": "कोचीन",
+      "speciesId": 19
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Orpington",
+      "breedNameHindi": "ऑरपिंगटन",
+      "speciesId": 19
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Silkie",
+      "breedNameHindi": "सिल्की",
+      "speciesId": 19
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Frizzle",
+      "breedNameHindi": "फ्रिज़ल",
+      "speciesId": 19
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Naked Neck",
+      "breedNameHindi": "नेकेड नेक",
+      "speciesId": 19
+    },
+    {
+      "breedId": 31,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Ankleshwar",
+      "breedNameHindi": "अंकलेश्वर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 32,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Miri",
+      "breedNameHindi": "मिरी",
+      "speciesId": 19
+    },
+    {
+      "breedId": 33,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Daothigir",
+      "breedNameHindi": "दाओथिगिर",
+      "speciesId": 19
+    },
+    {
+      "breedId": 34,
+      "speciesNameEnglish": "Chicken",
+      "breedNameEnglish": "Hansli",
+      "breedNameHindi": "हंसली",
+      "speciesId": 19
+    }
+  ]
+}

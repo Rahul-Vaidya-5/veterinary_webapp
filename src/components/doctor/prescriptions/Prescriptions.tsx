@@ -1,7 +1,11 @@
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ClipboardList, Plus, Trash2, Printer } from 'lucide-react';
 import { useDoctorInfo } from '../dashboard/DoctorDashboard';
+import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useSpeciesBreeds } from '../../utility/useSpeciesBreeds';
 import './Prescriptions.css';
+import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
 type MedicineRow = {
   id: number;
@@ -36,7 +40,9 @@ type PrescriptionForm = {
   prescriptionDate: string;
 };
 
-const today = new Date().toISOString().split('T')[0];
+type PrescriptionPrefill = Partial<PrescriptionForm>;
+
+const today = getIstDateKey();
 
 const emptyMedicine = (id: number): MedicineRow => ({
   id,
@@ -51,7 +57,9 @@ let rxCounter = Math.floor(Math.random() * 900) + 100;
 
 function Prescriptions() {
   const { doctorName } = useDoctorInfo();
+  const location = useLocation();
   const printRef = useRef<HTMLDivElement>(null);
+  const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
 
   const [form, setForm] = useState<PrescriptionForm>({
     animalName: '',
@@ -72,8 +80,26 @@ function Prescriptions() {
     prescriptionDate: today,
   });
 
-  const [rxNo] = useState(`RX-${new Date().getFullYear()}-${++rxCounter}`);
+  const [rxNo] = useState(`RX-${today.slice(0, 4)}-${++rxCounter}`);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const breedOptions = getBreedsForSpecies(form.species);
+
+  useEffect(() => {
+    const prefill = (location.state as { prefill?: PrescriptionPrefill } | null)
+      ?.prefill;
+
+    if (!prefill) {
+      return;
+    }
+
+    setForm(currentForm => ({
+      ...currentForm,
+      ...prefill,
+      medicines: currentForm.medicines.length
+        ? currentForm.medicines
+        : [emptyMedicine(1)],
+    }));
+  }, [location.state]);
 
   const set = (field: keyof PrescriptionForm, value: string) => {
     setForm(f => ({ ...f, [field]: value }));
@@ -133,7 +159,7 @@ function Prescriptions() {
   const formatDate = (d: string) => {
     if (!d) return '';
     const dt = new Date(d + 'T00:00:00');
-    return dt.toLocaleDateString('en-IN', {
+    return formatIstDate(dt, {
       day: '2-digit',
       month: 'short',
       year: 'numeric',
@@ -151,7 +177,7 @@ function Prescriptions() {
         {/* Section: Animal Details */}
         <section className="rx-section dash-card">
           <h2 className="rx-section-title">Patient (Animal) Details</h2>
-          <div className="rx-grid">
+          <div className="rx-grid rx-grid-animal">
             <label className={errors.animalName ? 'error' : ''}>
               Animal Name *
               <input
@@ -165,10 +191,25 @@ function Prescriptions() {
             </label>
             <label className={errors.species ? 'error' : ''}>
               Species *
-              <input
+              <SearchableSelectInput
+                inputId="prescription-species"
+                listId="prescription-species-list"
                 value={form.species}
-                onChange={e => set('species', e.target.value)}
-                placeholder="e.g. Dog, Cat, Rabbit"
+                onChange={value => {
+                  setForm(current => ({
+                    ...current,
+                    species: value,
+                    breed: '',
+                  }));
+                  setErrors(currentErrors => {
+                    const nextErrors = { ...currentErrors };
+                    delete nextErrors.species;
+                    return nextErrors;
+                  });
+                }}
+                options={speciesNames}
+                placeholder="Search or type species"
+                allowCustom
               />
               {errors.species && (
                 <span className="err-msg">{errors.species}</span>
@@ -176,10 +217,19 @@ function Prescriptions() {
             </label>
             <label>
               Breed
-              <input
+              <SearchableSelectInput
+                inputId="prescription-breed"
+                listId="prescription-breed-list"
                 value={form.breed}
-                onChange={e => set('breed', e.target.value)}
-                placeholder="e.g. Labrador"
+                onChange={value => set('breed', value)}
+                options={breedOptions}
+                placeholder={
+                  form.species.trim()
+                    ? 'Search or type breed'
+                    : 'Select species first'
+                }
+                disabled={!form.species.trim()}
+                allowCustom
               />
             </label>
             <label>

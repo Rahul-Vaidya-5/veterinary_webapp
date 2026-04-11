@@ -1,10 +1,13 @@
 :root {
-  --bg: #f9fafb;
+  --bg: #eef3f8;
   --text: #111827;
   --muted: #6b7280;
   --card: #ffffff;
   --border: #e5e7eb;
   --accent: #2563eb;
+  --bg-teal: rgba(20, 184, 166, 0.2);
+  --bg-peach: rgba(251, 146, 60, 0.2);
+  --bg-violet: rgba(99, 102, 241, 0.14);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
 }
@@ -28,29 +31,68 @@ body {
 
 .app-shell {
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 24px;
   padding: 16px;
+  background:
+    radial-gradient(circle at 14% 18%, var(--bg-teal) 0, transparent 34%),
+    radial-gradient(circle at 88% 10%, var(--bg-peach) 0, transparent 30%),
+    radial-gradient(circle at 74% 82%, var(--bg-violet) 0, transparent 32%),
+    linear-gradient(132deg, #eef5ff 0%, #f4f9f8 44%, #fff5ea 100%);
   text-align: center;
 }
 
+.app-shell::before,
+.app-shell::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell::before {
+  width: 300px;
+  height: 300px;
+  left: -120px;
+  top: 58%;
+  background: rgba(37, 99, 235, 0.12);
+  filter: blur(3px);
+}
+
+.app-shell::after {
+  width: 280px;
+  height: 280px;
+  right: -90px;
+  bottom: -55px;
+  background: rgba(16, 185, 129, 0.12);
+  filter: blur(4px);
+}
+
 .page-header {
-width: min(92vw, 960px);
-margin: 0 auto;
+  width: min(92vw, 960px);
+  margin: 0 auto;
 }
 
 .page-header h1 {
-margin: 0;
-font-size: clamp(2rem, 7.2vw, 4.2rem);
-line-height: 1.14;
-letter-spacing: -0.02em;
-font-weight: 700;
-color: #0f172a;
-text-wrap: balance;
-overflow-wrap: anywhere;
+  margin: 0;
+  font-size: clamp(2rem, 7.2vw, 4.2rem);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #0f172a;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .back-button {

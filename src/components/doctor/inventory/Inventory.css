@@ -1,6 +1,7 @@
 /* ─── Shared: Inventory pages ─── */
 .inventory-page {
-  max-width: 940px;
+  width: 100%;
+  max-width: 1320px;
   display: flex;
   flex-direction: column;
   gap: 20px;

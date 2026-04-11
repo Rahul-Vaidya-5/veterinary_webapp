@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { UmbrellaOff, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 import './MarkHolidays.css';
+import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
 type SlotKey = 'morning' | 'noon' | 'evening';
 type DayKey =
@@ -109,7 +110,8 @@ const saveHolidays = (h: HolidaysStore) => {
   localStorage.setItem(LS_HOLIDAYS, JSON.stringify(h));
 };
 
-const toDateStr = (d: Date) => d.toISOString().split('T')[0];
+const toDateStr = (d: Date) => getIstDateKey(d);
+
 const MONTH_NAMES = [
   'January',
   'February',
@@ -405,7 +407,7 @@ function MarkHolidays() {
           const mark = getHolidayMark(selectedDate);
           const allOn = enabled.every(s => mark[s]);
           const d = new Date(selectedDate + 'T00:00:00');
-          const formatted = d.toLocaleDateString('en-IN', {
+          const formatted = formatIstDate(d, {
             weekday: 'long',
             day: '2-digit',
             month: 'short',
