@@ -1,4 +1,203 @@
 /* ─── Prescriptions Page ─── */
+
+/* Vaccination history reference panel */
+.rx-history-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rx-history-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.rx-history-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rx-history-card-head h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.rx-history-card-head.diagnosis h3 {
+  color: #1d4ed8;
+}
+
+.rx-history-card-head.vaccination h3 {
+  color: #0369a1;
+}
+
+.rx-history-count {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rx-diagnosis-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rx-diagnosis-history-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: #eff6ff;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.rx-diagnosis-history-row:hover {
+  border-color: #60a5fa;
+  background: #dbeafe;
+}
+
+.rx-diagnosis-history-row:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.rx-history-date {
+  min-width: 90px;
+  font-size: 0.79rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.rx-diagnosis-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rx-history-chip.subtle {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.rx-history-ref {
+  margin-left: auto;
+  font-size: 0.77rem;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.rx-history-empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.rx-vacc-history-count {
+  margin-left: 8px;
+  padding: 1px 8px;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.rx-vacc-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rx-vacc-history-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.rx-vacc-history-row:hover {
+  border-color: #7dd3fc;
+  background: #e0f2fe;
+}
+.rx-vacc-history-row:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+.rx-vacc-history-row.overdue {
+  background: #fff5f5;
+  border-color: #fca5a5;
+}
+
+.rx-vacc-date {
+  font-size: 0.79rem;
+  color: #64748b;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.rx-vacc-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rx-vacc-chip {
+  padding: 1px 8px;
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.rx-vacc-due {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.rx-vacc-due.overdue {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .rx-history-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
 .prescriptions-page {
   width: 100%;
   max-width: 1320px;

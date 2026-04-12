@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Calendar,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Settings2,
@@ -54,6 +55,7 @@ type Appointment = {
 
 type HolidayMark = Record<SlotKey, boolean>;
 type HolidaysStore = Record<string, HolidayMark>;
+type SlotBlockNotesStore = Record<string, Partial<Record<SlotKey, string>>>;
 
 /* ── Defaults ── */
 const defaultSlot = (start: string, end: string): TimeSlot => ({
@@ -150,6 +152,7 @@ const SLOT_TIME_RULES: Record<
 const LS_SCHEDULE = 'vc_doctor_schedule';
 const LS_APPOINTMENTS = 'vc_appointments';
 const LS_HOLIDAYS = 'vc_holidays';
+const LS_SLOT_BLOCK_NOTES = 'vc_slot_block_notes';
 
 const loadSchedule = (): WeeklySchedule => {
   try {
@@ -175,6 +178,22 @@ const loadHolidays = (): HolidaysStore => {
   } catch {
     return {};
   }
+};
+
+const saveHolidays = (holidays: HolidaysStore) => {
+  localStorage.setItem(LS_HOLIDAYS, JSON.stringify(holidays));
+};
+
+const loadSlotBlockNotes = (): SlotBlockNotesStore => {
+  try {
+    return JSON.parse(localStorage.getItem(LS_SLOT_BLOCK_NOTES) ?? '{}');
+  } catch {
+    return {};
+  }
+};
+
+const saveSlotBlockNotes = (notes: SlotBlockNotesStore) => {
+  localStorage.setItem(LS_SLOT_BLOCK_NOTES, JSON.stringify(notes));
 };
 
 const toDateStr = (d: Date) => getIstDateKey(d);
@@ -281,7 +300,9 @@ function Appointments() {
   const [schedule, setSchedule] = useState<WeeklySchedule>(loadSchedule);
   const [appointments, setAppointments] =
     useState<Record<string, Appointment[]>>(loadAppointments);
-  const [holidays] = useState<HolidaysStore>(loadHolidays);
+  const [holidays, setHolidays] = useState<HolidaysStore>(loadHolidays);
+  const [slotBlockNotes, setSlotBlockNotes] =
+    useState<SlotBlockNotesStore>(loadSlotBlockNotes);
 
   const [showSchedulerModal, setShowSchedulerModal] = useState(false);
   const [draftSchedule, setDraftSchedule] = useState<WeeklySchedule>(schedule);
@@ -290,6 +311,15 @@ function Appointments() {
   const [addSlot, setAddSlot] = useState<SlotKey>('morning');
   const [cancelTarget, setCancelTarget] = useState<Appointment | null>(null);
   const [cancelNote, setCancelNote] = useState('');
+  const [collapsedSlots, setCollapsedSlots] = useState<
+    Record<SlotKey, boolean>
+  >({
+    morning: false,
+    noon: false,
+    evening: false,
+  });
+  const [slotBlockTarget, setSlotBlockTarget] = useState<SlotKey | null>(null);
+  const [slotBlockNoteInput, setSlotBlockNoteInput] = useState('');
   const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
   const [addForm, setAddForm] = useState({
     patientName: '',
@@ -309,6 +339,7 @@ function Appointments() {
     noon: false,
     evening: false,
   };
+  const daySlotBlockNotes = slotBlockNotes[dateStr] ?? {};
   const dayAppointments = appointments[dateStr] ?? [];
 
   useEffect(() => {
@@ -456,6 +487,113 @@ function Appointments() {
     setCancelNote('');
   };
 
+  const openStopSlotBookings = (slot: SlotKey) => {
+    setSlotBlockTarget(slot);
+    setSlotBlockNoteInput(daySlotBlockNotes[slot] ?? '');
+  };
+
+  const confirmStopSlotBookings = () => {
+    if (!slotBlockTarget) {
+      return;
+    }
+
+    setHolidays(prev => {
+      const currentDay = prev[dateStr] ?? {
+        morning: false,
+        noon: false,
+        evening: false,
+      };
+      const nextDay = {
+        ...currentDay,
+        [slotBlockTarget]: true,
+      };
+
+      const nextState = { ...prev };
+      const hasAnyBlockedSlot = Object.values(nextDay).some(Boolean);
+
+      if (hasAnyBlockedSlot) {
+        nextState[dateStr] = nextDay;
+      } else {
+        delete nextState[dateStr];
+      }
+
+      saveHolidays(nextState);
+      return nextState;
+    });
+
+    setSlotBlockNotes(prev => {
+      const trimmedNote = slotBlockNoteInput.trim();
+      const nextState = { ...prev };
+      const currentDayNotes = { ...(nextState[dateStr] ?? {}) };
+
+      if (trimmedNote) {
+        currentDayNotes[slotBlockTarget] = trimmedNote;
+        nextState[dateStr] = currentDayNotes;
+      } else {
+        delete currentDayNotes[slotBlockTarget];
+        if (Object.keys(currentDayNotes).length === 0) {
+          delete nextState[dateStr];
+        } else {
+          nextState[dateStr] = currentDayNotes;
+        }
+      }
+
+      saveSlotBlockNotes(nextState);
+      return nextState;
+    });
+
+    setSlotBlockTarget(null);
+    setSlotBlockNoteInput('');
+  };
+
+  const resumeSlotBookings = (slot: SlotKey) => {
+    setHolidays(prev => {
+      const currentDay = prev[dateStr] ?? {
+        morning: false,
+        noon: false,
+        evening: false,
+      };
+      const nextDay = {
+        ...currentDay,
+        [slot]: false,
+      };
+
+      const nextState = { ...prev };
+      const hasAnyBlockedSlot = Object.values(nextDay).some(Boolean);
+
+      if (hasAnyBlockedSlot) {
+        nextState[dateStr] = nextDay;
+      } else {
+        delete nextState[dateStr];
+      }
+
+      saveHolidays(nextState);
+      return nextState;
+    });
+
+    setSlotBlockNotes(prev => {
+      const nextState = { ...prev };
+      const currentDayNotes = { ...(nextState[dateStr] ?? {}) };
+      delete currentDayNotes[slot];
+
+      if (Object.keys(currentDayNotes).length === 0) {
+        delete nextState[dateStr];
+      } else {
+        nextState[dateStr] = currentDayNotes;
+      }
+
+      saveSlotBlockNotes(nextState);
+      return nextState;
+    });
+  };
+
+  const toggleSlotCollapsed = (slot: SlotKey) => {
+    setCollapsedSlots(prev => ({
+      ...prev,
+      [slot]: !prev[slot],
+    }));
+  };
+
   const openPrescriptionForAppointment = (appt: Appointment) => {
     navigate('/doctor/dashboard/prescriptions', {
       state: {
@@ -534,11 +672,15 @@ function Appointments() {
         {SLOT_META.map(({ key, label, color }) => {
           const slot = daySchedule[key];
           const isHoliday = dayHolidays[key];
+          const isCollapsed = collapsedSlots[key];
+          const slotBlockNote = daySlotBlockNotes[key]?.trim() ?? '';
           const slotAppts = dayAppointments.filter(a => a.slot === key);
           const slotSummary = !slot.enabled
             ? 'This session is currently unavailable.'
             : isHoliday
-              ? 'This session is blocked because of a holiday.'
+              ? slotAppts.length > 0
+                ? 'New bookings are stopped for this session. Existing appointments stay visible below.'
+                : 'New bookings are stopped for this session.'
               : slotAppts.length === 0
                 ? 'Open for new appointments.'
                 : `${slotAppts.length} appointment${slotAppts.length > 1 ? 's' : ''} lined up for this session.`;
@@ -546,7 +688,7 @@ function Appointments() {
           return (
             <div
               key={key}
-              className={`slot-card dash-card${!slot.enabled ? ' slot-disabled' : ''}${isHoliday ? ' slot-holiday' : ''}`}
+              className={`slot-card dash-card${!slot.enabled ? ' slot-disabled' : ''}${isHoliday ? ' slot-holiday' : ''}${isCollapsed ? ' slot-collapsed' : ''}`}
               style={{ '--slot-accent': color } as React.CSSProperties}
             >
               <div className="slot-header">
@@ -576,24 +718,62 @@ function Appointments() {
                     <span className="slot-status-tag">Not Available</span>
                   )}
                   {slot.enabled && isHoliday && (
-                    <span className="slot-status-tag holiday-tag">Holiday</span>
+                    <>
+                      <span className="slot-status-tag holiday-tag">
+                        Bookings Stopped
+                      </span>
+                      <button
+                        type="button"
+                        className="btn-add-appt btn-slot-toggle btn-slot-resume"
+                        onClick={() => resumeSlotBookings(key)}
+                      >
+                        Resume
+                      </button>
+                    </>
                   )}
                   {slot.enabled && !isHoliday && (
-                    <button
-                      type="button"
-                      className="btn-add-appt"
-                      onClick={() => openAddAppt(key)}
-                      style={{ color }}
-                    >
-                      <Plus size={13} /> Add
-                    </button>
+                    <>
+                      <button
+                        type="button"
+                        className="btn-add-appt btn-slot-toggle btn-slot-stop"
+                        onClick={() => openStopSlotBookings(key)}
+                      >
+                        <X size={13} /> Stop
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-add-appt btn-slot-add"
+                        onClick={() => openAddAppt(key)}
+                      >
+                        <Plus size={13} /> Add
+                      </button>
+                    </>
                   )}
+                  <button
+                    type="button"
+                    className={`slot-collapse-btn${isCollapsed ? ' collapsed' : ''}`}
+                    onClick={() => toggleSlotCollapsed(key)}
+                    aria-label={
+                      isCollapsed
+                        ? `Expand ${label} slot`
+                        : `Collapse ${label} slot`
+                    }
+                    title={isCollapsed ? 'Expand slot' : 'Collapse slot'}
+                  >
+                    <ChevronDown size={16} />
+                  </button>
                 </div>
               </div>
 
-              {slot.enabled && !isHoliday && (
+              {!isCollapsed &&
+              ((slot.enabled && !isHoliday) || slotAppts.length > 0) ? (
                 <div className="slot-appointments">
-                  {slotAppts.length === 0 ? (
+                  {isHoliday && slotBlockNote && (
+                    <div className="slot-block-note">
+                      <strong>Doctor note:</strong> {slotBlockNote}
+                    </div>
+                  )}
+                  {slot.enabled && !isHoliday && slotAppts.length === 0 ? (
                     <div className="slot-empty-state">
                       <div className="slot-empty-copy">
                         <div className="slot-empty-icon">
@@ -618,7 +798,7 @@ function Appointments() {
                         <span>Add Appointment</span>
                       </button>
                     </div>
-                  ) : (
+                  ) : slotAppts.length > 0 ? (
                     slotAppts.map(appt => (
                       <div
                         key={appt.id}
@@ -626,18 +806,30 @@ function Appointments() {
                       >
                         <PawPrint size={13} className="appt-icon" />
                         <div className="appt-info">
-                          <span className="appt-name">{appt.patientName}</span>
-                          {appt.species && (
-                            <span className="appt-species">
-                              ({appt.species})
+                          <div className="appt-primary-line">
+                            <span className="appt-name">
+                              {appt.patientName}
                             </span>
-                          )}
-                          {appt.ownerName && (
-                            <span className="appt-owner">
-                              {' '}
-                              · {appt.ownerName}
+                            {appt.species && (
+                              <span className="appt-species">
+                                ({appt.species})
+                              </span>
+                            )}
+                            {appt.ownerName && (
+                              <span className="appt-owner">
+                                · {appt.ownerName}
+                              </span>
+                            )}
+                            {appt.ownerContact && (
+                              <span className="appt-meta-item">
+                                Contact: {appt.ownerContact}
+                              </span>
+                            )}
+                            <span className="appt-meta-item">
+                              Time: {formatTimeLabel(slot.startTime)} -{' '}
+                              {formatTimeLabel(slot.endTime)}
                             </span>
-                          )}
+                          </div>
                           {appt.status === 'cancelled' &&
                             appt.cancellationNote && (
                               <p className="appt-cancel-note">
@@ -692,11 +884,24 @@ function Appointments() {
                         </div>
                       </div>
                     ))
+                  ) : (
+                    <div className="slot-muted-state">
+                      <p className="slot-muted-title">Bookings paused</p>
+                      <p className="slot-muted-text">
+                        This slot is temporarily closed for new appointments on
+                        this date. Use Resume when you want to reopen it.
+                      </p>
+                      {slotBlockNote && (
+                        <p className="slot-muted-text slot-muted-note">
+                          Doctor note: {slotBlockNote}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
+              ) : null}
 
-              {(!slot.enabled || isHoliday) && (
+              {!isCollapsed && !slot.enabled && (
                 <div className="slot-muted-state">
                   <p className="slot-muted-title">
                     {!slot.enabled
@@ -1075,6 +1280,61 @@ function Appointments() {
                 onClick={confirmCancelAppointment}
               >
                 Confirm Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {slotBlockTarget && (
+        <div className="modal-overlay" onClick={() => setSlotBlockTarget(null)}>
+          <div
+            className="modal add-appt-modal cancel-appt-modal"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="modal-header">
+              <h2>
+                <X size={16} /> Stop New Bookings
+              </h2>
+              <button
+                type="button"
+                className="modal-close"
+                onClick={() => setSlotBlockTarget(null)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="add-appt-form cancel-appt-form">
+              <p className="cancel-appt-copy">
+                Stop new appointments for the
+                <strong> {slotBlockTarget}</strong> slot on
+                <strong> {formatFullDate(currentDate)}</strong>.
+              </p>
+              <label>
+                Note (optional)
+                <textarea
+                  rows={3}
+                  value={slotBlockNoteInput}
+                  onChange={e => setSlotBlockNoteInput(e.target.value)}
+                  placeholder="Example: High load today, managing only existing booked patients."
+                  autoFocus
+                />
+              </label>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn-outline"
+                onClick={() => setSlotBlockTarget(null)}
+              >
+                Keep Open
+              </button>
+              <button
+                type="button"
+                className="btn-primary btn-cancel-appointment"
+                onClick={confirmStopSlotBookings}
+              >
+                Confirm Stop
               </button>
             </div>
           </div>

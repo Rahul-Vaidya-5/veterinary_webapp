@@ -14,6 +14,8 @@ import {
   Package,
   ClipboardList,
   LogOut,
+  History,
+  Syringe,
 } from 'lucide-react';
 import './DoctorDashboard.css';
 
@@ -51,6 +53,12 @@ function DoctorDashboard() {
 
   const sidebarSections = [
     {
+      id: 'history',
+      label: 'Medical Records',
+      icon: <History size={16} />,
+      items: [{ label: 'Medical History', path: 'history' }],
+    },
+    {
       id: 'expenses',
       label: 'Expenses & Income',
       icon: <Receipt size={16} />,
@@ -83,14 +91,19 @@ function DoctorDashboard() {
 
   const topNavItems = [
     {
+      label: 'Appointments',
+      path: 'appointments',
+      icon: <Calendar size={16} />,
+    },
+    {
       label: 'Prescriptions',
       path: 'prescriptions',
       icon: <ClipboardList size={16} />,
     },
     {
-      label: 'Appointments',
-      path: 'appointments',
-      icon: <Calendar size={16} />,
+      label: 'Vaccinations',
+      path: 'vaccinations',
+      icon: <Syringe size={16} />,
     },
     {
       label: 'Mark Holidays',

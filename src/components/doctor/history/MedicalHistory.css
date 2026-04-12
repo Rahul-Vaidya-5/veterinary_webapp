@@ -1,0 +1,1004 @@
+/* ─── Medical History ─── */
+.history-page {
+  width: 100%;
+  max-width: 1180px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #0f172a;
+}
+
+.history-section-title {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.history-filter-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-toolbar-card,
+.history-date-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-toolbar-card {
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #dbeafe;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 30%),
+    linear-gradient(180deg, #f8fbff, #ffffff);
+}
+
+.history-toolbar-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.history-toolbar-subtitle {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.history-toolbar-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.history-toolbar-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.history-toolbar-mode {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.history-inline-stats,
+.history-active-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-inline-stat,
+.history-filter-chip,
+.history-records-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.history-inline-stat.total {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.history-inline-stat.diagnosis {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.history-inline-stat.vaccination {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.history-filter-chip {
+  background: #eff6ff;
+  color: #1e3a8a;
+}
+
+.history-filters-3col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.history-search-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.history-search-field {
+  min-width: 0;
+  height: 46px;
+}
+
+.history-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+  color: #f8fbff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.16);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.history-search-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(29, 78, 216, 0.2);
+}
+
+.history-search-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.history-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.history-clear-inline-btn {
+  height: 46px;
+  padding: 0 16px;
+}
+
+.history-clear-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.history-clear-btn:hover {
+  background: #f8fafc;
+}
+
+.history-date-subtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.83rem;
+}
+
+.history-date-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.history-date-card {
+  padding: 16px 18px;
+}
+
+.history-date-picker-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.history-date-picker-wrap span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.history-date-picker-icon-label {
+  color: #475569;
+}
+
+.history-date-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-date-nav-btn,
+.history-date-today-btn {
+  height: 42px;
+  border: 1px solid #dbe5f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
+  color: #475569;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+
+.history-date-nav-btn {
+  width: 42px;
+  padding: 0;
+  flex: 0 0 42px;
+}
+
+.history-date-today-btn {
+  padding: 0 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.history-date-nav-btn:hover:not(:disabled),
+.history-date-today-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.history-date-nav-btn:disabled,
+.history-date-today-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.history-date-input-shell {
+  position: relative;
+  min-width: 162px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dbe5f0;
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 249, 252, 0.98) 100%);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.history-date-input {
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #0f172a;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 42px;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.history-date-input:disabled {
+  color: #94a3b8;
+}
+
+.history-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 16px;
+}
+
+.history-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.history-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.history-input-wrap input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 9px 0;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #111827;
+}
+
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.history-stat {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.history-stat-label {
+  font-size: 0.78rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.history-stat strong {
+  font-size: 1.35rem;
+  color: #0f172a;
+}
+
+.history-report-card,
+.history-timeline-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-records-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.history-records-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 2px;
+}
+
+.history-records-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.history-records-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.history-records-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.06), transparent 34%),
+    linear-gradient(180deg, #f8fbff, #ffffff);
+}
+
+.history-column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.history-column-head h3 {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: #1e40af;
+}
+
+.history-column-pill {
+  min-width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.history-column-pill.vaccination {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.history-record-list {
+  min-height: 100%;
+}
+
+.history-empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.88rem;
+}
+
+.history-diagnosis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px;
+}
+
+.history-diagnosis-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.86rem;
+}
+
+.history-count-pill {
+  min-width: 26px;
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.history-timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.history-timeline-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.history-timeline-row:hover {
+  border-color: #93c5fd;
+  background: transparent;
+}
+
+.history-timeline-row:last-child {
+  border-bottom: 0;
+}
+
+.history-timeline-row:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.history-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 20px;
+  padding: 3px 9px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.history-type-badge.prescription {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.history-type-badge.vaccination {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.history-main {
+  min-width: 0;
+}
+
+.history-main-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.history-main-meta {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.history-subtitle {
+  font-size: 0.76rem;
+  color: #475569;
+}
+
+.history-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.history-date-picker-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #475569;
+}
+
+.history-detail-page {
+  max-width: 1200px;
+}
+
+.history-detail-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #dbe7f5;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 34%),
+    linear-gradient(180deg, #f8fbff, #ffffff);
+}
+
+.history-detail-page-toprow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.history-detail-page-toprow .dash-page-title {
+  margin: 0;
+}
+
+.history-detail-page-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-detail-page-copy .dash-page-title {
+  margin: 0;
+}
+
+.history-detail-page-subtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.history-detail-page-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.history-back-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.history-detail-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.history-detail-meta-chip.prescription {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.history-detail-meta-chip.vaccination {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.history-detail-meta-chip.neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.history-detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+}
+
+.history-detail-hero {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(135deg, #eff6ff, #f8fafc 55%, #ffffff);
+  border: 1px solid #dbeafe;
+}
+
+.history-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.history-detail-badge.prescription {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.history-detail-badge.vaccination {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.history-detail-hero-main h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  color: #0f172a;
+}
+
+.history-detail-hero-main p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.history-detail-hero-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.history-detail-hero-meta strong {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.history-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 0 14px;
+  border-bottom: 1px solid #e2e8f0;
+  background: transparent;
+}
+
+.history-detail-section.emphasis {
+  padding: 4px 0 14px;
+  border-bottom: 1px solid #dbeafe;
+  background: transparent;
+  border-radius: 0;
+}
+
+.history-detail-section-head h3,
+.history-detail-section h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #1d4ed8;
+}
+
+.history-detail-section-head p {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 0.84rem;
+}
+
+.history-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px 14px;
+}
+
+.history-detail-grid.compact {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.history-detail-grid.owner-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.history-detail-grid.feature {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.history-detail-grid > div {
+  border: 0;
+  border-bottom: 1px dashed #dbe5f0;
+  border-radius: 0;
+  padding: 4px 2px 10px;
+  background: transparent;
+  min-height: auto;
+}
+
+.history-feature-card.primary {
+  background: rgba(219, 234, 254, 0.35);
+  border-bottom-style: solid;
+  border-bottom-color: #bfdbfe;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.history-feature-card.wide {
+  grid-column: span 2;
+}
+
+.history-detail-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 3px;
+}
+
+.history-detail-grid p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: #0f172a;
+}
+
+.history-detail-block {
+  border: 0;
+  border-bottom: 1px solid #dbeafe;
+  border-radius: 0;
+  padding: 4px 0 14px;
+  background: transparent;
+}
+
+.history-detail-block h4 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: #1e40af;
+}
+
+.history-medicine-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-medicine-card {
+  border: 0;
+  border-bottom: 1px solid #dbeafe;
+  border-radius: 0;
+  padding: 2px 0 12px;
+  background: transparent;
+}
+
+.history-medicine-card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.history-medicine-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.history-medicine-head strong {
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.history-medicine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.history-medicine-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 3px 2px 7px;
+  border: 0;
+  border-bottom: 1px dashed #dbe5f0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.history-medicine-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.history-medicine-grid > div > span:last-child {
+  font-size: 0.9rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.history-medicine-instructions {
+  padding-top: 2px;
+  border-bottom: 1px dashed #dbe5f0;
+  padding-bottom: 8px;
+}
+
+.history-medicine-instructions p,
+.history-medicine-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.history-detail-empty {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+  .history-filters-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .history-search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .history-toolbar-head,
+  .history-toolbar-footer,
+  .history-date-card-head,
+  .history-records-head {
+    flex-direction: column;
+  }
+
+  .history-records-side {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .history-records-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .history-date-picker-wrap {
+    width: 100%;
+  }
+
+  .history-date-nav {
+    width: 100%;
+  }
+
+  .history-date-input-shell {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .history-stats {
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
+  }
+
+  .history-timeline-row {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .history-right {
+    align-items: flex-start;
+  }
+
+  .history-detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .history-detail-page-toprow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .history-detail-hero-meta {
+    align-items: flex-start;
+  }
+
+  .history-detail-grid.feature {
+    grid-template-columns: 1fr;
+  }
+
+  .history-medicine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-feature-card.wide {
+    grid-column: span 1;
+  }
+}

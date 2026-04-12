@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ClipboardList, Plus, Trash2, Printer } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ClipboardList, Plus, Trash2, Printer, Syringe } from 'lucide-react';
 import { useDoctorInfo } from '../dashboard/DoctorDashboard';
 import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useDiagnosisMaster } from '../../utility/useDiagnosisMaster';
 import { useSpeciesBreeds } from '../../utility/useSpeciesBreeds';
 import './Prescriptions.css';
 import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
@@ -42,6 +43,57 @@ type PrescriptionForm = {
 
 type PrescriptionPrefill = Partial<PrescriptionForm>;
 
+type PrescriptionHistoryRecord = PrescriptionForm & {
+  id: string;
+  rxNo: string;
+  createdAt: string;
+  doctorName: string;
+};
+
+const LS_PRESCRIPTIONS = 'vc_prescriptions';
+
+// ── Vaccination history (read-only reference) ──────────────────────────────
+type VaccinationRecord = {
+  id: string;
+  animalName: string;
+  ownerName: string;
+  species: string;
+  vaccineName: string;
+  doseNumber: string;
+  routeOfAdmin: string;
+  dateAdministered: string;
+  nextDueDate: string;
+};
+
+const loadVaccRecords = (): VaccinationRecord[] => {
+  try {
+    return JSON.parse(localStorage.getItem('vc_vaccination_records') ?? '[]');
+  } catch {
+    return [];
+  }
+};
+
+const fmtVaccDate = (d: string) => {
+  if (!d) return '—';
+  return new Date(d + 'T00:00:00').toLocaleDateString('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
+const loadPrescriptionHistory = (): PrescriptionHistoryRecord[] => {
+  try {
+    return JSON.parse(localStorage.getItem(LS_PRESCRIPTIONS) ?? '[]');
+  } catch {
+    return [];
+  }
+};
+
+const savePrescriptionHistory = (records: PrescriptionHistoryRecord[]) => {
+  localStorage.setItem(LS_PRESCRIPTIONS, JSON.stringify(records));
+};
+
 const today = getIstDateKey();
 
 const emptyMedicine = (id: number): MedicineRow => ({
@@ -56,10 +108,12 @@ const emptyMedicine = (id: number): MedicineRow => ({
 let rxCounter = Math.floor(Math.random() * 900) + 100;
 
 function Prescriptions() {
+  const navigate = useNavigate();
   const { doctorName } = useDoctorInfo();
   const location = useLocation();
   const printRef = useRef<HTMLDivElement>(null);
   const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
+  const { diagnosisOptions, addDiagnosis } = useDiagnosisMaster();
 
   const [form, setForm] = useState<PrescriptionForm>({
     animalName: '',
@@ -83,6 +137,42 @@ function Prescriptions() {
   const [rxNo] = useState(`RX-${today.slice(0, 4)}-${++rxCounter}`);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const breedOptions = getBreedsForSpecies(form.species);
+
+  const animalDiagnosisHistory: PrescriptionHistoryRecord[] = (() => {
+    const name = form.animalName.trim().toLowerCase();
+    if (name.length < 2) return [];
+    const owner = form.ownerName.trim().toLowerCase();
+    return loadPrescriptionHistory()
+      .filter(record => {
+        const nameMatch = record.animalName.trim().toLowerCase() === name;
+        if (!nameMatch) return false;
+        if (owner.length >= 2) {
+          return record.ownerName.trim().toLowerCase().includes(owner);
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        const aDate = a.prescriptionDate || a.createdAt.slice(0, 10);
+        const bDate = b.prescriptionDate || b.createdAt.slice(0, 10);
+        return bDate.localeCompare(aDate);
+      });
+  })();
+
+  // Vaccination history for the current animal (2+ chars in name)
+  const animalVaccHistory: VaccinationRecord[] = (() => {
+    const name = form.animalName.trim().toLowerCase();
+    if (name.length < 2) return [];
+    const owner = form.ownerName.trim().toLowerCase();
+    return loadVaccRecords()
+      .filter(r => {
+        const nameMatch = r.animalName.trim().toLowerCase() === name;
+        if (!nameMatch) return false;
+        if (owner.length >= 2)
+          return r.ownerName.trim().toLowerCase().includes(owner);
+        return true;
+      })
+      .sort((a, b) => b.dateAdministered.localeCompare(a.dateAdministered));
+  })();
 
   useEffect(() => {
     const prefill = (location.state as { prefill?: PrescriptionPrefill } | null)
@@ -153,7 +243,23 @@ function Prescriptions() {
 
   const handlePrint = () => {
     if (!validate()) return;
+
+    const record: PrescriptionHistoryRecord = {
+      ...form,
+      id: `rx-${Date.now()}`,
+      rxNo,
+      createdAt: new Date().toISOString(),
+      doctorName,
+    };
+    const history = loadPrescriptionHistory();
+    const withoutCurrentRx = history.filter(r => r.rxNo !== rxNo);
+    savePrescriptionHistory([record, ...withoutCurrentRx]);
+
     window.print();
+    window.alert(
+      'Prescription slip generated successfully. Redirecting to current appointments.',
+    );
+    navigate('/doctor/dashboard/appointments');
   };
 
   const formatDate = (d: string) => {
@@ -291,16 +397,154 @@ function Prescriptions() {
           </div>
         </section>
 
+        {/* Section: Patient History Reference (reference, no-print) */}
+        {(animalDiagnosisHistory.length > 0 ||
+          animalVaccHistory.length > 0) && (
+          <section className="rx-section dash-card no-print">
+            <h2 className="rx-section-title">Patient History Reference</h2>
+            <div className="rx-history-columns">
+              <div className="rx-history-card">
+                <div className="rx-history-card-head diagnosis">
+                  <h3>
+                    <ClipboardList size={15} /> Diagnosis History
+                  </h3>
+                  <span className="rx-history-count">
+                    {Math.min(animalDiagnosisHistory.length, 3)} of{' '}
+                    {animalDiagnosisHistory.length}
+                  </span>
+                </div>
+                {animalDiagnosisHistory.length > 0 ? (
+                  <div className="rx-diagnosis-history-list">
+                    {animalDiagnosisHistory.slice(0, 3).map(record => (
+                      <div
+                        key={record.id}
+                        className="rx-diagnosis-history-row"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() =>
+                          navigate(
+                            `/doctor/dashboard/history?type=prescription&id=${record.id}`,
+                          )
+                        }
+                        onKeyDown={e => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate(
+                              `/doctor/dashboard/history?type=prescription&id=${record.id}`,
+                            );
+                          }
+                        }}
+                      >
+                        <span className="rx-history-date">
+                          {fmtVaccDate(
+                            record.prescriptionDate ||
+                              record.createdAt.slice(0, 10),
+                          )}
+                        </span>
+                        <span className="rx-diagnosis-name">
+                          {record.diagnosis || 'Diagnosis not specified'}
+                        </span>
+                        {record.symptoms && (
+                          <span className="rx-history-chip subtle">
+                            Symptoms
+                          </span>
+                        )}
+                        <span className="rx-history-ref">{record.rxNo}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="rx-history-empty">
+                    No previous diagnosis records.
+                  </p>
+                )}
+              </div>
+
+              <div className="rx-history-card">
+                <div className="rx-history-card-head vaccination">
+                  <h3>
+                    <Syringe size={15} /> Vaccination History
+                  </h3>
+                  <span className="rx-history-count">
+                    {Math.min(animalVaccHistory.length, 3)} of{' '}
+                    {animalVaccHistory.length}
+                  </span>
+                </div>
+                {animalVaccHistory.length > 0 ? (
+                  <div className="rx-vacc-history-list">
+                    {animalVaccHistory.slice(0, 3).map(r => {
+                      const overdue = r.nextDueDate && r.nextDueDate < today;
+                      return (
+                        <div
+                          key={r.id}
+                          className={`rx-vacc-history-row${overdue ? ' overdue' : ''}`}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() =>
+                            navigate(
+                              `/doctor/dashboard/history?type=vaccination&id=${r.id}`,
+                            )
+                          }
+                          onKeyDown={e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              navigate(
+                                `/doctor/dashboard/history?type=vaccination&id=${r.id}`,
+                              );
+                            }
+                          }}
+                        >
+                          <span className="rx-vacc-date">
+                            {fmtVaccDate(r.dateAdministered)}
+                          </span>
+                          <span className="rx-vacc-name">
+                            <Syringe size={11} /> {r.vaccineName}
+                          </span>
+                          {r.doseNumber && (
+                            <span className="rx-vacc-chip">{r.doseNumber}</span>
+                          )}
+                          {r.routeOfAdmin && (
+                            <span className="rx-vacc-chip">
+                              {r.routeOfAdmin}
+                            </span>
+                          )}
+                          {r.nextDueDate && (
+                            <span
+                              className={`rx-vacc-due${overdue ? ' overdue' : ''}`}
+                            >
+                              {overdue ? '⚠ Overdue' : 'Due'}:{' '}
+                              {fmtVaccDate(r.nextDueDate)}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="rx-history-empty">No vaccination records.</p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Section: Medical Info */}
         <section className="rx-section dash-card">
           <h2 className="rx-section-title">Medical Information</h2>
           <div className="rx-grid rx-grid-full">
             <label className={errors.diagnosis ? 'error' : ''}>
               Diagnosis / Disease *
-              <input
+              <SearchableSelectInput
+                inputId="prescription-diagnosis"
+                listId="prescription-diagnosis-list"
                 value={form.diagnosis}
-                onChange={e => set('diagnosis', e.target.value)}
+                onChange={value => {
+                  set('diagnosis', value);
+                  addDiagnosis(value);
+                }}
+                options={diagnosisOptions}
                 placeholder="Primary diagnosis or disease name"
+                allowCustom
               />
               {errors.diagnosis && (
                 <span className="err-msg">{errors.diagnosis}</span>

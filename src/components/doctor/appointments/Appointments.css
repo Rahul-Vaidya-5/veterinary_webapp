@@ -133,6 +133,10 @@
   box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
 }
 
+.slot-card.slot-collapsed {
+  padding-bottom: 0;
+}
+
 .slot-disabled {
   opacity: 0.78;
 }
@@ -227,6 +231,30 @@
   margin-left: auto;
 }
 
+.slot-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dbe5f0;
+  background: rgba(255, 255, 255, 0.88);
+  color: #475569;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.slot-collapse-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.slot-collapse-btn.collapsed {
+  transform: rotate(-180deg);
+}
+
 .slot-status-tag {
   font-size: 0.78rem;
   color: #64748b;
@@ -246,20 +274,53 @@
   align-items: center;
   gap: 4px;
   padding: 8px 12px;
-  border: 1px solid currentColor;
+  border: 1px solid transparent;
   background: #ffffff;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s, opacity 0.15s, transform 0.15s;
-  opacity: 0.92;
+  transition: background 0.15s, opacity 0.15s, transform 0.15s, border-color 0.15s, color 0.15s;
+  opacity: 1;
+  white-space: nowrap;
 }
 
 .btn-add-appt:hover {
-  opacity: 1;
   background: rgba(255, 255, 255, 0.92);
   transform: translateY(-1px);
+}
+
+.btn-slot-add {
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.28);
+  background: rgba(239, 246, 255, 0.92);
+}
+
+.btn-slot-add:hover {
+  background: #dbeafe;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+.btn-slot-stop {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.28);
+  background: rgba(255, 247, 237, 0.95);
+}
+
+.btn-slot-stop:hover {
+  background: #ffedd5;
+  border-color: rgba(217, 119, 6, 0.4);
+}
+
+.btn-slot-resume {
+  color: #16a34a;
+  border-color: rgba(22, 163, 74, 0.26);
+  background: rgba(240, 253, 244, 0.95);
+}
+
+.btn-slot-resume:hover {
+  background: #dcfce7;
+  border-color: rgba(22, 163, 74, 0.38);
 }
 
 .slot-appointments {
@@ -297,6 +358,16 @@
   align-items: flex-start;
 }
 
+.slot-block-note {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .slot-empty-copy {
   display: flex;
   align-items: center;
@@ -331,6 +402,10 @@
   color: #64748b;
 }
 
+.slot-muted-note {
+  color: #9a3412;
+}
+
 .slot-empty-action {
   display: inline-flex;
   align-items: center;
@@ -353,7 +428,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   background: rgba(249, 250, 251, 0.94);
   border-radius: 12px;
   border: 1px solid #e5e7eb;
@@ -383,6 +458,14 @@
   min-width: 0;
 }
 
+.appt-primary-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
 .appt-name {
   font-weight: 600;
   color: #0f172a;
@@ -392,6 +475,16 @@
 .appt-owner {
   color: #64748b;
   font-size: 0.82rem;
+}
+
+.appt-meta-item {
+  color: #64748b;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 2px 7px;
+  white-space: nowrap;
 }
 
 .appt-cancel-note {

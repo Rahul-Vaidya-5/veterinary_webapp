@@ -30,6 +30,8 @@ import EmployeeWages from './components/doctor/employee/EmployeeWages';
 import MedicalKitEntry from './components/doctor/inventory/MedicalKitEntry';
 import VaccinationEntry from './components/doctor/inventory/VaccinationEntry';
 import OthersInventory from './components/doctor/inventory/OthersInventory';
+import Vaccinations from './components/doctor/vaccinations/Vaccinations';
+import MedicalHistory from './components/doctor/history/MedicalHistory';
 
 function App() {
   return (
@@ -57,6 +59,7 @@ function App() {
         <Route index element={<Navigate to="appointments" replace />} />
         <Route path="overview" element={<DoctorOverview />} />
         <Route path="prescriptions" element={<Prescriptions />} />
+        <Route path="history" element={<MedicalHistory />} />
         <Route path="appointments" element={<Appointments />} />
         <Route path="holidays" element={<MarkHolidays />} />
         <Route path="profile" element={<DoctorProfile />} />
@@ -68,6 +71,7 @@ function App() {
         <Route path="inventory/medical-kit" element={<MedicalKitEntry />} />
         <Route path="inventory/vaccination" element={<VaccinationEntry />} />
         <Route path="inventory/others" element={<OthersInventory />} />
+        <Route path="vaccinations" element={<Vaccinations />} />
       </Route>
     </Routes>
   );
