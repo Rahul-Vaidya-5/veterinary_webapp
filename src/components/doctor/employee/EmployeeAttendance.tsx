@@ -8,15 +8,24 @@ import {
   Minus,
 } from 'lucide-react';
 import './Employee.css';
+import { ConfirmWithReasonModal } from '../../utility/ConfirmModal';
 import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
+import type { PartnerDoctor } from '../partners/PartnerDoctors';
 
 type AttendanceStatus = 'present' | 'absent' | 'half-day' | 'leave';
 type Employee = { id: string; name: string; role: string };
+type AttendancePerson = {
+  id: string;
+  name: string;
+  role: string;
+  source: 'employee' | 'partner';
+};
 type AttendanceRecord = Record<string, AttendanceStatus>; // key: employeeId
 type DailyAttendance = Record<string, AttendanceRecord>; // key: dateStr
 
 const LS_EMPLOYEES = 'vc_employees';
 const LS_ATTENDANCE = 'vc_attendance';
+const LS_PARTNERS = 'vc_partner_doctors';
 
 const loadEmployees = (): Employee[] => {
   try {
@@ -31,6 +40,20 @@ const loadAttendance = (): DailyAttendance => {
     return JSON.parse(localStorage.getItem(LS_ATTENDANCE) ?? '{}');
   } catch {
     return {};
+  }
+};
+
+const loadPartners = (): PartnerDoctor[] => {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(LS_PARTNERS) ?? '[]') as
+      | PartnerDoctor[]
+      | undefined;
+    return (parsed ?? []).map(partner => ({
+      ...partner,
+      isActive: partner.isActive !== false,
+    }));
+  } catch {
+    return [];
   }
 };
 
@@ -55,6 +78,30 @@ function EmployeeAttendance() {
   const [newEmpName, setNewEmpName] = useState('');
   const [newEmpRole, setNewEmpRole] = useState('');
   const [showAddEmp, setShowAddEmp] = useState(false);
+  const [removeTarget, setRemoveTarget] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+
+  const attendancePeople = useMemo<AttendancePerson[]>(() => {
+    const employeeRows: AttendancePerson[] = employees.map(item => ({
+      id: item.id,
+      name: item.name,
+      role: item.role,
+      source: 'employee',
+    }));
+
+    const partnerRows: AttendancePerson[] = loadPartners()
+      .filter(partner => partner.isActive !== false)
+      .map(partner => ({
+        id: `partner:${partner.id}`,
+        name: `Dr. ${partner.name}`,
+        role: 'Partner Doctor',
+        source: 'partner',
+      }));
+
+    return [...partnerRows, ...employeeRows];
+  }, [employees]);
 
   useEffect(() => {
     localStorage.setItem(LS_EMPLOYEES, JSON.stringify(employees));
@@ -100,13 +147,21 @@ function EmployeeAttendance() {
     setShowAddEmp(false);
   };
 
-  const removeEmployee = (id: string) => {
-    setEmployees(prev => prev.filter(e => e.id !== id));
+  const openRemoveEmployee = (id: string, name: string) => {
+    setRemoveTarget({ id, name });
+  };
+
+  const closeRemoveModal = () => setRemoveTarget(null);
+
+  const confirmRemoveEmployee = (_reason: string) => {
+    if (!removeTarget) return;
+    setEmployees(prev => prev.filter(e => e.id !== removeTarget.id));
+    setRemoveTarget(null);
   };
 
   const markAll = (status: AttendanceStatus) => {
     const record: AttendanceRecord = {};
-    employees.forEach(e => {
+    attendancePeople.forEach(e => {
       record[e.id] = status;
     });
     setAttendance(prev => ({ ...prev, [dateStr]: record }));
@@ -123,7 +178,9 @@ function EmployeeAttendance() {
   // Summary counts
   const counts = STATUS_OPTIONS.reduce(
     (acc, s) => {
-      acc[s.key] = employees.filter(e => getStatus(e.id) === s.key).length;
+      acc[s.key] = attendancePeople.filter(
+        e => getStatus(e.id) === s.key,
+      ).length;
       return acc;
     },
     {} as Record<AttendanceStatus, number>,
@@ -154,7 +211,7 @@ function EmployeeAttendance() {
         </button>
       </div>
 
-      {employees.length > 0 && (
+      {attendancePeople.length > 0 && (
         <div className="emp-summary-bar dash-card">
           <span className="emp-summary-label">Summary:</span>
           {STATUS_OPTIONS.map(s => (
@@ -195,6 +252,9 @@ function EmployeeAttendance() {
             + Add Employee
           </button>
         </div>
+        <p className="emp-admin-note">
+          Staff removal is a clinic admin action and requires confirmation.
+        </p>
 
         {showAddEmp && (
           <div className="add-emp-inline">
@@ -229,13 +289,14 @@ function EmployeeAttendance() {
           </div>
         )}
 
-        {employees.length === 0 ? (
+        {attendancePeople.length === 0 ? (
           <p className="emp-empty">
-            No employees added yet. Click "+ Add Employee" to get started.
+            No staff found yet. Add employees, or add partner doctors from
+            Partner Doctors section.
           </p>
         ) : (
           <div className="emp-att-list">
-            {employees.map(emp => {
+            {attendancePeople.map(emp => {
               const status = getStatus(emp.id);
               return (
                 <div
@@ -247,7 +308,12 @@ function EmployeeAttendance() {
                       {emp.name.charAt(0).toUpperCase()}
                     </div>
                     <div>
-                      <span className="emp-name">{emp.name}</span>
+                      <div className="emp-name-row">
+                        <span className="emp-name">{emp.name}</span>
+                        {emp.source === 'partner' && (
+                          <span className="emp-source-badge">Partner</span>
+                        )}
+                      </div>
                       {emp.role && <span className="emp-role">{emp.role}</span>}
                     </div>
                   </div>
@@ -265,14 +331,21 @@ function EmployeeAttendance() {
                       </button>
                     ))}
                   </div>
-                  <button
-                    type="button"
-                    className="emp-remove-btn"
-                    onClick={() => removeEmployee(emp.id)}
-                    title="Remove employee"
-                  >
-                    <Minus size={12} />
-                  </button>
+                  {emp.source === 'employee' ? (
+                    <button
+                      type="button"
+                      className="emp-remove-btn"
+                      onClick={() => openRemoveEmployee(emp.id, emp.name)}
+                      title="Remove employee"
+                    >
+                      <Minus size={12} />
+                    </button>
+                  ) : (
+                    <span
+                      className="emp-remove-placeholder"
+                      aria-hidden="true"
+                    />
+                  )}
                 </div>
               );
             })}
@@ -289,6 +362,16 @@ function EmployeeAttendance() {
           </span>
         ))}
       </div>
+
+      <ConfirmWithReasonModal
+        open={removeTarget !== null}
+        title="Remove Employee"
+        message={`You are removing ${removeTarget?.name ?? ''} from the clinic staff list. Please provide a reason.`}
+        reasonPlaceholder="e.g. Left the clinic / role discontinued"
+        confirmLabel="Remove Employee"
+        onConfirm={confirmRemoveEmployee}
+        onCancel={closeRemoveModal}
+      />
     </div>
   );
 }

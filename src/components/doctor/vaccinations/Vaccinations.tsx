@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useStorageScope } from '../../../utils/StorageScope';
 import { Syringe, AlertTriangle, RefreshCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDoctorInfo } from '../dashboard/DoctorDashboard';
@@ -56,9 +57,9 @@ const VACCINE_TYPE_OPTIONS = ['Core', 'Non-Core'];
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-const loadRecords = (): VaccinationRecord[] => {
+const loadRecords = (key: string): VaccinationRecord[] => {
   try {
-    return JSON.parse(localStorage.getItem(LS_KEY) ?? '[]');
+    return JSON.parse(localStorage.getItem(key) ?? '[]');
   } catch {
     return [];
   }
@@ -118,10 +119,14 @@ const isOverdue = (r: VaccinationRecord) =>
 function Vaccinations() {
   const navigate = useNavigate();
   const { doctorName } = useDoctorInfo();
+  const storagePrefix = useStorageScope();
+  const lsKey = storagePrefix + LS_KEY;
   const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
   const { vaccineOptions, addVaccine } = useVaccineMaster();
 
-  const [records, setRecords] = useState<VaccinationRecord[]>(loadRecords);
+  const [records, setRecords] = useState<VaccinationRecord[]>(() =>
+    loadRecords(lsKey),
+  );
   const [form, setForm] = useState(emptyForm());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [stockWarning, setStockWarning] = useState<string | null>(null);
@@ -130,8 +135,8 @@ function Vaccinations() {
   );
 
   useEffect(() => {
-    localStorage.setItem(LS_KEY, JSON.stringify(records));
-  }, [records]);
+    localStorage.setItem(lsKey, JSON.stringify(records));
+  }, [records, lsKey]);
 
   const breedOptions = getBreedsForSpecies(form.species);
 
@@ -215,7 +220,7 @@ function Vaccinations() {
       window.alert(
         'Vaccination slip generated successfully. Redirecting to current appointments.',
       );
-      navigate('/doctor/dashboard/appointments');
+      navigate('../appointments');
     }, 80);
   };
 
@@ -356,16 +361,13 @@ function Vaccinations() {
                       role="button"
                       tabIndex={0}
                       onClick={() =>
-                        navigate(
-                          `/doctor/dashboard/history?type=vaccination&id=${r.id}`,
-                        )
+                        navigate(`../history?type=vaccination&id=${r.id}`)
                       }
                       onKeyDown={e => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          navigate(
-                            `/doctor/dashboard/history?type=vaccination&id=${r.id}`,
-                          );
+                          navigate(`../history?type=vaccination&id=${r.id}`);
+                          navigate('../appointments');
                         }
                       }}
                     >

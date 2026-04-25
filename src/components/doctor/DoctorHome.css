@@ -11,7 +11,7 @@
 
 .doctor-home h2 {
   margin: 0 0 10px;
-  color: #0f172a;
+  color: #1a1a2e;
 }
 
 .doctor-home p {
@@ -32,16 +32,16 @@
   padding: 10px 14px;
   font-weight: 700;
   color: #ffffff;
-  background: #2563eb;
+  background: #00897b;
   cursor: pointer;
 }
 
 .doctor-home button:hover {
-  background: #1d4ed8;
+  background: #00897b;
 }
 
 .doctor-home .btn-dashboard {
-  background: #0f172a;
+  background: #1a1a2e;
 }
 
 .doctor-home .btn-dashboard:hover {

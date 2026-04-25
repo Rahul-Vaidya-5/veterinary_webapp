@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
+import { useStorageScope } from '../../../utils/StorageScope';
 import './MedicalHistory.css';
 
 type MedicineRow = {
@@ -84,17 +85,17 @@ type TimelineItem = {
 const LS_PRESCRIPTIONS = 'vc_prescriptions';
 const LS_VACCINATIONS = 'vc_vaccination_records';
 
-const loadPrescriptions = (): PrescriptionHistoryRecord[] => {
+const loadPrescriptions = (key: string): PrescriptionHistoryRecord[] => {
   try {
-    return JSON.parse(localStorage.getItem(LS_PRESCRIPTIONS) ?? '[]');
+    return JSON.parse(localStorage.getItem(key) ?? '[]');
   } catch {
     return [];
   }
 };
 
-const loadVaccinations = (): VaccinationRecord[] => {
+const loadVaccinations = (key: string): VaccinationRecord[] => {
   try {
-    return JSON.parse(localStorage.getItem(LS_VACCINATIONS) ?? '[]');
+    return JSON.parse(localStorage.getItem(key) ?? '[]');
   } catch {
     return [];
   }
@@ -123,14 +124,23 @@ const shiftDateKey = (dateKey: string, offset: number) => {
 
 function MedicalHistory() {
   const navigate = useNavigate();
+  const storagePrefix = useStorageScope();
+  const lsPrescriptions = storagePrefix + LS_PRESCRIPTIONS;
+  const lsVaccinations = storagePrefix + LS_VACCINATIONS;
   const [searchParams] = useSearchParams();
   const [animalQuery, setAnimalQuery] = useState('');
   const [ownerQuery, setOwnerQuery] = useState('');
   const [mobileQuery, setMobileQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState(getIstDateKey());
 
-  const prescriptions = useMemo(() => loadPrescriptions(), []);
-  const vaccinations = useMemo(() => loadVaccinations(), []);
+  const prescriptions = useMemo(
+    () => loadPrescriptions(lsPrescriptions),
+    [lsPrescriptions],
+  );
+  const vaccinations = useMemo(
+    () => loadVaccinations(lsVaccinations),
+    [lsVaccinations],
+  );
   const detailType = searchParams.get('type');
   const detailId = searchParams.get('id');
   const todayDateKey = getIstDateKey();

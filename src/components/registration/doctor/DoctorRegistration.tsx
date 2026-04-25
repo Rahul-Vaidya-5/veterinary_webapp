@@ -9,7 +9,6 @@ type Address = {
 };
 
 type DoctorForm = {
-  title: string;
   gender: string;
   firstName: string;
   lastName: string;
@@ -61,7 +60,6 @@ const emptyAddress: Address = {
 };
 
 const initialDoctorForm: DoctorForm = {
-  title: '',
   gender: '',
   firstName: '',
   lastName: '',
@@ -207,7 +205,6 @@ function DoctorRegistration() {
   }
 
   function validateStep1() {
-    if (!doctor.title) return 'Title is required.';
     if (!doctor.gender) return 'Gender is required.';
     if (!doctor.firstName.trim()) return 'First name is required.';
     if (!doctor.lastName.trim()) return 'Last name is required.';
@@ -319,23 +316,22 @@ function DoctorRegistration() {
     });
   }
 
+  const stepLabels = ['Personal Info', 'Address', 'Clinic', 'Review'];
+
   return (
     <div className="doctor-registration">
-      <h2>Doctor Registration</h2>
       <div className="step-meta">
-        <span>Step {currentStep} of 4</span>
-        <div className="step-dots">
-          {Array.from({ length: 4 }, (_, i) => (
-            <span
+        <div className="step-progress">
+          {stepLabels.map((label, i) => (
+            <div
               key={i}
-              className={`dot ${
-                i + 1 === currentStep
-                  ? 'dot-active'
-                  : i + 1 < currentStep
-                    ? 'dot-done'
-                    : ''
-              }`}
-            />
+              className={`step-pill ${i + 1 === currentStep ? 'active' : i + 1 < currentStep ? 'done' : ''}`}
+            >
+              <div className="step-pill-circle">
+                {i + 1 < currentStep ? '✓' : i + 1}
+              </div>
+              <span className="step-pill-label">{label}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -361,20 +357,6 @@ function DoctorRegistration() {
               <span>Doctor Basic Details</span>
             </h3>
 
-            <label className="title-field">
-              Title *
-              <select
-                value={doctor.title}
-                onChange={e => handleDoctorChange('title', e.target.value)}
-              >
-                <option value="">-- Select --</option>
-                <option value="Dr">Dr.</option>
-                <option value="Mr">Mr.</option>
-                <option value="Ms">Ms.</option>
-                <option value="Mrs">Mrs.</option>
-                <option value="Mx">Mx.</option>
-              </select>
-            </label>
             <label className="first-name-field">
               First Name *
               <input
@@ -762,8 +744,6 @@ function DoctorRegistration() {
                       ? `${doctor.firstName} ${doctor.lastName}`.trim()
                       : '—'}
                   </dd>
-                  <dt>Title</dt>
-                  <dd>{doctor.title || '—'}</dd>
                   <dt>Gender</dt>
                   <dd>{doctor.gender || '—'}</dd>
                   <dt>Mobile</dt>

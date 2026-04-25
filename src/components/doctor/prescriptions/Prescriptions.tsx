@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useStorageScope } from '../../../utils/StorageScope';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ClipboardList, Plus, Trash2, Printer, Syringe } from 'lucide-react';
 import { useDoctorInfo } from '../dashboard/DoctorDashboard';
@@ -52,7 +53,7 @@ type PrescriptionHistoryRecord = PrescriptionForm & {
 
 const LS_PRESCRIPTIONS = 'vc_prescriptions';
 
-// ── Vaccination history (read-only reference) ──────────────────────────────
+// ── Vaccination history (read-only reference, shared/unscoped) ─────────────
 type VaccinationRecord = {
   id: string;
   animalName: string;
@@ -82,16 +83,19 @@ const fmtVaccDate = (d: string) => {
   });
 };
 
-const loadPrescriptionHistory = (): PrescriptionHistoryRecord[] => {
+const loadPrescriptionHistory = (key: string): PrescriptionHistoryRecord[] => {
   try {
-    return JSON.parse(localStorage.getItem(LS_PRESCRIPTIONS) ?? '[]');
+    return JSON.parse(localStorage.getItem(key) ?? '[]');
   } catch {
     return [];
   }
 };
 
-const savePrescriptionHistory = (records: PrescriptionHistoryRecord[]) => {
-  localStorage.setItem(LS_PRESCRIPTIONS, JSON.stringify(records));
+const savePrescriptionHistory = (
+  records: PrescriptionHistoryRecord[],
+  key: string,
+) => {
+  localStorage.setItem(key, JSON.stringify(records));
 };
 
 const today = getIstDateKey();
@@ -110,6 +114,8 @@ let rxCounter = Math.floor(Math.random() * 900) + 100;
 function Prescriptions() {
   const navigate = useNavigate();
   const { doctorName } = useDoctorInfo();
+  const storagePrefix = useStorageScope();
+  const lsPrescriptions = storagePrefix + LS_PRESCRIPTIONS;
   const location = useLocation();
   const printRef = useRef<HTMLDivElement>(null);
   const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
@@ -142,7 +148,7 @@ function Prescriptions() {
     const name = form.animalName.trim().toLowerCase();
     if (name.length < 2) return [];
     const owner = form.ownerName.trim().toLowerCase();
-    return loadPrescriptionHistory()
+    return loadPrescriptionHistory(lsPrescriptions)
       .filter(record => {
         const nameMatch = record.animalName.trim().toLowerCase() === name;
         if (!nameMatch) return false;
@@ -251,9 +257,9 @@ function Prescriptions() {
       createdAt: new Date().toISOString(),
       doctorName,
     };
-    const history = loadPrescriptionHistory();
+    const history = loadPrescriptionHistory(lsPrescriptions);
     const withoutCurrentRx = history.filter(r => r.rxNo !== rxNo);
-    savePrescriptionHistory([record, ...withoutCurrentRx]);
+    savePrescriptionHistory([record, ...withoutCurrentRx], lsPrescriptions);
 
     window.print();
     window.alert(

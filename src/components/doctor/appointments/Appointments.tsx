@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useStorageScope } from '../../../utils/StorageScope';
 import { useNavigate } from 'react-router-dom';
 import {
   Calendar,
@@ -16,6 +17,7 @@ import {
 } from 'lucide-react';
 import SearchableSelectInput from '../../utility/SearchableSelectInput';
 import { useSpeciesBreeds } from '../../utility/useSpeciesBreeds';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 import './Appointments.css';
 import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
@@ -154,46 +156,46 @@ const LS_APPOINTMENTS = 'vc_appointments';
 const LS_HOLIDAYS = 'vc_holidays';
 const LS_SLOT_BLOCK_NOTES = 'vc_slot_block_notes';
 
-const loadSchedule = (): WeeklySchedule => {
+const loadSchedule = (key: string): WeeklySchedule => {
   try {
     return normalizeWeeklySchedule(
-      JSON.parse(localStorage.getItem(LS_SCHEDULE) ?? '') as WeeklySchedule,
+      JSON.parse(localStorage.getItem(key) ?? '') as WeeklySchedule,
     );
   } catch {
     return defaultSchedule;
   }
 };
 
-const loadAppointments = (): Record<string, Appointment[]> => {
+const loadAppointments = (key: string): Record<string, Appointment[]> => {
   try {
-    return JSON.parse(localStorage.getItem(LS_APPOINTMENTS) ?? '{}');
+    return JSON.parse(localStorage.getItem(key) ?? '{}');
   } catch {
     return {};
   }
 };
 
-const loadHolidays = (): HolidaysStore => {
+const loadHolidays = (key: string): HolidaysStore => {
   try {
-    return JSON.parse(localStorage.getItem(LS_HOLIDAYS) ?? '{}');
+    return JSON.parse(localStorage.getItem(key) ?? '{}');
   } catch {
     return {};
   }
 };
 
-const saveHolidays = (holidays: HolidaysStore) => {
-  localStorage.setItem(LS_HOLIDAYS, JSON.stringify(holidays));
+const saveHolidays = (holidays: HolidaysStore, key: string) => {
+  localStorage.setItem(key, JSON.stringify(holidays));
 };
 
-const loadSlotBlockNotes = (): SlotBlockNotesStore => {
+const loadSlotBlockNotes = (key: string): SlotBlockNotesStore => {
   try {
-    return JSON.parse(localStorage.getItem(LS_SLOT_BLOCK_NOTES) ?? '{}');
+    return JSON.parse(localStorage.getItem(key) ?? '{}');
   } catch {
     return {};
   }
 };
 
-const saveSlotBlockNotes = (notes: SlotBlockNotesStore) => {
-  localStorage.setItem(LS_SLOT_BLOCK_NOTES, JSON.stringify(notes));
+const saveSlotBlockNotes = (notes: SlotBlockNotesStore, key: string) => {
+  localStorage.setItem(key, JSON.stringify(notes));
 };
 
 const toDateStr = (d: Date) => getIstDateKey(d);
@@ -296,13 +298,24 @@ const normalizeWeeklySchedule = (weeklySchedule: WeeklySchedule) => {
 /* ── Component ── */
 function Appointments() {
   const navigate = useNavigate();
+  const storagePrefix = useStorageScope();
+  const lsSchedule = storagePrefix + LS_SCHEDULE;
+  const lsAppointments = storagePrefix + LS_APPOINTMENTS;
+  const lsHolidays = storagePrefix + LS_HOLIDAYS;
+  const lsSlotBlockNotes = storagePrefix + LS_SLOT_BLOCK_NOTES;
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [schedule, setSchedule] = useState<WeeklySchedule>(loadSchedule);
-  const [appointments, setAppointments] =
-    useState<Record<string, Appointment[]>>(loadAppointments);
-  const [holidays, setHolidays] = useState<HolidaysStore>(loadHolidays);
-  const [slotBlockNotes, setSlotBlockNotes] =
-    useState<SlotBlockNotesStore>(loadSlotBlockNotes);
+  const [schedule, setSchedule] = useState<WeeklySchedule>(() =>
+    loadSchedule(lsSchedule),
+  );
+  const [appointments, setAppointments] = useState<
+    Record<string, Appointment[]>
+  >(() => loadAppointments(lsAppointments));
+  const [holidays, setHolidays] = useState<HolidaysStore>(() =>
+    loadHolidays(lsHolidays),
+  );
+  const [slotBlockNotes, setSlotBlockNotes] = useState<SlotBlockNotesStore>(
+    () => loadSlotBlockNotes(lsSlotBlockNotes),
+  );
 
   const [showSchedulerModal, setShowSchedulerModal] = useState(false);
   const [draftSchedule, setDraftSchedule] = useState<WeeklySchedule>(schedule);
@@ -311,6 +324,7 @@ function Appointments() {
   const [addSlot, setAddSlot] = useState<SlotKey>('morning');
   const [cancelTarget, setCancelTarget] = useState<Appointment | null>(null);
   const [cancelNote, setCancelNote] = useState('');
+  const [removeApptTarget, setRemoveApptTarget] = useState<string | null>(null);
   const [collapsedSlots, setCollapsedSlots] = useState<
     Record<SlotKey, boolean>
   >({
@@ -343,12 +357,12 @@ function Appointments() {
   const dayAppointments = appointments[dateStr] ?? [];
 
   useEffect(() => {
-    localStorage.setItem(LS_SCHEDULE, JSON.stringify(schedule));
-  }, [schedule]);
+    localStorage.setItem(lsSchedule, JSON.stringify(schedule));
+  }, [schedule, lsSchedule]);
 
   useEffect(() => {
-    localStorage.setItem(LS_APPOINTMENTS, JSON.stringify(appointments));
-  }, [appointments]);
+    localStorage.setItem(lsAppointments, JSON.stringify(appointments));
+  }, [appointments, lsAppointments]);
 
   const prevDay = () => {
     const d = new Date(currentDate);
@@ -453,12 +467,7 @@ function Appointments() {
     }));
   };
 
-  const removeAppt = (id: string) => {
-    setAppointments(prev => ({
-      ...prev,
-      [dateStr]: (prev[dateStr] ?? []).filter(a => a.id !== id),
-    }));
-  };
+  const removeAppt = (id: string) => setRemoveApptTarget(id);
 
   const openCancelAppointment = (appt: Appointment) => {
     setCancelTarget(appt);
@@ -517,7 +526,7 @@ function Appointments() {
         delete nextState[dateStr];
       }
 
-      saveHolidays(nextState);
+      saveHolidays(nextState, lsHolidays);
       return nextState;
     });
 
@@ -538,7 +547,7 @@ function Appointments() {
         }
       }
 
-      saveSlotBlockNotes(nextState);
+      saveSlotBlockNotes(nextState, lsSlotBlockNotes);
       return nextState;
     });
 
@@ -567,7 +576,7 @@ function Appointments() {
         delete nextState[dateStr];
       }
 
-      saveHolidays(nextState);
+      saveHolidays(nextState, lsHolidays);
       return nextState;
     });
 
@@ -582,7 +591,7 @@ function Appointments() {
         nextState[dateStr] = currentDayNotes;
       }
 
-      saveSlotBlockNotes(nextState);
+      saveSlotBlockNotes(nextState, lsSlotBlockNotes);
       return nextState;
     });
   };
@@ -595,7 +604,7 @@ function Appointments() {
   };
 
   const openPrescriptionForAppointment = (appt: Appointment) => {
-    navigate('/doctor/dashboard/prescriptions', {
+    navigate('../prescriptions', {
       state: {
         prefill: {
           animalName: appt.patientName,
@@ -1340,6 +1349,25 @@ function Appointments() {
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        open={removeApptTarget !== null}
+        title="Remove Appointment"
+        message="Are you sure you want to remove this appointment from the list? This action cannot be undone."
+        confirmLabel="Remove"
+        onConfirm={() => {
+          if (removeApptTarget) {
+            setAppointments(prev => ({
+              ...prev,
+              [dateStr]: (prev[dateStr] ?? []).filter(
+                a => a.id !== removeApptTarget,
+              ),
+            }));
+          }
+          setRemoveApptTarget(null);
+        }}
+        onCancel={() => setRemoveApptTarget(null)}
+      />
     </div>
   );
 }

@@ -67,6 +67,13 @@ function MobileEntry() {
 
   return (
     <div className="mobile-entry">
+      <div className="mobile-entry-greeting">
+        <span className="meg-icon" aria-hidden="true">
+          🐾
+        </span>
+        <h2 className="meg-title">Welcome to PetCare</h2>
+        <p className="meg-sub">Enter your mobile number to get started</p>
+      </div>
       <form className="mobile-entry-form" onSubmit={handleMobileSubmit}>
         <label htmlFor="mobile-input">
           Enter your mobile number
