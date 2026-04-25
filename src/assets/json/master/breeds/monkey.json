@@ -1,0 +1,181 @@
+{
+  "speciesId": 23,
+  "speciesNameEnglish": "Monkey",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Rhesus Macaque",
+      "breedNameHindi": "रिसस मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Bonnet Macaque",
+      "breedNameHindi": "बॉनेट मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Assam Macaque",
+      "breedNameHindi": "असम मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Arunachal Macaque",
+      "breedNameHindi": "अरुणाचल मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Northern Pig-tailed Macaque",
+      "breedNameHindi": "नॉर्दर्न पिग-टेल्ड मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Gray Langur (Hanuman Langur)",
+      "breedNameHindi": "ग्रे लंगूर (हनुमान लंगूर)",
+      "speciesId": 23
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Golden Langur",
+      "breedNameHindi": "गोल्डन लंगूर",
+      "speciesId": 23
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Capped Langur",
+      "breedNameHindi": "कैप्ड लंगूर",
+      "speciesId": 23
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Phayre’s Leaf Monkey",
+      "breedNameHindi": "फेयर का लीफ मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Red-shanked Douc",
+      "breedNameHindi": "रेड-शैंकेड डुक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Proboscis Monkey",
+      "breedNameHindi": "प्रोबोसिस मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Japanese Macaque",
+      "breedNameHindi": "जापानी मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Barbary Macaque",
+      "breedNameHindi": "बारबरी मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Crab-eating Macaque",
+      "breedNameHindi": "क्रैब-ईटिंग मकाक",
+      "speciesId": 23
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Black Howler Monkey",
+      "breedNameHindi": "ब्लैक हॉवलर मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Spider Monkey",
+      "breedNameHindi": "स्पाइडर मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Capuchin Monkey",
+      "breedNameHindi": "कैपुचिन मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Squirrel Monkey",
+      "breedNameHindi": "स्क्विरल मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Tamarin (Cotton-top)",
+      "breedNameHindi": "टामरिन (कॉटन-टॉप)",
+      "speciesId": 23
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Marmoset",
+      "breedNameHindi": "मार्मोसेट",
+      "speciesId": 23
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Colobus Monkey",
+      "breedNameHindi": "कोलोबस मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "De Brazza’s Monkey",
+      "breedNameHindi": "डी ब्राज़ा मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Blue Monkey",
+      "breedNameHindi": "ब्लू मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Vervet Monkey",
+      "breedNameHindi": "वर्वेट मंकी",
+      "speciesId": 23
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Monkey",
+      "breedNameEnglish": "Golden Snub-nosed Monkey",
+      "breedNameHindi": "गोल्डन स्नब-नोज़्ड मंकी",
+      "speciesId": 23
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 /* ─── Shared: Inventory pages ─── */
 .inventory-page {
-  max-width: 940px;
+  width: 100%;
+  max-width: 1320px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -21,7 +22,7 @@
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  background: #0f172a;
+  background: #1a1a2e;
   color: #e2e8f0;
   border: none;
   border-radius: 8px;
@@ -50,7 +51,7 @@
 .inv-form-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1a1a2e;
   margin: 0 0 16px;
 }
 
@@ -87,7 +88,7 @@
 }
 
 .inv-grid input:focus,
-.inv-grid select:focus { border-color: #3b82f6; background: #fff; }
+.inv-grid select:focus { border-color: #00897b; background: #fff; }
 
 label.error input { border-color: #ef4444; }
 
@@ -109,7 +110,7 @@ label.error input { border-color: #ef4444; }
   align-items: center;
   gap: 5px;
   padding: 8px 16px;
-  background: #2563eb;
+  background: #00897b;
   color: white;
   border: none;
   border-radius: 7px;
@@ -119,7 +120,7 @@ label.error input { border-color: #ef4444; }
   transition: background 0.15s;
 }
 
-.btn-inv-primary:hover { background: #1d4ed8; }
+.btn-inv-primary:hover { background: #00897b; }
 
 .btn-inv-outline {
   display: inline-flex;
@@ -157,9 +158,9 @@ label.error input { border-color: #ef4444; }
 .inv-filter-tab:hover { background: #f1f5f9; }
 
 .inv-filter-tab.active {
-  background: color-mix(in srgb, var(--tab-c, #2563eb) 15%, white);
-  color: var(--tab-c, #2563eb);
-  border-color: var(--tab-c, #2563eb);
+  background: color-mix(in srgb, var(--tab-c, #00897b) 15%, white);
+  color: var(--tab-c, #00897b);
+  border-color: var(--tab-c, #00897b);
   font-weight: 600;
 }
 
@@ -245,8 +246,8 @@ label.error input { border-color: #ef4444; }
   transition: background 0.15s, color 0.15s;
 }
 
-.edit-btn { color: #3b82f6; }
-.edit-btn:hover { background: #eff6ff; }
+.edit-btn { color: #00897b; }
+.edit-btn:hover { background: #e8f5e9; }
 .delete-btn { color: #94a3b8; }
 .delete-btn:hover { color: #ef4444; background: #fee2e2; }
 

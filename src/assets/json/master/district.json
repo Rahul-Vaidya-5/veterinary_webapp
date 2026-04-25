@@ -1,0 +1,170 @@
+{
+  "state": "Chhattisgarh",
+  "districts": [
+    {
+      "districtId": 646,
+      "districtNameEnglish": "Balod",
+      "districtNameHindi": "बालोद"
+    },
+    {
+      "districtId": 644,
+      "districtNameEnglish": "Balodabazar-Bhatapara",
+      "districtNameHindi": "बलौदाबाजार-भाटापारा"
+    },
+    {
+      "districtId": 649,
+      "districtNameEnglish": "Balrampur-Ramanujganj",
+      "districtNameHindi": "बलरामपुर-रामानुजगंज"
+    },
+    {
+      "districtId": 374,
+      "districtNameEnglish": "Bastar",
+      "districtNameHindi": "बस्तर"
+    },
+    {
+      "districtId": 650,
+      "districtNameEnglish": "Bemetara",
+      "districtNameHindi": "बेमेतरा"
+    },
+    {
+      "districtId": 636,
+      "districtNameEnglish": "Bijapur",
+      "districtNameHindi": "बीजापुर"
+    },
+    {
+      "districtId": 375,
+      "districtNameEnglish": "Bilaspur",
+      "districtNameHindi": "बिलासपुर"
+    },
+    {
+      "districtId": 376,
+      "districtNameEnglish": "Dakshin Bastar Dantewada",
+      "districtNameHindi": "दक्षिण बस्तर दंतेवाड़ा"
+    },
+    {
+      "districtId": 377,
+      "districtNameEnglish": "Dhamtari",
+      "districtNameHindi": "धमतरी"
+    },
+    {
+      "districtId": 378,
+      "districtNameEnglish": "Durg",
+      "districtNameHindi": "दुर्ग"
+    },
+    {
+      "districtId": 645,
+      "districtNameEnglish": "Gariyaband",
+      "districtNameHindi": "गरियाबंद"
+    },
+    {
+      "districtId": 734,
+      "districtNameEnglish": "Gaurela-Pendra-Marwahi",
+      "districtNameHindi": "गौरेला-पेंड्रा-मरवाही"
+    },
+    {
+      "districtId": 379,
+      "districtNameEnglish": "Janjgir-Champa",
+      "districtNameHindi": "जांजगीर - चाम्पा"
+    },
+    {
+      "districtId": 380,
+      "districtNameEnglish": "Jashpur",
+      "districtNameHindi": "जशपुर"
+    },
+    {
+      "districtId": 382,
+      "districtNameEnglish": "Kabeerdham",
+      "districtNameHindi": "कबीरधाम"
+    },
+    {
+      "districtId": 759,
+      "districtNameEnglish": "Khairagarh-Chhuikhadan-Gandai",
+      "districtNameHindi": "खैरागढ़-छुईखदान-गंडई"
+    },
+    {
+      "districtId": 643,
+      "districtNameEnglish": "Kondagaon",
+      "districtNameHindi": "कोंडागांव"
+    },
+    {
+      "districtId": 383,
+      "districtNameEnglish": "Korba",
+      "districtNameHindi": "कोरबा"
+    },
+    {
+      "districtId": 384,
+      "districtNameEnglish": "Korea",
+      "districtNameHindi": "कोरिया"
+    },
+    {
+      "districtId": 385,
+      "districtNameEnglish": "Mahasamund",
+      "districtNameHindi": "महासमुंद"
+    },
+    {
+      "districtId": 760,
+      "districtNameEnglish": "Manendragarh-Chirmiri-Bharatpur(M C B)",
+      "districtNameHindi": "मनेन्द्रगढ़-चिरमिरी-भरतपुर(ऍम.सी.बी.)"
+    },
+    {
+      "districtId": 761,
+      "districtNameEnglish": "Mohla-Manpur-Ambagarh Chouki",
+      "districtNameHindi": "मोहला-मानपुर-अम्बागढ़ चौकी"
+    },
+    {
+      "districtId": 647,
+      "districtNameEnglish": "Mungeli",
+      "districtNameHindi": "मुंगेली"
+    },
+    {
+      "districtId": 637,
+      "districtNameEnglish": "Narayanpur",
+      "districtNameHindi": "नारायणपुर"
+    },
+    {
+      "districtId": 386,
+      "districtNameEnglish": "Raigarh",
+      "districtNameHindi": "रायगढ़"
+    },
+    {
+      "districtId": 387,
+      "districtNameEnglish": "Raipur",
+      "districtNameHindi": "रायपुर"
+    },
+    {
+      "districtId": 388,
+      "districtNameEnglish": "Rajnandgaon",
+      "districtNameHindi": "राजनंदगांव"
+    },
+    {
+      "districtId": 762,
+      "districtNameEnglish": "Sakti",
+      "districtNameHindi": "सक्ती"
+    },
+    {
+      "districtId": 763,
+      "districtNameEnglish": "Sarangarh-Bilaigarh",
+      "districtNameHindi": "सारंगढ़-बिलाईगढ़"
+    },
+    {
+      "districtId": 642,
+      "districtNameEnglish": "Sukma",
+      "districtNameHindi": "सुकमा"
+    },
+    {
+      "districtId": 648,
+      "districtNameEnglish": "Surajpur",
+      "districtNameHindi": "सूरजपुर"
+    },
+    {
+      "districtId": 389,
+      "districtNameEnglish": "Surguja",
+      "districtNameHindi": "सरगुजा"
+    },
+    {
+      "districtId": 381,
+      "districtNameEnglish": "Uttar Bastar Kanker",
+      "districtNameHindi": "उत्तर बस्तर कांकेर"
+    }
+  ]
+}

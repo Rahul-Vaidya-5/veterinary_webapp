@@ -1,0 +1,60 @@
+{
+  "breeds": [
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Rabbit",
+      "breedNameEnglish": "New Zealand White",
+      "breedNameHindi": "न्यूजीलैंड व्हाइट",
+      "speciesId": 3
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Rabbit",
+      "breedNameEnglish": "Dutch",
+      "breedNameHindi": "डच",
+      "speciesId": 3
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Rabbit",
+      "breedNameEnglish": "Angora",
+      "breedNameHindi": "एंगोरा",
+      "speciesId": 3
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Pig",
+      "breedNameEnglish": "Large White Yorkshire",
+      "breedNameHindi": "लार्ज व्हाइट यॉर्कशायर",
+      "speciesId": 15
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Pig",
+      "breedNameEnglish": "Landrace",
+      "breedNameHindi": "लैंडरेस",
+      "speciesId": 15
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Pig",
+      "breedNameEnglish": "Duroc",
+      "breedNameHindi": "ड्यूरॉक",
+      "speciesId": 15
+    },
+    {
+      "breedId": 36,
+      "speciesNameEnglish": "Duck",
+      "breedNameEnglish": "Khaki Campbell",
+      "breedNameHindi": "खाकी कैंपबेल",
+      "speciesId": 20
+    },
+    {
+      "breedId": 37,
+      "speciesNameEnglish": "Duck",
+      "breedNameEnglish": "Indian Runner",
+      "breedNameHindi": "इंडियन रनर",
+      "speciesId": 20
+    }
+  ]
+}

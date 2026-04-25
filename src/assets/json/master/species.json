@@ -1,0 +1,148 @@
+{
+  "species": [
+    {
+      "speciesId": 1,
+      "speciesNameEnglish": "Dog",
+      "speciesNameHindi": "कुत्ता",
+      "category": "pet"
+    },
+    {
+      "speciesId": 2,
+      "speciesNameEnglish": "Cat",
+      "speciesNameHindi": "बिल्ली",
+      "category": "pet"
+    },
+    {
+      "speciesId": 3,
+      "speciesNameEnglish": "Rabbit",
+      "speciesNameHindi": "खरगोश",
+      "category": "pet"
+    },
+    {
+      "speciesId": 4,
+      "speciesNameEnglish": "Guinea Pig",
+      "speciesNameHindi": "गिनी पिग",
+      "category": "pet"
+    },
+    {
+      "speciesId": 5,
+      "speciesNameEnglish": "Hamster",
+      "speciesNameHindi": "हम्सटर",
+      "category": "pet"
+    },
+    {
+      "speciesId": 6,
+      "speciesNameEnglish": "Parrot",
+      "speciesNameHindi": "तोता",
+      "category": "pet"
+    },
+    {
+      "speciesId": 7,
+      "speciesNameEnglish": "Pigeon",
+      "speciesNameHindi": "कबूतर",
+      "category": "pet"
+    },
+    {
+      "speciesId": 8,
+      "speciesNameEnglish": "Turtle",
+      "speciesNameHindi": "कछुआ",
+      "category": "pet"
+    },
+    {
+      "speciesId": 9,
+      "speciesNameEnglish": "Fish",
+      "speciesNameHindi": "मछली",
+      "category": "pet"
+    },
+    {
+      "speciesId": 10,
+      "speciesNameEnglish": "Cow",
+      "speciesNameHindi": "गाय",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 11,
+      "speciesNameEnglish": "Buffalo",
+      "speciesNameHindi": "भैंस",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 12,
+      "speciesNameEnglish": "Bull",
+      "speciesNameHindi": "बैल",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 13,
+      "speciesNameEnglish": "Goat",
+      "speciesNameHindi": "बकरी",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 14,
+      "speciesNameEnglish": "Sheep",
+      "speciesNameHindi": "भेड़",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 15,
+      "speciesNameEnglish": "Pig",
+      "speciesNameHindi": "सूअर",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 16,
+      "speciesNameEnglish": "Horse",
+      "speciesNameHindi": "घोड़ा",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 17,
+      "speciesNameEnglish": "Donkey",
+      "speciesNameHindi": "गधा",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 18,
+      "speciesNameEnglish": "Camel",
+      "speciesNameHindi": "ऊंट",
+      "category": "livestock"
+    },
+    {
+      "speciesId": 19,
+      "speciesNameEnglish": "Chicken",
+      "speciesNameHindi": "मुर्गी",
+      "category": "poultry"
+    },
+    {
+      "speciesId": 20,
+      "speciesNameEnglish": "Duck",
+      "speciesNameHindi": "बत्तख",
+      "category": "poultry"
+    },
+    {
+      "speciesId": 21,
+      "speciesNameEnglish": "Turkey",
+      "speciesNameHindi": "टर्की",
+      "category": "poultry"
+    },
+    {
+      "speciesId": 22,
+      "speciesNameEnglish": "Quail",
+      "speciesNameHindi": "बटेर",
+      "category": "poultry"
+    },
+    {
+      "speciesId": 23,
+      "speciesNameEnglish": "Monkey",
+      "speciesNameHindi": "बंदर",
+      "category": "exotic"
+    },
+    {
+      "speciesId": 24,
+      "speciesNameEnglish": "Snake",
+      "speciesNameHindi": "सांप",
+      "category": "exotic"
+    }
+  ]
+}

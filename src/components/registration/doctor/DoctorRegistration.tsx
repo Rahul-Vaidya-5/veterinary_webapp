@@ -9,7 +9,6 @@ type Address = {
 };
 
 type DoctorForm = {
-  title: string;
   gender: string;
   firstName: string;
   lastName: string;
@@ -46,6 +45,8 @@ import {
   ArrowRight,
   Send,
 } from 'lucide-react';
+import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useChhattisgarhLocations } from '../../utility/useChhattisgarhLocations';
 import './DoctorRegistration.css';
 
 const emptyAddress: Address = {
@@ -59,7 +60,6 @@ const emptyAddress: Address = {
 };
 
 const initialDoctorForm: DoctorForm = {
-  title: '',
   gender: '',
   firstName: '',
   lastName: '',
@@ -102,6 +102,11 @@ function DoctorRegistration() {
   const [currentStep, setCurrentStep] = useState(1);
   const [stepError, setStepError] = useState('');
   const [hasAcceptedDeclaration, setHasAcceptedDeclaration] = useState(false);
+  const { districtNames, getBlocksForDistrict, isKnownDistrict, isKnownBlock } =
+    useChhattisgarhLocations();
+
+  const doctorBlockOptions = getBlocksForDistrict(doctor.address.district);
+  const clinicBlockOptions = getBlocksForDistrict(clinic.address.district);
 
   function handleDoctorChange<K extends keyof Omit<DoctorForm, 'address'>>(
     field: K,
@@ -121,6 +126,7 @@ function DoctorRegistration() {
       ...prev,
       address: {
         ...prev.address,
+        ...(field === 'district' ? { block: '' } : {}),
         [field]: value,
       },
     }));
@@ -144,6 +150,7 @@ function DoctorRegistration() {
       ...prev,
       address: {
         ...prev.address,
+        ...(field === 'district' ? { block: '' } : {}),
         [field]: value,
       },
     }));
@@ -198,7 +205,6 @@ function DoctorRegistration() {
   }
 
   function validateStep1() {
-    if (!doctor.title) return 'Title is required.';
     if (!doctor.gender) return 'Gender is required.';
     if (!doctor.firstName.trim()) return 'First name is required.';
     if (!doctor.lastName.trim()) return 'Last name is required.';
@@ -219,6 +225,15 @@ function DoctorRegistration() {
     }
     if (!doctor.address.block.trim()) return 'Doctor block is required.';
     if (!doctor.address.district.trim()) return 'Doctor district is required.';
+    if (districtNames.length > 0 && !isKnownDistrict(doctor.address.district)) {
+      return 'Select a valid doctor district from the list.';
+    }
+    if (
+      districtNames.length > 0 &&
+      !isKnownBlock(doctor.address.district, doctor.address.block)
+    ) {
+      return 'Select a valid doctor block from the list.';
+    }
     if (!doctor.address.state.trim()) return 'Doctor state is required.';
     return '';
   }
@@ -237,6 +252,18 @@ function DoctorRegistration() {
       if (!clinic.address.block.trim()) return 'Clinic block is required.';
       if (!clinic.address.district.trim())
         return 'Clinic district is required.';
+      if (
+        districtNames.length > 0 &&
+        !isKnownDistrict(clinic.address.district)
+      ) {
+        return 'Select a valid clinic district from the list.';
+      }
+      if (
+        districtNames.length > 0 &&
+        !isKnownBlock(clinic.address.district, clinic.address.block)
+      ) {
+        return 'Select a valid clinic block from the list.';
+      }
       if (!clinic.address.state.trim()) return 'Clinic state is required.';
     }
     return '';
@@ -289,27 +316,38 @@ function DoctorRegistration() {
     });
   }
 
+  const stepLabels = ['Personal Info', 'Address', 'Clinic', 'Review'];
+
   return (
     <div className="doctor-registration">
-      <h2>Doctor Registration</h2>
       <div className="step-meta">
-        <span>Step {currentStep} of 4</span>
-        <div className="step-dots">
-          {Array.from({ length: 4 }, (_, i) => (
-            <span
+        <div className="step-progress">
+          {stepLabels.map((label, i) => (
+            <div
               key={i}
-              className={`dot ${
-                i + 1 === currentStep
-                  ? 'dot-active'
-                  : i + 1 < currentStep
-                    ? 'dot-done'
-                    : ''
-              }`}
-            />
+              className={`step-pill ${i + 1 === currentStep ? 'active' : i + 1 < currentStep ? 'done' : ''}`}
+            >
+              <div className="step-pill-circle">
+                {i + 1 < currentStep ? '✓' : i + 1}
+              </div>
+              <span className="step-pill-label">{label}</span>
+            </div>
           ))}
         </div>
       </div>
-      {stepError && <p className="form-error">{stepError}</p>}
+      {stepError && (
+        <div className="form-error" role="alert">
+          <span>{stepError}</span>
+          <button
+            type="button"
+            className="form-error-close"
+            onClick={() => setStepError('')}
+            aria-label="Dismiss error"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit}>
         {currentStep === 1 && (
@@ -319,20 +357,6 @@ function DoctorRegistration() {
               <span>Doctor Basic Details</span>
             </h3>
 
-            <label className="title-field">
-              Title *
-              <select
-                value={doctor.title}
-                onChange={e => handleDoctorChange('title', e.target.value)}
-              >
-                <option value="">-- Select --</option>
-                <option value="Dr">Dr.</option>
-                <option value="Mr">Mr.</option>
-                <option value="Ms">Ms.</option>
-                <option value="Mrs">Mrs.</option>
-                <option value="Mx">Mx.</option>
-              </select>
-            </label>
             <label className="first-name-field">
               First Name *
               <input
@@ -524,22 +548,29 @@ function DoctorRegistration() {
             </label>
             <label>
               District *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="doctor-district"
+                listId="doctor-district-list"
                 value={doctor.address.district}
-                onChange={e =>
-                  handleDoctorAddressChange('district', e.target.value)
-                }
+                onChange={value => handleDoctorAddressChange('district', value)}
+                options={districtNames}
+                placeholder="Search and select district"
               />
             </label>
             <label>
               Block *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="doctor-block"
+                listId="doctor-block-list"
                 value={doctor.address.block}
-                onChange={e =>
-                  handleDoctorAddressChange('block', e.target.value)
+                onChange={value => handleDoctorAddressChange('block', value)}
+                options={doctorBlockOptions}
+                placeholder={
+                  doctor.address.district
+                    ? 'Search and select block'
+                    : 'Select district first'
                 }
+                disabled={!doctor.address.district.trim()}
               />
             </label>
           </>
@@ -648,24 +679,32 @@ function DoctorRegistration() {
             </label>
             <label>
               District *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="clinic-district"
+                listId="clinic-district-list"
                 value={clinic.address.district}
-                onChange={e =>
-                  handleClinicAddressChange('district', e.target.value)
-                }
+                onChange={value => handleClinicAddressChange('district', value)}
+                options={districtNames}
+                placeholder="Search and select district"
                 disabled={clinic.sameAsDoctor}
               />
             </label>
             <label>
               Block *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="clinic-block"
+                listId="clinic-block-list"
                 value={clinic.address.block}
-                onChange={e =>
-                  handleClinicAddressChange('block', e.target.value)
+                onChange={value => handleClinicAddressChange('block', value)}
+                options={clinicBlockOptions}
+                placeholder={
+                  clinic.address.district
+                    ? 'Search and select block'
+                    : 'Select district first'
                 }
-                disabled={clinic.sameAsDoctor}
+                disabled={
+                  clinic.sameAsDoctor || !clinic.address.district.trim()
+                }
               />
             </label>
 
@@ -705,8 +744,6 @@ function DoctorRegistration() {
                       ? `${doctor.firstName} ${doctor.lastName}`.trim()
                       : '—'}
                   </dd>
-                  <dt>Title</dt>
-                  <dd>{doctor.title || '—'}</dd>
                   <dt>Gender</dt>
                   <dd>{doctor.gender || '—'}</dd>
                   <dt>Mobile</dt>

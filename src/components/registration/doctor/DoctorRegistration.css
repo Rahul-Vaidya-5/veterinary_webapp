@@ -1,20 +1,488 @@
-.doctor-registration {
-  width: min(960px, 100%);
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 24px 20px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
-  overflow-x: clip;
+/* ══════════════════════════════════════════
+   Doctor Registration — Redesigned
+   Palette: teal (#00897b) / coral (#ff6b4a)
+══════════════════════════════════════════ */
+
+@keyframes dr-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.doctor-registration h2 {
-  margin: 0 0 6px;
-  text-align: center;
-  color: #0f172a;
+@keyframes dr-field-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes step-pulse {
+  0%, 100% { box-shadow: 0 4px 14px rgba(0, 137, 123, 0.4); }
+  50%       { box-shadow: 0 4px 22px rgba(0, 137, 123, 0.7); }
+}
+
+.doctor-registration {
+  width: min(860px, 100%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 137, 123, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 137, 123, 0.08), 0 2px 8px rgba(0,0,0,0.04);
+  overflow-x: clip;
+  animation: dr-fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Step Progress Bar ── */
+.step-meta {
+  margin: 0 0 18px;
+}
+
+.step-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.step-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+
+/* connector line between steps */
+.step-pill:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: calc(50% + 15px);
+  right: calc(-50% + 15px);
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+  transition: background 0.3s;
+}
+
+.step-pill.done::after {
+  background: #00897b;
+}
+
+.step-pill-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border: 2.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #94a3b8;
+  position: relative;
+  z-index: 1;
+  transition: all 0.25s;
+}
+
+.step-pill.active .step-pill-circle {
+  background: linear-gradient(135deg, #00897b, #00695c);
+  border-color: #00897b;
+  color: #ffffff;
+  animation: step-pulse 2s ease-in-out infinite;
+}
+
+.step-pill.done .step-pill-circle {
+  background: #e0f2f1;
+  border-color: #00897b;
+  color: #00897b;
+}
+
+.step-pill-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.step-pill.active .step-pill-label {
+  color: #00695c;
+}
+
+.step-pill.done .step-pill-label {
+  color: #00897b;
+}
+
+/* ── Error Toast ── */
+.form-error {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: min(520px, 90vw);
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(185, 28, 28, 0.2);
+}
+
+.form-error-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b91c1c;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 2px;
+  opacity: 0.7;
+}
+.form-error-close:hover { opacity: 1; }
+
+/* ── Form Grid ── */
+.doctor-registration form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 12px 18px;
+  min-width: 0;
+}
+
+/* ── Step Section Heading ── */
+.doctor-registration h3 {
+  grid-column: 1 / -1;
+  margin: 4px 0 8px;
+  text-align: left;
+  color: #00695c;
+  font-size: 1.05rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.doctor-registration .step-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid rgba(0, 137, 123, 0.15);
+}
+
+.doctor-registration .step-heading svg {
+  color: #00897b;
+}
+
+/* ── Field entrance animation ── */
+.doctor-registration form > label,
+.doctor-registration form > h3 {
+  animation: dr-field-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.doctor-registration form > label:nth-child(2)  { animation-delay: 0.04s; }
+.doctor-registration form > label:nth-child(3)  { animation-delay: 0.08s; }
+.doctor-registration form > label:nth-child(4)  { animation-delay: 0.12s; }
+.doctor-registration form > label:nth-child(5)  { animation-delay: 0.16s; }
+.doctor-registration form > label:nth-child(6)  { animation-delay: 0.20s; }
+.doctor-registration form > label:nth-child(7)  { animation-delay: 0.24s; }
+.doctor-registration form > label:nth-child(8)  { animation-delay: 0.28s; }
+.doctor-registration form > label:nth-child(9)  { animation-delay: 0.32s; }
+.doctor-registration form > label:nth-child(10) { animation-delay: 0.36s; }
+.doctor-registration form > label:nth-child(11) { animation-delay: 0.40s; }
+.doctor-registration form > label:nth-child(12) { animation-delay: 0.44s; }
+
+/* ── Labels ── */
+.doctor-registration label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  text-align: left;
+  color: #374151;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.18s;
+}
+
+/* Label turns teal when its field is focused */
+.doctor-registration label:focus-within {
+  color: #00897b;
+}
+
+.doctor-registration label:has(input[type='checkbox']) {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+/* ── Inputs & Selects ── */
+.doctor-registration input,
+.doctor-registration select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.85rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #f8fdfc;
+  color: #1a1a2e;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s, transform 0.15s;
+}
+
+.doctor-registration input:hover:not(:disabled):not([type='checkbox']):not([type='file']),
+.doctor-registration select:hover {
+  border-color: #80cbc4;
+  background: #ffffff;
+}
+
+.doctor-registration input::placeholder {
+  color: #b0bec5;
+}
+
+.doctor-registration input:focus,
+.doctor-registration select:focus {
+  border-color: #00897b;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 137, 123, 0.14);
+}
+
+.doctor-registration input:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.doctor-registration input[type='checkbox'] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  accent-color: #00897b;
+}
+
+.doctor-registration input[type='file'] {
+  padding: 9px 12px;
+  background: #f0faf9;
+  border-style: dashed;
+  border-color: rgba(0, 137, 123, 0.3);
+  color: #00695c;
+  cursor: pointer;
+}
+
+.doctor-registration input[type='file']:hover {
+  background: #e0f2f1;
+  border-color: #00897b;
+}
+
+/* ── Upload Previews ── */
+.doctor-registration img {
+  width: 100%;
+  max-width: 200px;
+  border: 1.5px solid rgba(0, 137, 123, 0.2);
+  border-radius: 12px;
+  background: #f0faf9;
+  padding: 6px;
+  object-fit: cover;
+}
+
+.upload-preview-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ── Review Step ── */
+.review-block {
+  grid-column: 1 / -1;
+  border: 1.5px solid rgba(0, 137, 123, 0.15);
+  border-radius: 16px;
+  background: #f0faf9;
+  padding: 20px;
+}
+
+.review-block > h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #00695c;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.review-card {
+  border: 1.5px solid rgba(0, 137, 123, 0.12);
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 16px;
+}
+
+.review-card h4 {
+  margin: 0 0 12px;
+  color: #00695c;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 137, 123, 0.1);
+}
+
+.review-card dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  align-items: baseline;
+}
+
+.review-card dt {
+  color: #6b7280;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.review-card dd {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 0.9rem;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+/* ── Declaration ── */
+.declaration-block {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1.5px solid rgba(0, 137, 123, 0.2);
+  border-radius: 12px;
+  background: #e8f5e9;
+}
+
+.doctor-registration .declaration-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 12px;
+  margin: 0;
+  color: #1b5e20;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.doctor-registration .declaration-row input[type='checkbox'] {
+  margin: 0;
+  align-self: start;
+  transform: translateY(0.2em);
+}
+
+/* ── Navigation Buttons ── */
+.step-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1.5px solid rgba(0, 137, 123, 0.1);
+}
+
+.step-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.18s;
+}
+
+.step-actions button[type='button']:first-child {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1.5px solid #e2e8f0;
+}
+
+.step-actions button[type='button']:first-child:hover {
+  background: #e2e8f0;
+  color: #1a1a2e;
+}
+
+.step-actions button[type='button']:last-child,
+.step-actions button[type='submit'] {
+  background: linear-gradient(135deg, #00897b, #00695c);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 137, 123, 0.35);
+}
+
+.step-actions button[type='button']:last-child:hover,
+.step-actions button[type='submit']:hover {
+  box-shadow: 0 6px 18px rgba(0, 137, 123, 0.45);
+  transform: translateY(-1px);
+}
+
+.step-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .doctor-registration form {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-registration {
+    padding: 16px 14px;
+  }
+
+  .step-pill-label {
+    display: none;
+  }
+
+  .step-actions {
+    flex-direction: column-reverse;
+  }
+
+  .step-actions button {
+    width: 100%;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .step-meta {
   margin: 0 0 14px;
@@ -47,14 +515,40 @@
 }
 
 .form-error {
-  margin: 0 0 16px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: min(520px, 90vw);
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #b91c1c;
-  text-align: left;
   font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(185, 28, 28, 0.18);
+}
+
+.form-error-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b91c1c;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 2px;
+  opacity: 0.7;
+}
+
+.form-error-close:hover {
+  opacity: 1;
 }
 
 .doctor-registration form {

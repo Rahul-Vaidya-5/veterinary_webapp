@@ -9,6 +9,8 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import './Inventory.css';
+import { getIstDateKey } from '../../../utils/istDateTime';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 
 type VaccineEntry = {
   id: string;
@@ -24,7 +26,7 @@ type VaccineEntry = {
 };
 
 const LS_KEY = 'vc_vaccinations';
-const today = new Date().toISOString().split('T')[0];
+const today = getIstDateKey();
 
 const load = (): VaccineEntry[] => {
   try {
@@ -60,6 +62,7 @@ const ANIMAL_TYPES = [
 
 function VaccinationEntry() {
   const [entries, setEntries] = useState<VaccineEntry[]>(load);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyEntry());
   const [editId, setEditId] = useState<string | null>(null);
@@ -115,8 +118,7 @@ function VaccinationEntry() {
     setErrors({});
   };
 
-  const remove = (id: string) =>
-    setEntries(prev => prev.filter(i => i.id !== id));
+  const remove = (id: string) => setDeleteTarget(id);
 
   const isExpired = (e: VaccineEntry) => e.expiryDate && e.expiryDate < today;
   const isExpiringSoon = (e: VaccineEntry) => {
@@ -342,6 +344,18 @@ function VaccinationEntry() {
           </div>
         )}
       </div>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Entry"
+        message="Are you sure you want to delete this vaccination inventory entry? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setEntries(prev => prev.filter(i => i.id !== deleteTarget));
+          setDeleteTarget(null);
+        }}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }

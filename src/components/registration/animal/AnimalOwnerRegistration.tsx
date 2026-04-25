@@ -9,6 +9,9 @@ import {
   ArrowRight,
   Send,
 } from 'lucide-react';
+import SearchableSelectInput from '../../utility/SearchableSelectInput';
+import { useChhattisgarhLocations } from '../../utility/useChhattisgarhLocations';
+import { useSpeciesBreeds } from '../../utility/useSpeciesBreeds';
 import './AnimalOwnerRegistration.css';
 
 const ENABLE_STEP_VALIDATION =
@@ -36,6 +39,7 @@ const emptyAddress: Address = {
 
 type AnimalForm = {
   name: string;
+  species: string;
   gender: string;
   dateOfBirth: string;
   breed: string;
@@ -74,6 +78,7 @@ function AnimalOwnerRegistration() {
 
   const [animal, setAnimal] = useState<AnimalForm>({
     name: '',
+    species: '',
     gender: '',
     dateOfBirth: '',
     breed: '',
@@ -92,6 +97,12 @@ function AnimalOwnerRegistration() {
   const [stepError, setStepError] = useState('');
   const [hasAcceptedDeclaration, setHasAcceptedDeclaration] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const { districtNames, getBlocksForDistrict, isKnownDistrict, isKnownBlock } =
+    useChhattisgarhLocations();
+  const { speciesNames, getBreedsForSpecies } = useSpeciesBreeds();
+
+  const ownerBlockOptions = getBlocksForDistrict(owner.address.district);
+  const animalBreedOptions = getBreedsForSpecies(animal.species);
 
   function handleAnimalChange(
     field: keyof Omit<AnimalForm, 'photo'>,
@@ -116,12 +127,17 @@ function AnimalOwnerRegistration() {
   function handleOwnerAddressChange(field: keyof Address, value: string) {
     setOwner(prev => ({
       ...prev,
-      address: { ...prev.address, [field]: value },
+      address: {
+        ...prev.address,
+        ...(field === 'district' ? { block: '' } : {}),
+        [field]: value,
+      },
     }));
   }
 
   function validateStep1(): string {
     if (!animal.name.trim()) return 'Animal name is required.';
+    if (!animal.species.trim()) return 'Species is required.';
     if (!animal.gender) return 'Please select a gender.';
     if (!animal.dateOfBirth) return 'Date of birth is required.';
     if (!animal.breed.trim()) return 'Breed is required.';
@@ -138,6 +154,15 @@ function AnimalOwnerRegistration() {
       return 'Address Line 1 is required.';
     if (!owner.address.district.trim()) return 'District is required.';
     if (!owner.address.block.trim()) return 'Block is required.';
+    if (districtNames.length > 0 && !isKnownDistrict(owner.address.district)) {
+      return 'Select a valid district from the list.';
+    }
+    if (
+      districtNames.length > 0 &&
+      !isKnownBlock(owner.address.district, owner.address.block)
+    ) {
+      return 'Select a valid block from the list.';
+    }
     if (!owner.address.state.trim()) return 'State is required.';
     if (!owner.address.pincode.trim()) return 'Pincode is required.';
     if (!/^\d{6}$/.test(owner.address.pincode.trim()))
@@ -213,6 +238,20 @@ function AnimalOwnerRegistration() {
             </label>
 
             <label>
+              Species *
+              <SearchableSelectInput
+                inputId="animal-species"
+                listId="animal-species-list"
+                value={animal.species}
+                onChange={value =>
+                  setAnimal(prev => ({ ...prev, species: value, breed: '' }))
+                }
+                options={speciesNames}
+                placeholder="Search or type species"
+              />
+            </label>
+
+            <label>
               Gender *
               <select
                 value={animal.gender}
@@ -240,11 +279,18 @@ function AnimalOwnerRegistration() {
 
             <label>
               Breed *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="animal-breed"
+                listId="animal-breed-list"
                 value={animal.breed}
-                onChange={e => handleAnimalChange('breed', e.target.value)}
-                placeholder="e.g. Labrador Retriever"
+                onChange={value => handleAnimalChange('breed', value)}
+                options={animalBreedOptions}
+                placeholder={
+                  animal.species.trim()
+                    ? 'Search or type breed'
+                    : 'Select species first'
+                }
+                disabled={!animal.species.trim()}
               />
             </label>
 
@@ -389,23 +435,30 @@ function AnimalOwnerRegistration() {
 
             <label>
               District *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="owner-district"
+                listId="owner-district-list"
                 value={owner.address.district}
-                onChange={e =>
-                  handleOwnerAddressChange('district', e.target.value)
-                }
+                onChange={value => handleOwnerAddressChange('district', value)}
+                options={districtNames}
+                placeholder="Search and select district"
               />
             </label>
 
             <label>
               Block *
-              <input
-                type="text"
+              <SearchableSelectInput
+                inputId="owner-block"
+                listId="owner-block-list"
                 value={owner.address.block}
-                onChange={e =>
-                  handleOwnerAddressChange('block', e.target.value)
+                onChange={value => handleOwnerAddressChange('block', value)}
+                options={ownerBlockOptions}
+                placeholder={
+                  owner.address.district
+                    ? 'Search and select block'
+                    : 'Select district first'
                 }
+                disabled={!owner.address.district.trim()}
               />
             </label>
           </>
@@ -498,7 +551,19 @@ function AnimalOwnerRegistration() {
           </>
         )}
 
-        {stepError && <p className="form-error">{stepError}</p>}
+        {stepError && (
+          <div className="form-error" role="alert">
+            <span>{stepError}</span>
+            <button
+              type="button"
+              className="form-error-close"
+              onClick={() => setStepError('')}
+              aria-label="Dismiss error"
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         <div className="step-actions">
           {currentStep > 1 && (

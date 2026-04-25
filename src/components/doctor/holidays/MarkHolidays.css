@@ -1,6 +1,7 @@
 /* ─── Mark Holidays Page ─── */
 .holidays-page {
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1320px;
   position: relative;
 }
 
@@ -46,38 +47,42 @@
 
 .holidays-info-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: #e8f5e9;
+  border: 1px solid #b2dfdb;
   border-radius: 8px;
   font-size: 0.83rem;
-  color: #1d4ed8;
+  line-height: 1.45;
+  color: #00897b;
   margin-bottom: 18px;
 }
 
 .holidays-info-bar svg {
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
 /* Month navigation */
 .month-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px minmax(220px, auto) 40px;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  column-gap: 22px;
   margin-bottom: 18px;
 }
 
 .month-nav-btn {
   display: flex;
   align-items: center;
-  padding: 6px 10px;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  padding: 0;
   border: 1px solid #e2e8f0;
   background: white;
-  border-radius: 7px;
+  border-radius: 10px;
   cursor: pointer;
   color: #475569;
   transition: background 0.15s, color 0.15s;
@@ -85,7 +90,7 @@
 
 .month-nav-btn:hover:not(:disabled) {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #1a1a2e;
 }
 
 .month-nav-btn:disabled {
@@ -96,9 +101,9 @@
 .month-nav-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #0f172a;
-  min-width: 220px;
+  color: #1a1a2e;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* Calendar grid */
@@ -115,7 +120,7 @@
 .cal-month-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1a1a2e;
   margin: 0 0 12px;
   text-align: center;
 }
@@ -166,12 +171,12 @@
 }
 
 .cal-cell.status-working {
-  color: #0f172a;
+  color: #1a1a2e;
   cursor: pointer;
 }
 
 .cal-cell.status-working:hover {
-  background: #eff6ff;
+  background: #e8f5e9;
 }
 
 .cal-cell.status-partial-holiday {
@@ -195,7 +200,7 @@
 }
 
 .cal-cell.today .cal-day-num {
-  background: #2563eb;
+  background: #00897b;
   color: white;
   width: 22px;
   height: 22px;
@@ -207,7 +212,7 @@
 }
 
 .cal-cell.selected {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #00897b;
   outline-offset: 1px;
 }
 
@@ -245,7 +250,7 @@
 .popup-date {
   font-size: 0.83rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #1a1a2e;
   margin-bottom: 10px;
 }
 

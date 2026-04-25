@@ -1,0 +1,216 @@
+{
+  "speciesId": 10,
+  "speciesNameEnglish": "Cow",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Gir",
+      "breedNameHindi": "गिर",
+      "speciesId": 10
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Sahiwal",
+      "breedNameHindi": "साहीवाल",
+      "speciesId": 10
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Red Sindhi",
+      "breedNameHindi": "रेड सिंधी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Tharparkar",
+      "breedNameHindi": "थरपारकर",
+      "speciesId": 10
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Kankrej",
+      "breedNameHindi": "कांकरेज",
+      "speciesId": 10
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Haryana",
+      "breedNameHindi": "हरियाणा",
+      "speciesId": 10
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Krishna Valley",
+      "breedNameHindi": "कृष्णा वैली",
+      "speciesId": 10
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Deoni",
+      "breedNameHindi": "देओनी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Malnad Gidda",
+      "breedNameHindi": "मालनाड गिड्डा",
+      "speciesId": 10
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Hallikar",
+      "breedNameHindi": "हल्लिकर",
+      "speciesId": 10
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Amrit Mahal",
+      "breedNameHindi": "अमृत महल",
+      "speciesId": 10
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Khillari",
+      "breedNameHindi": "खिल्लारी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Ongole",
+      "breedNameHindi": "ओंगोल",
+      "speciesId": 10
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Hariana",
+      "breedNameHindi": "हरियाणा",
+      "speciesId": 10
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Dangi",
+      "breedNameHindi": "डांगी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Gaolao",
+      "breedNameHindi": "गाओलाओ",
+      "speciesId": 10
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Kasargod",
+      "breedNameHindi": "कासरगोड",
+      "speciesId": 10
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Umblachery",
+      "breedNameHindi": "उम्बलाचेरी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Pulikulam",
+      "breedNameHindi": "पुलिकुलम",
+      "speciesId": 10
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Alambadi",
+      "breedNameHindi": "आलंबाड़ी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Holstein Friesian",
+      "breedNameHindi": "होल्स्टीन फ्रिसियन",
+      "speciesId": 10
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Jersey",
+      "breedNameHindi": "जर्सी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Brown Swiss",
+      "breedNameHindi": "ब्राउन स्विस",
+      "speciesId": 10
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Ayrshire",
+      "breedNameHindi": "एयरशायर",
+      "speciesId": 10
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Guernsey",
+      "breedNameHindi": "ग्वेर्नसी",
+      "speciesId": 10
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Angus",
+      "breedNameHindi": "एंगस",
+      "speciesId": 10
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Hereford",
+      "breedNameHindi": "हेरफोर्ड",
+      "speciesId": 10
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Charolais",
+      "breedNameHindi": "शारोलैस",
+      "speciesId": 10
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Limousin",
+      "breedNameHindi": "लिमोज़िन",
+      "speciesId": 10
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Cow",
+      "breedNameEnglish": "Simmental",
+      "breedNameHindi": "सिमेंटल",
+      "speciesId": 10
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "speciesId": 11,
+  "speciesNameEnglish": "Buffalo",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Murrah",
+      "breedNameHindi": "मुर्राह",
+      "speciesId": 11
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Jaffarabadi",
+      "breedNameHindi": "जाफराबादी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Banni",
+      "breedNameHindi": "बन्नी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Mehsana",
+      "breedNameHindi": "मेहसाणा",
+      "speciesId": 11
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Nagpuri",
+      "breedNameHindi": "नागपुरी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Surti",
+      "breedNameHindi": "सुरती",
+      "speciesId": 11
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Bhadawari",
+      "breedNameHindi": "भदावरी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Sambalpuri",
+      "breedNameHindi": "सम्बलपुरी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Kalahandi",
+      "breedNameHindi": "कालाहांडी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Godavari",
+      "breedNameHindi": "गोदावरी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Marathwadi",
+      "breedNameHindi": "मराठवाड़ी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "South Kanara",
+      "breedNameHindi": "दक्षिण कर्नारा",
+      "speciesId": 11
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Chilika",
+      "breedNameHindi": "चिलिका",
+      "speciesId": 11
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Parlakhemundi",
+      "breedNameHindi": "पारलाखेमुंडी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Toda",
+      "breedNameHindi": "तोड़ा",
+      "speciesId": 11
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Pandharpuri",
+      "breedNameHindi": "पंढरपुरी",
+      "speciesId": 11
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Konkan Kanyal",
+      "breedNameHindi": "कोंकण कन्याल",
+      "speciesId": 11
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Assamese Buffalo",
+      "breedNameHindi": "असमिया भैंस",
+      "speciesId": 11
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Chinese Buffalo",
+      "breedNameHindi": "चीनी भैंस",
+      "speciesId": 11
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Buffalo",
+      "breedNameEnglish": "Italian Buffalo",
+      "breedNameHindi": "इटालियन भैंस",
+      "speciesId": 11
+    }
+  ]
+}

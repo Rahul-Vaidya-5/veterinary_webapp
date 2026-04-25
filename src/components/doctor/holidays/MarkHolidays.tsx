@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { UmbrellaOff, ChevronLeft, ChevronRight, Info } from 'lucide-react';
+import { useStorageScope } from '../../../utils/StorageScope';
 import './MarkHolidays.css';
+import { formatIstDate, getIstDateKey } from '../../../utils/istDateTime';
 
 type SlotKey = 'morning' | 'noon' | 'evening';
 type DayKey =
@@ -87,29 +89,28 @@ const fallbackSchedule: WeeklySchedule = {
   },
 };
 
-const loadSchedule = (): WeeklySchedule => {
+const loadSchedule = (key: string): WeeklySchedule => {
   try {
-    return JSON.parse(
-      localStorage.getItem(LS_SCHEDULE) ?? '',
-    ) as WeeklySchedule;
+    return JSON.parse(localStorage.getItem(key) ?? '') as WeeklySchedule;
   } catch {
     return fallbackSchedule;
   }
 };
 
-const loadHolidays = (): HolidaysStore => {
+const loadHolidays = (key: string): HolidaysStore => {
   try {
-    return JSON.parse(localStorage.getItem(LS_HOLIDAYS) ?? '{}');
+    return JSON.parse(localStorage.getItem(key) ?? '{}');
   } catch {
     return {};
   }
 };
 
-const saveHolidays = (h: HolidaysStore) => {
-  localStorage.setItem(LS_HOLIDAYS, JSON.stringify(h));
+const saveHolidays = (h: HolidaysStore, key: string) => {
+  localStorage.setItem(key, JSON.stringify(h));
 };
 
-const toDateStr = (d: Date) => d.toISOString().split('T')[0];
+const toDateStr = (d: Date) => getIstDateKey(d);
+
 const MONTH_NAMES = [
   'January',
   'February',
@@ -138,10 +139,15 @@ function buildCalendar(year: number, month: number): (Date | null)[] {
 
 function MarkHolidays() {
   const today = useMemo(() => new Date(), []);
+  const storagePrefix = useStorageScope();
+  const lsHolidays = storagePrefix + LS_HOLIDAYS;
+  const lsSchedule = storagePrefix + LS_SCHEDULE;
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
-  const [holidays, setHolidays] = useState<HolidaysStore>(loadHolidays);
-  const schedule = useMemo(loadSchedule, []);
+  const [holidays, setHolidays] = useState<HolidaysStore>(() =>
+    loadHolidays(lsHolidays),
+  );
+  const schedule = useMemo(() => loadSchedule(lsSchedule), [lsSchedule]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [popupPos, setPopupPos] = useState({ top: 0, left: 0 });
 
@@ -212,7 +218,7 @@ function MarkHolidays() {
       next[dateStr] = updated;
     }
     setHolidays(next);
-    saveHolidays(next);
+    saveHolidays(next, lsHolidays);
   };
 
   const toggleFullDay = (dateStr: string) => {
@@ -237,7 +243,7 @@ function MarkHolidays() {
       next[dateStr] = updated;
     }
     setHolidays(next);
-    saveHolidays(next);
+    saveHolidays(next, lsHolidays);
   };
 
   const handleDateClick = (dateStr: string, e: React.MouseEvent) => {
@@ -405,7 +411,7 @@ function MarkHolidays() {
           const mark = getHolidayMark(selectedDate);
           const allOn = enabled.every(s => mark[s]);
           const d = new Date(selectedDate + 'T00:00:00');
-          const formatted = d.toLocaleDateString('en-IN', {
+          const formatted = formatIstDate(d, {
             weekday: 'long',
             day: '2-digit',
             month: 'short',

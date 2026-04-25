@@ -1,0 +1,216 @@
+{
+  "speciesId": 13,
+  "speciesNameEnglish": "Goat",
+  "breeds": [
+    {
+      "breedId": 1,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Barbari",
+      "breedNameHindi": "बरबरी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 2,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Beetal",
+      "breedNameHindi": "बीटल",
+      "speciesId": 13
+    },
+    {
+      "breedId": 3,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Black Bengal",
+      "breedNameHindi": "ब्लैक बंगाल",
+      "speciesId": 13
+    },
+    {
+      "breedId": 4,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Jamunapari",
+      "breedNameHindi": "जमुनापारी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 5,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Jakhrana",
+      "breedNameHindi": "जाखराना",
+      "speciesId": 13
+    },
+    {
+      "breedId": 6,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Surti",
+      "breedNameHindi": "सुरती",
+      "speciesId": 13
+    },
+    {
+      "breedId": 7,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Gaddi",
+      "breedNameHindi": "गद्दी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 8,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Chegu",
+      "breedNameHindi": "चेगु",
+      "speciesId": 13
+    },
+    {
+      "breedId": 9,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Changthangi",
+      "breedNameHindi": "चांगथांगी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 10,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Zalawadi",
+      "breedNameHindi": "जालावाड़ी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 11,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Kutchi",
+      "breedNameHindi": "कच्छी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 12,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Mehsana",
+      "breedNameHindi": "मेहसाणा",
+      "speciesId": 13
+    },
+    {
+      "breedId": 13,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Osmanabadi",
+      "breedNameHindi": "उस्मानाबादी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 14,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Sirohi",
+      "breedNameHindi": "सीरोही",
+      "speciesId": 13
+    },
+    {
+      "breedId": 15,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Malabari",
+      "breedNameHindi": "मालाबरी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 16,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Attappady Black",
+      "breedNameHindi": "अट्टापडी ब्लैक",
+      "speciesId": 13
+    },
+    {
+      "breedId": 17,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Telengana Local",
+      "breedNameHindi": "तेलंगाना लोकल",
+      "speciesId": 13
+    },
+    {
+      "breedId": 18,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Kanni Adu",
+      "breedNameHindi": "कन्नी अडु",
+      "speciesId": 13
+    },
+    {
+      "breedId": 19,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Vembur",
+      "breedNameHindi": "वेम्बुर",
+      "speciesId": 13
+    },
+    {
+      "breedId": 20,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Pashmina",
+      "breedNameHindi": "पश्मीना",
+      "speciesId": 13
+    },
+    {
+      "breedId": 21,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Boer",
+      "breedNameHindi": "बोअर",
+      "speciesId": 13
+    },
+    {
+      "breedId": 22,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Angora",
+      "breedNameHindi": "अंगोरा",
+      "speciesId": 13
+    },
+    {
+      "breedId": 23,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Nubian",
+      "breedNameHindi": "न्यूबियन",
+      "speciesId": 13
+    },
+    {
+      "breedId": 24,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Toggenburg",
+      "breedNameHindi": "टॉग्गेनबर्ग",
+      "speciesId": 13
+    },
+    {
+      "breedId": 25,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Alpine",
+      "breedNameHindi": "अल्पाइन",
+      "speciesId": 13
+    },
+    {
+      "breedId": 26,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Saanen",
+      "breedNameHindi": "सानन",
+      "speciesId": 13
+    },
+    {
+      "breedId": 27,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "LaMancha",
+      "breedNameHindi": "ला मांचा",
+      "speciesId": 13
+    },
+    {
+      "breedId": 28,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Spanish Goat",
+      "breedNameHindi": "स्पैनिश बकरी",
+      "speciesId": 13
+    },
+    {
+      "breedId": 29,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Kiko",
+      "breedNameHindi": "किको",
+      "speciesId": 13
+    },
+    {
+      "breedId": 30,
+      "speciesNameEnglish": "Goat",
+      "breedNameEnglish": "Tennessee Fainting Goat",
+      "breedNameHindi": "टेनेसी फेंटिंग गोट",
+      "speciesId": 13
+    }
+  ]
+}
