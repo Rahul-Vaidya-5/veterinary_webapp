@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Receipt, Plus, Trash2, Save } from 'lucide-react';
 import './Expenses.css';
 import { getIstDateKey } from '../../../utils/istDateTime';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 
 type ExpenseCategory =
   | 'Medicines'
@@ -65,6 +66,7 @@ const CATEGORY_COLORS: Record<ExpenseCategory, string> = {
 
 function FillExpenses() {
   const [expenses, setExpenses] = useState<Expense[]>(load);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [form, setForm] = useState({
     date: today,
     category: 'Medicines' as ExpenseCategory,
@@ -120,8 +122,7 @@ function FillExpenses() {
     setTimeout(() => setSaved(false), 2500);
   };
 
-  const remove = (id: string) =>
-    setExpenses(prev => prev.filter(e => e.id !== id));
+  const remove = (id: string) => setDeleteTarget(id);
 
   const total = expenses.reduce((s, e) => s + e.amount, 0);
 
@@ -272,6 +273,18 @@ function FillExpenses() {
           </div>
         )}
       </section>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Expense Record"
+        message="Are you sure you want to delete this expense record? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setExpenses(prev => prev.filter(e => e.id !== deleteTarget));
+          setDeleteTarget(null);
+        }}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { IndianRupee, Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 import './Employee.css';
 import { getIstDateKey } from '../../../utils/istDateTime';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 
 type SalaryType = 'Monthly' | 'Daily' | 'Hourly';
 
@@ -39,6 +40,7 @@ const emptyForm = (): Omit<EmployeeWage, 'id'> => ({
 
 function EmployeeWages() {
   const [wages, setWages] = useState<EmployeeWage[]>(load);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyForm());
   const [editId, setEditId] = useState<string | null>(null);
@@ -93,8 +95,7 @@ function EmployeeWages() {
     setErrors({});
   };
 
-  const remove = (id: string) =>
-    setWages(prev => prev.filter(w => w.id !== id));
+  const remove = (id: string) => setDeleteTarget(id);
 
   const totalMonthly = wages
     .filter(w => w.salaryType === 'Monthly')
@@ -284,6 +285,18 @@ function EmployeeWages() {
           </div>
         )}
       </div>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Wage Record"
+        message="Are you sure you want to delete this employee wage record? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setWages(prev => prev.filter(w => w.id !== deleteTarget));
+          setDeleteTarget(null);
+        }}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }

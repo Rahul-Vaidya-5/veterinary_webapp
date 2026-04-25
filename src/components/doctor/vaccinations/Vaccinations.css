@@ -1,0 +1,592 @@
+/* ─── Vaccinations Page ─── */
+.vacc-page {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #1a1a2e;
+}
+
+/* ── Header ── */
+.vacc-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.vacc-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-vacc-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-vacc-add:hover { background: #00897b; }
+
+.btn-vacc-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #fff7ed;
+  color: #92400e;
+  border: 1.5px solid #f59e0b;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-vacc-filter.active,
+.btn-vacc-filter:hover {
+  background: #f59e0b;
+  color: #fff;
+}
+
+/* ── Form card ── */
+.vacc-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.vacc-form-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00695c;
+  margin: 0 0 4px 0;
+}
+
+.vacc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vacc-section-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.vacc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 18px;
+}
+
+.vacc-grid-dates {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.vacc-notes-label {
+  grid-column: 1 / -1;
+}
+
+.vacc-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.vacc-grid input,
+.vacc-grid select,
+.vacc-grid textarea {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  background: #f8fafc;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+.vacc-grid input:focus,
+.vacc-grid select:focus,
+.vacc-grid textarea:focus {
+  border-color: #00897b;
+  background: #fff;
+}
+
+.vacc-grid label.error input,
+.vacc-grid label.error select {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+/* ── Animal history panel ── */
+.vacc-history-panel {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 9px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vacc-history-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #004d40;
+  margin: 0;
+}
+
+.vacc-history-count {
+  margin-left: 4px;
+  padding: 1px 8px;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.vacc-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.vacc-history-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #e0f2fe;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.vacc-history-row:hover {
+  border-color: #7dd3fc;
+  background: #f0f9ff;
+}
+.vacc-history-row:focus-visible {
+  outline: 2px solid #00897b;
+  outline-offset: 1px;
+}
+.vacc-history-row.overdue {
+  background: #fff5f5;
+  border-color: #fca5a5;
+}
+
+.vacc-history-date {
+  font-size: 0.79rem;
+  color: #64748b;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.vacc-history-vaccine {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.vacc-history-due {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.vacc-history-due.overdue {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.vacc-stock-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff7ed;
+  border: 1px solid #f59e0b;
+  border-radius: 7px;
+  font-size: 0.83rem;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.vacc-form-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.btn-vacc-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-vacc-save:hover { background: #15803d; }
+
+.btn-vacc-cancel {
+  padding: 9px 18px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-vacc-cancel:hover { background: #e2e8f0; }
+
+/* ── Records list ── */
+.vacc-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed #e2e8f0;
+}
+
+.vacc-records-count {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0 0 8px 2px;
+}
+
+.vacc-records {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vacc-record-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.vacc-record-card:hover { border-color: #80cbc4; }
+.vacc-record-card.overdue { border-color: #fca5a5; background: #fff5f5; }
+
+/* Primary row */
+.vacc-record-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  flex-wrap: wrap;
+}
+
+.vacc-record-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.vacc-animal-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  white-space: nowrap;
+}
+
+.vacc-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  background: #f1f5f9;
+  color: #334155;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vacc-vaccine-chip {
+  background: #e8f5e9;
+  color: #00897b;
+}
+
+.vacc-dose-chip {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.vacc-overdue-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 20px;
+  font-size: 0.77rem;
+  font-weight: 600;
+  border: 1px solid #fca5a5;
+}
+
+/* Record actions */
+.vacc-record-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.vacc-date-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.vacc-next-due {
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+  padding: 2px 8px;
+  background: #f0fdf4;
+  border-radius: 6px;
+}
+.vacc-next-due.overdue {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.btn-vacc-next-dose {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.btn-vacc-next-dose:hover { background: #0284c7; }
+
+.btn-vacc-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fca5a5;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-vacc-delete:hover { background: #fee2e2; }
+
+.btn-vacc-expand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 7px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.2s;
+}
+.btn-vacc-expand:hover { background: #e2e8f0; }
+.btn-vacc-expand.open svg { transform: rotate(180deg); }
+.btn-vacc-expand svg { transition: transform 0.2s; }
+
+/* Expanded detail */
+.vacc-record-detail {
+  padding: 12px 16px 14px;
+  border-top: 1px solid #f1f5f9;
+  background: #fafbfc;
+}
+
+.vacc-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px 18px;
+  margin-bottom: 10px;
+}
+
+.vacc-detail-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vacc-detail-pair.vacc-detail-notes {
+  grid-column: 1 / -1;
+}
+
+.vacc-detail-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vacc-detail-pair > span:last-child {
+  font-size: 0.85rem;
+  color: #1e293b;
+}
+
+.vacc-administered-by {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+/* ── Vaccination Slip Print ── */
+.print-only {
+  display: none;
+}
+
+.vacc-slip-view {
+  background: #fff;
+  padding: 30px 36px;
+  font-size: 13px;
+  color: #000;
+  line-height: 1.55;
+}
+
+.vacc-slip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vacc-slip-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #00695c;
+}
+
+.vacc-slip-header p {
+  margin: 2px 0 0;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.vacc-slip-meta {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.vacc-slip-meta p {
+  margin: 2px 0;
+}
+
+.vacc-slip-divider {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 10px 0;
+}
+
+.vacc-slip-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.vacc-slip-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  vertical-align: top;
+}
+
+.vacc-slip-notes {
+  margin-top: 12px;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+}
+
+.vacc-slip-sign {
+  margin-top: 44px;
+  text-align: right;
+}
+
+.vacc-sign-line {
+  width: 180px;
+  border-top: 1px solid #334155;
+  margin-left: auto;
+  margin-bottom: 4px;
+}
+
+.vacc-slip-sign p {
+  margin: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .vacc-slip-view,
+  .vacc-slip-view * {
+    visibility: visible;
+  }
+
+  .vacc-slip-view {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

@@ -9,6 +9,18 @@ type DoctorSetPasswordState = {
 
 type PasswordStrength = 'weak' | 'moderate' | 'strong';
 
+type DoctorCredentialsStore = Record<string, string>;
+
+const LS_DOCTOR_CREDENTIALS = 'vc_doctor_credentials';
+
+const loadDoctorCredentials = (): DoctorCredentialsStore => {
+  try {
+    return JSON.parse(localStorage.getItem(LS_DOCTOR_CREDENTIALS) ?? '{}');
+  } catch {
+    return {};
+  }
+};
+
 function getPasswordChecks(password: string) {
   return {
     hasMinLength: password.length >= 8,
@@ -68,7 +80,13 @@ function DoctorSetPassword() {
 
     setError('');
 
-    navigate('/doctor/home', {
+    if (mobileNumber) {
+      const credentials = loadDoctorCredentials();
+      credentials[mobileNumber] = password;
+      localStorage.setItem(LS_DOCTOR_CREDENTIALS, JSON.stringify(credentials));
+    }
+
+    navigate('/doctor/dashboard', {
       replace: true,
       state: {
         doctorName,

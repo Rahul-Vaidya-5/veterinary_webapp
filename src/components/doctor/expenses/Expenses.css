@@ -53,7 +53,7 @@
 
 .eb-grid input:focus,
 .eb-grid select:focus {
-  border-color: #3b82f6;
+  border-color: #00897b;
   background: #fff;
 }
 
@@ -120,7 +120,7 @@ label.error select {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1a1a2e;
 }
 
 .eb-total {
@@ -250,13 +250,13 @@ label.error select {
 
 .period-btn:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: #1a1a2e;
 }
 
 .period-btn.active {
-  background: #eff6ff;
-  color: #2563eb;
-  border-color: #bfdbfe;
+  background: #e8f5e9;
+  color: #00897b;
+  border-color: #b2dfdb;
   font-weight: 600;
 }
 
@@ -287,7 +287,7 @@ label.error select {
 .summary-amount {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1a1a2e;
   font-variant-numeric: tabular-nums;
 }
 
@@ -303,7 +303,7 @@ label.error select {
 .report-section-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #1a1a2e;
   margin: 0 0 14px;
 }
 

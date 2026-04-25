@@ -30,6 +30,16 @@ import EmployeeWages from './components/doctor/employee/EmployeeWages';
 import MedicalKitEntry from './components/doctor/inventory/MedicalKitEntry';
 import VaccinationEntry from './components/doctor/inventory/VaccinationEntry';
 import OthersInventory from './components/doctor/inventory/OthersInventory';
+import Vaccinations from './components/doctor/vaccinations/Vaccinations';
+import MedicalHistory from './components/doctor/history/MedicalHistory';
+import PartnerDoctors from './components/doctor/partners/PartnerDoctors';
+import PartnerDashboard from './components/doctor/partners/PartnerDashboard';
+import PartnerProfile from './components/doctor/partners/PartnerProfile';
+import PartnerAttendance from './components/doctor/partners/PartnerAttendance';
+import PartnerReports from './components/doctor/partners/PartnerReports';
+import PartnerStatusManager from './components/doctor/partners/PartnerStatusManager';
+import PartnerSetPassword from './components/doctor/partners/PartnerSetPassword';
+import ForgotPassword from './components/login/ForgotPassword';
 
 function App() {
   return (
@@ -44,6 +54,8 @@ function App() {
         <Route path="/register/doctor" element={<DoctorRegistration />} />
         <Route path="/doctor/set-password" element={<DoctorSetPassword />} />
         <Route path="/doctor/home" element={<DoctorHome />} />
+        <Route path="/partner/set-password" element={<PartnerSetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register/animal" element={<AnimalOwnerRegistration />} />
         <Route path="/owner/set-password" element={<OwnerSetPassword />} />
         <Route path="/owner/home" element={<OwnerHome />} />
@@ -57,9 +69,13 @@ function App() {
         <Route index element={<Navigate to="appointments" replace />} />
         <Route path="overview" element={<DoctorOverview />} />
         <Route path="prescriptions" element={<Prescriptions />} />
+        <Route path="history" element={<MedicalHistory />} />
         <Route path="appointments" element={<Appointments />} />
         <Route path="holidays" element={<MarkHolidays />} />
         <Route path="profile" element={<DoctorProfile />} />
+        <Route path="partners" element={<PartnerDoctors />} />
+        <Route path="partners/reports" element={<PartnerReports />} />
+        <Route path="partners/status" element={<PartnerStatusManager />} />
         <Route path="expenses/fill" element={<FillExpenses />} />
         <Route path="expenses/income" element={<FillIncome />} />
         <Route path="expenses/report" element={<ExpenseReport />} />
@@ -68,6 +84,21 @@ function App() {
         <Route path="inventory/medical-kit" element={<MedicalKitEntry />} />
         <Route path="inventory/vaccination" element={<VaccinationEntry />} />
         <Route path="inventory/others" element={<OthersInventory />} />
+        <Route path="vaccinations" element={<Vaccinations />} />
+      </Route>
+
+      <Route
+        path="/partner/:partnerId/dashboard"
+        element={<PartnerDashboard />}
+      >
+        <Route index element={<Navigate to="appointments" replace />} />
+        <Route path="appointments" element={<Appointments />} />
+        <Route path="prescriptions" element={<Prescriptions />} />
+        <Route path="vaccinations" element={<Vaccinations />} />
+        <Route path="holidays" element={<MarkHolidays />} />
+        <Route path="history" element={<MedicalHistory />} />
+        <Route path="profile" element={<PartnerProfile />} />
+        <Route path="attendance" element={<PartnerAttendance />} />
       </Route>
     </Routes>
   );

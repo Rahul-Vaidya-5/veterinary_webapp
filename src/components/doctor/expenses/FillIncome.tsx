@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { TrendingUp, Plus, Trash2, Save } from 'lucide-react';
 import './Expenses.css';
 import { getIstDateKey } from '../../../utils/istDateTime';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 
 type IncomeSource =
   | 'Consultation'
@@ -58,6 +59,7 @@ const SOURCE_COLORS: Record<IncomeSource, string> = {
 
 function FillIncome() {
   const [entries, setEntries] = useState<IncomeEntry[]>(load);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [form, setForm] = useState({
     date: today,
     source: 'Consultation' as IncomeSource,
@@ -113,8 +115,7 @@ function FillIncome() {
     setTimeout(() => setSaved(false), 2500);
   };
 
-  const remove = (id: string) =>
-    setEntries(prev => prev.filter(e => e.id !== id));
+  const remove = (id: string) => setDeleteTarget(id);
 
   const total = entries.reduce((s, e) => s + e.amount, 0);
 
@@ -263,6 +264,18 @@ function FillIncome() {
           </div>
         )}
       </section>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Income Record"
+        message="Are you sure you want to delete this income record? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setEntries(prev => prev.filter(e => e.id !== deleteTarget));
+          setDeleteTarget(null);
+        }}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }

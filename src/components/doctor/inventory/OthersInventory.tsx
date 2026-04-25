@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import './Inventory.css';
 import { getIstDateKey } from '../../../utils/istDateTime';
+import { ConfirmModal } from '../../utility/ConfirmModal';
 
 type InventoryCategory =
   | 'Surgical'
@@ -73,6 +74,7 @@ const CATEGORY_COLORS: Record<InventoryCategory, string> = {
 
 function OthersInventory() {
   const [items, setItems] = useState<OtherItem[]>(load);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState(emptyItem());
   const [editId, setEditId] = useState<string | null>(null);
@@ -129,8 +131,7 @@ function OthersInventory() {
     setErrors({});
   };
 
-  const remove = (id: string) =>
-    setItems(prev => prev.filter(i => i.id !== id));
+  const remove = (id: string) => setDeleteTarget(id);
 
   const isLowStock = (item: OtherItem) =>
     item.quantity <= item.lowStockThreshold;
@@ -416,6 +417,18 @@ function OthersInventory() {
           </div>
         )}
       </div>
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        title="Delete Item"
+        message="Are you sure you want to delete this inventory item? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={() => {
+          setItems(prev => prev.filter(i => i.id !== deleteTarget));
+          setDeleteTarget(null);
+        }}
+        onCancel={() => setDeleteTarget(null)}
+      />
     </div>
   );
 }
