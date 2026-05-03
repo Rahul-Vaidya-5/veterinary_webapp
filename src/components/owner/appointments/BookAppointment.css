@@ -1,0 +1,113 @@
+/* BookAppointment */
+
+.book-appt {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1000px;
+}
+
+.ba-doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.ba-doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1.5px solid rgba(245, 158, 11, 0.15);
+  border-radius: 12px;
+  background: #fffdf7;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.ba-doctor-card:hover {
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.ba-doctor-avatar {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ba-doctor-info { flex: 1; min-width: 0; }
+.ba-doctor-name { font-weight: 800; font-size: 0.9rem; color: #1a1a2e; margin-bottom: 2px; }
+.ba-doctor-clinic { font-size: 0.78rem; color: #374151; margin-bottom: 5px; }
+
+.ba-doctor-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.ba-doctor-meta svg { vertical-align: middle; }
+
+.ba-book-quick {
+  padding: 6px 14px !important;
+  font-size: 0.78rem !important;
+  flex-shrink: 0;
+}
+
+/* ── Appointment list ── */
+.ba-appt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ba-appt-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1.5px solid rgba(245, 158, 11, 0.12);
+  border-radius: 12px;
+  background: #fffdf7;
+}
+
+.ba-past .ba-appt-item {
+  border-color: #e2e8f0;
+  background: #f8fafc;
+  opacity: 0.8;
+}
+
+.ba-appt-date-col {
+  flex-shrink: 0;
+  text-align: center;
+  min-width: 72px;
+}
+
+.ba-appt-date { font-weight: 800; font-size: 0.88rem; color: #1a1a2e; }
+.ba-appt-time { font-size: 0.75rem; color: #d97706; font-weight: 600; }
+
+.ba-appt-body { flex: 1; min-width: 0; }
+.ba-appt-pet    { font-weight: 700; font-size: 0.9rem; color: #1a1a2e; }
+.ba-appt-doctor { font-size: 0.78rem; color: #6b7280; margin-top: 2px; }
+.ba-appt-reason { font-size: 0.75rem; color: #9ca3af; font-style: italic; margin-top: 3px; }
+
+.ba-appt-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ba-selected-doctor {
+  font-size: 0.8rem;
+  color: #6b7280;
+  padding: 7px 12px;
+  background: #fff7ed;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

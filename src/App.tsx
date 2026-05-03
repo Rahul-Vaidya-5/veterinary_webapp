@@ -41,6 +41,15 @@ import PartnerStatusManager from './components/doctor/partners/PartnerStatusMana
 import PartnerSetPassword from './components/doctor/partners/PartnerSetPassword';
 import ForgotPassword from './components/login/ForgotPassword';
 
+// Owner Dashboard
+import OwnerDashboard from './components/owner/dashboard/OwnerDashboard';
+import OwnerOverview from './components/owner/overview/OwnerOverview';
+import BookAppointment from './components/owner/appointments/BookAppointment';
+import PetHealth from './components/owner/health/PetHealth';
+import GrowthTracker from './components/owner/growth/GrowthTracker';
+import ShelterFinder from './components/owner/shelter/ShelterFinder';
+import PetConnect from './components/owner/connect/PetConnect';
+
 function App() {
   return (
     <Routes>
@@ -87,6 +96,18 @@ function App() {
         <Route path="vaccinations" element={<Vaccinations />} />
       </Route>
 
+      {/* ── Owner Dashboard ── */}
+      <Route path="/owner/dashboard" element={<OwnerDashboard />}>
+        <Route index element={<Navigate to="overview" replace />} />
+        <Route path="overview" element={<OwnerOverview />} />
+        <Route path="appointments" element={<BookAppointment />} />
+        <Route path="health" element={<PetHealth />} />
+        <Route path="growth" element={<GrowthTracker />} />
+        <Route path="shelter" element={<ShelterFinder />} />
+        <Route path="shelter/my-requests" element={<ShelterFinder />} />
+        <Route path="connect" element={<PetConnect />} />
+        <Route path="connect/my-requests" element={<PetConnect />} />
+      </Route>
       <Route
         path="/partner/:partnerId/dashboard"
         element={<PartnerDashboard />}
