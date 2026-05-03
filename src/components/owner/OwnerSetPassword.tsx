@@ -68,7 +68,18 @@ function OwnerSetPassword() {
 
     setError('');
 
-    navigate('/owner/home', {
+    // Persist credentials
+    if (mobileNumber) {
+      const creds: Record<string, string> = JSON.parse(
+        localStorage.getItem('vc_owner_credentials') ?? '{}',
+      );
+      creds[mobileNumber] = password;
+      localStorage.setItem('vc_owner_credentials', JSON.stringify(creds));
+    }
+    localStorage.setItem('vc_owner_name', ownerName);
+    localStorage.setItem('vc_owner_mobile', mobileNumber);
+
+    navigate('/owner/dashboard', {
       replace: true,
       state: {
         ownerName,

@@ -1,0 +1,106 @@
+/* PetHealth */
+
+.pet-health { display: flex; flex-direction: column; gap: 20px; max-width: 900px; }
+
+.ph-alerts {
+  background: #fff8e1;
+  border: 1.5px solid #fde68a;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ph-alert-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.ph-alert-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.83rem;
+  color: #374151;
+  padding: 6px 10px;
+  background: white;
+  border-radius: 7px;
+  border-left: 3px solid #f59e0b;
+}
+
+.ph-alert-item.urgent { border-left-color: #ef4444; background: #fff5f5; }
+.ph-alert-due  { font-weight: 700; color: #d97706; }
+.ph-alert-item.urgent .ph-alert-due { color: #dc2626; }
+.ph-alert-date { color: #9ca3af; font-size: 0.75rem; margin-left: 4px; }
+
+/* ── Tabs ── */
+.ph-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.ph-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ph-tab:hover { border-color: #f59e0b; color: #d97706; }
+.ph-tab.active { background: #fef3c7; border-color: #f59e0b; color: #d97706; }
+
+/* ── Records ── */
+.ph-record-list { display: flex; flex-direction: column; gap: 10px; }
+
+.ph-record-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1.5px solid rgba(245,158,11,0.12);
+  border-radius: 12px;
+  background: #fffdf7;
+}
+
+.ph-record-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; }
+
+.ph-record-body  { flex: 1; min-width: 0; }
+.ph-record-title { font-size: 0.9rem; color: #1a1a2e; margin-bottom: 3px; }
+.ph-record-meta  { font-size: 0.78rem; color: #6b7280; margin-bottom: 3px; }
+
+.ph-record-next {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #d97706;
+  margin-top: 3px;
+}
+.ph-record-next.urgent { color: #dc2626; }
+
+.ph-record-rx    { font-size: 0.78rem; color: #00695c; margin-top: 3px; }
+.ph-record-notes { font-size: 0.75rem; color: #9ca3af; font-style: italic; margin-top: 2px; }
+
+.ph-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #d1d5db;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: color 0.14s;
+}
+.ph-delete-btn:hover { color: #ef4444; }

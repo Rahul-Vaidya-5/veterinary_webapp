@@ -1,0 +1,89 @@
+/* PetConnect */
+
+.pet-connect { display: flex; flex-direction: column; gap: 20px; max-width: 1000px; }
+
+.pc-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pc-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.pc-post-card {
+  background: white;
+  border: 1.5px solid rgba(245,158,11,0.15);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: box-shadow 0.18s, border-color 0.18s;
+}
+
+.pc-post-card:hover {
+  box-shadow: 0 6px 22px rgba(245,158,11,0.12);
+  border-color: rgba(245,158,11,0.35);
+}
+
+.pc-post-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.pc-pet-emoji { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+
+.pc-post-header { flex: 1; }
+.pc-pet-name  { font-weight: 800; font-size: 1rem; color: #1a1a2e; }
+.pc-pet-meta  { font-size: 0.75rem; color: #6b7280; margin-top: 1px; display: flex; align-items: center; gap: 4px; }
+
+.pc-post-gender {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pc-post-desc {
+  font-size: 0.78rem;
+  color: #6b7280;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.pc-post-footer {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: #9ca3af;
+}
+
+.pc-post-footer span { display: flex; align-items: center; gap: 3px; }
+
+.pc-owner-row {
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.pc-owner-row span { display: flex; align-items: center; gap: 4px; }
+
+/* ── Mine List ── */
+.pc-mine-list { display: flex; flex-direction: column; gap: 10px; }
+
+.pc-mine-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid rgba(245,158,11,0.12);
+  border-radius: 10px;
+  background: #fffdf7;
+}
