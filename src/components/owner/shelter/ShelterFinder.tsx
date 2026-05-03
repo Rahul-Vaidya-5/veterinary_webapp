@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Home, MapPin, Star, Phone, X, Clock, Send } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../dashboard/OwnerDashboard.css';
 import './ShelterFinder.css';
 
@@ -113,13 +114,37 @@ const EMPTY_FORM = {
 };
 
 function ShelterFinder() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isMyRequestsRoute = location.pathname.endsWith('/my-requests');
+
   const [requests, setRequests] = useState<ShelterRequest[]>(loadRequests);
   const [bookingShelter, setBookingShelter] = useState<
     (typeof MOCK_SHELTERS)[0] | null
   >(null);
   const [form, setForm] = useState({ ...EMPTY_FORM });
   const [formError, setFormError] = useState('');
-  const [tab, setTab] = useState<'find' | 'my'>('find');
+  const [tab, setTab] = useState<'find' | 'my'>(() =>
+    isMyRequestsRoute ? 'my' : 'find',
+  );
+
+  useEffect(() => {
+    setTab(isMyRequestsRoute ? 'my' : 'find');
+  }, [isMyRequestsRoute]);
+
+  function openFindTab() {
+    setTab('find');
+    if (isMyRequestsRoute) {
+      navigate('/owner/dashboard/shelter');
+    }
+  }
+
+  function openMyTab() {
+    setTab('my');
+    if (!isMyRequestsRoute) {
+      navigate('/owner/dashboard/shelter/my-requests');
+    }
+  }
 
   function handleBook(shelter: (typeof MOCK_SHELTERS)[0]) {
     setBookingShelter(shelter);
@@ -154,7 +179,7 @@ function ShelterFinder() {
     setForm({ ...EMPTY_FORM });
     setFormError('');
     setBookingShelter(null);
-    setTab('my');
+    openMyTab();
   }
 
   function deleteRequest(id: string) {
@@ -178,14 +203,14 @@ function ShelterFinder() {
       <div className="ph-tabs">
         <button
           className={`ph-tab${tab === 'find' ? ' active' : ''}`}
-          onClick={() => setTab('find')}
+          onClick={openFindTab}
           type="button"
         >
           <Home size={15} /> Find Shelter
         </button>
         <button
           className={`ph-tab${tab === 'my' ? ' active' : ''}`}
-          onClick={() => setTab('my')}
+          onClick={openMyTab}
           type="button"
         >
           <Clock size={15} /> My Requests ({requests.length})
