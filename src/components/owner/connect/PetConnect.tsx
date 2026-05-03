@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Users, Plus, X, Heart, MapPin, Phone, Send } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../dashboard/OwnerDashboard.css';
 import './PetConnect.css';
 
@@ -149,6 +150,10 @@ const SPECIES_EMOJIS: Record<string, string> = {
 };
 
 function PetConnect() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isMyRequestsRoute = location.pathname.endsWith('/my-requests');
+
   const [myPosts, setMyPosts] = useState<ConnectRequest[]>(() => {
     const saved = loadRequests();
     return saved.length > 0 ? saved : [];
@@ -157,7 +162,9 @@ function PetConnect() {
   const [showPostForm, setShowPostForm] = useState(false);
   const [form, setForm] = useState({ ...EMPTY_FORM });
   const [formError, setFormError] = useState('');
-  const [tab, setTab] = useState<'browse' | 'mine'>('browse');
+  const [tab, setTab] = useState<'browse' | 'mine'>(() =>
+    isMyRequestsRoute ? 'mine' : 'browse',
+  );
   const [connectTarget, setConnectTarget] = useState<ConnectRequest | null>(
     null,
   );
@@ -171,6 +178,24 @@ function PetConnect() {
   const browseList = [...SEED_POSTS, ...myPosts]
     .filter(p => !p.isMine)
     .filter(p => !filterSpecies || p.species === filterSpecies);
+
+  useEffect(() => {
+    setTab(isMyRequestsRoute ? 'mine' : 'browse');
+  }, [isMyRequestsRoute]);
+
+  function openBrowseTab() {
+    setTab('browse');
+    if (isMyRequestsRoute) {
+      navigate('/owner/dashboard/connect');
+    }
+  }
+
+  function openMineTab() {
+    setTab('mine');
+    if (!isMyRequestsRoute) {
+      navigate('/owner/dashboard/connect/my-requests');
+    }
+  }
 
   function handlePostSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -206,7 +231,7 @@ function PetConnect() {
     setForm({ ...EMPTY_FORM });
     setFormError('');
     setShowPostForm(false);
-    setTab('mine');
+    openMineTab();
   }
 
   function handleSendInterest(e: React.FormEvent) {
@@ -262,15 +287,14 @@ function PetConnect() {
       <div className="ph-tabs">
         <button
           className={`ph-tab${tab === 'browse' ? ' active' : ''}`}
-          onClick={() => setTab('browse')}
+          onClick={openBrowseTab}
           type="button"
         >
-          <Users size={15} /> Community ({browseList.length + SEED_POSTS.length}
-          )
+          <Users size={15} /> Community ({browseList.length})
         </button>
         <button
           className={`ph-tab${tab === 'mine' ? ' active' : ''}`}
-          onClick={() => setTab('mine')}
+          onClick={openMineTab}
           type="button"
         >
           <Heart size={15} /> My Posts & Interests
